@@ -8,7 +8,12 @@ import { View, Text, Image, StyleSheet, SafeAreaView,
 
  class login extends Component{
 
-
+   constructor(props) {
+     super(props);
+     this.state = { Username : '',
+                    Password : ''
+     };
+   }
  render() {
 
 

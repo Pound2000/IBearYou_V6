@@ -9,7 +9,7 @@ import React, {Component} from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native'
 import Bg1 from './components/Bg1';
 import Bg2 from './components/Bg2';
-import client from './database.js';
+
 
 
 
@@ -17,7 +17,7 @@ class home  extends Component{
 
 
 
-//console.log(getChoices(10A));
+
     
 
 
@@ -27,7 +27,6 @@ class home  extends Component{
            
        <Bg1/>
 
-{getChoices('10A')}
         </View>      
        
        
@@ -35,9 +34,7 @@ class home  extends Component{
   }
 }
 
-const getChoices = (id) => client.query(`SELECT * from Choices WHERE choiceid = '${id}'`, (err, res) => {
- return res;
-});
+
 
 const styles = StyleSheet.create({
     container:{

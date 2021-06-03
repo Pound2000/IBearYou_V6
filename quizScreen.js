@@ -8,7 +8,7 @@ import Bg2 from './components/Bg2';
 import {CompositeNavigationProp} from '@react-navigation/native' ;
 
  
-class quiz extends Component{
+class quizScreen extends Component{
  
  constructor(props) {
    super(props)
@@ -183,4 +183,4 @@ const styles = StyleSheet.create({
  
 });
  
-export default quiz;
+export default quizScreen;
