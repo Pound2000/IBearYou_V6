@@ -6,7 +6,12 @@ import { StyleSheet, View, Text, Image, SafeAreaView, Button
 import Bg1 from './components/Bg1';
 import Bg2 from './components/Bg2';
 import {CompositeNavigationProp} from '@react-navigation/native' ;
+import SwitchSelector from "react-native-switch-selector";
 
+const switchOption = [
+  {label: 'Check-up', value: 'Check-up'},
+  {label: 'History', value: 'History'},
+];
  
 class quizScreen extends Component{
  
@@ -14,54 +19,47 @@ class quizScreen extends Component{
    super(props)
    this.state = {
      title:'',
+     checkupSwitch:'',
    };
  
  }
+
+    setSwitch(checkupSwitch) {
+      this.setState({checkupSwitch:checkupSwitch});
+    }
+
+
  render() {
    return (
  
- 
+<SafeAreaView>
 <View>
 <Bg1/>
  
 <View style={{flexDirection: 'row' ,justifyContent: 'space-around', alignItems: 'center'}}>
-<View >
-     <TouchableOpacity
-       style={{marginTop:80, borderRadius: 50,
-       backgroundColor: '#FE8150',
-       height: 40,
-       width: 167,
-       alignItems: 'center',
-       justifyContent: 'center',
-       shadowColor: '#000000',
-       shadowOffset: { width: 1, height: 4 },
-       shadowOpacity:  0.20,
-       shadowRadius:5,
-       elevation: 5,
-       }}>
-     <Text style={{color:'#FFFFFF',frontSize: 16}}>
-     Check-up
-     </Text>
-     </TouchableOpacity>
-     </View>
- 
-      <TouchableOpacity style={{marginTop:80, borderRadius: 50,
-       backgroundColor: '#FFE0D4',
-       height: 40,
-       width: 167,
-       alignItems: 'center',
-       justifyContent: 'center',
-       shadowColor: '#000000',
-       shadowOffset: { width: 1, height: 4 },
-       shadowOpacity:  0.20,
-       shadowRadius:5,
-       elevation: 5,}}>
-     <Text style={{color:'#565656',frontSize: 16,}}>
-     History
-     </Text>
-     </TouchableOpacity>
- 
-     </View>
+
+    <SwitchSelector
+      options={switchOption}
+      initial={0}
+      onPress={value => this.setSwitch(value)}
+      textColor='#565656' 
+      fontSize={16}
+      selectedColor='#FFFFFF'
+      buttonColor='#FE8150'
+      backgroundColor='#FFE0D4'
+      height = {38}
+
+      style={{
+      shadowColor: '#000000',
+      shadowOffset: { width: 1, height: 4 },
+      shadowOpacity:  0.20,
+      shadowRadius:3,
+      elevation: 2,
+      width: 290,
+}}
+    />
+
+</View>
  
       <View style={styles.textHeaderStyle}>
     
@@ -95,6 +93,8 @@ class quizScreen extends Component{
      </View>  
  
     </View>
+
+  </SafeAreaView>
  
    );
  }
