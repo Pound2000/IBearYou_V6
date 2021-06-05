@@ -19,11 +19,31 @@ import checkup8 from './checkup8';
 import resultScreen from './resultScreen';
 
 
-function CustomHeader({title}) {
+function CustomHeader({title,isHome,navigation}) {
   return (
-    <View style={{flexDirection: 'row',height: 50, borderWidth: 1, borderColor: 'pink'}}>
+    <View style={{flexDirection: 'row',height: 50}}>
+<View>
+{
+  isHome?
+  
+    null
+    :
+    <View>
+   
+    <TouchableOpacity
+    style={{flexDirection:'row', alignItems: 'center'}}
+    onPress = {() => navigation.goBack()}
+    > 
+    <Image source={require('./assets/images/back.png')} 
+    style={{width: 14.32,height:26,marginLeft: 20}} 
+    resizeMode='contain'
+    />
+    </TouchableOpacity>
+    </View>
+}
+</View>
 
-  <View style={{flex: 1.5, justifyContent: 'center', borderWidth: 1, borderColor: 'pink'}}>
+  <View style={{flex: 1.5, justifyContent: 'center'}}>
     <Text style={{textAlign: 'center'}}>I Bear You</Text>
     </View>
      </View>
@@ -31,14 +51,15 @@ function CustomHeader({title}) {
 }
 
 
-function HomeScreen() {
+function HomeScreen({navigation}) {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <CustomHeader title='Home'/>
+      <CustomHeader title='Home' isHome={true} navigation={navigation} />
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <Text>Home!</Text>
           <TouchableOpacity
         style={{marginTop: 20}}
+        onPress={() => navigation.navigate('Graph')}
         >
         <Text> Go to graph </Text>
       </TouchableOpacity>
@@ -47,10 +68,10 @@ function HomeScreen() {
   );
 }
 
-function Graph() {
+function Graph({navigation}) {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <CustomHeader title='Graph'/>
+      <CustomHeader title='Graph' navigation={navigation}/>
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <Text>Home!</Text>
       </View>
@@ -58,26 +79,34 @@ function Graph() {
   );
 }
 
-function CalendarScreen() {
+function CalendarScreen({navigation}) {
   return (
      <SafeAreaView style={{ flex: 1 }}>
-     <CustomHeader title='Calendar' />
+     <CustomHeader title='Calendar' isHome={true} navigation={navigation}/>
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Calendar!</Text>
         <TouchableOpacity
         style={{marginTop: 20}}
+        onPress={() => navigation.navigate('Mood')}
         >
-        <Text> Let's Get Started </Text>
+        <Text> mood </Text>
+      </TouchableOpacity>
+
+       <TouchableOpacity
+        style={{marginTop: 20}}
+        onPress ={() => navigation.navigate('Diary')}
+        >
+        <Text> diary </Text>
       </TouchableOpacity>
     </View>
      </SafeAreaView>
   );
 }
 
-function MoodScreen() {
+function MoodScreen({navigation}) {
   return (
      <SafeAreaView style={{ flex: 1 }}>
-     <CustomHeader title='Mood' />
+     <CustomHeader title='Mood'  navigation={navigation}/>
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>How do you feel?</Text>
         <TouchableOpacity
@@ -90,10 +119,10 @@ function MoodScreen() {
   );
 }
 
-function DairyScreen() {
+function DiaryScreen({navigation}) {
   return (
      <SafeAreaView style={{ flex: 1 }}>
-     <CustomHeader title='Dairy' />
+     <CustomHeader title='Diary'  navigation={navigation}/>
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>What happened today?!</Text>
         <TouchableOpacity
@@ -106,14 +135,15 @@ function DairyScreen() {
   );
 }
 
-function CheckupScreen() {
+function CheckupScreen({navigation}) {
   return (
      <SafeAreaView style={{ flex: 1 }}>
-         <CustomHeader title='Checkup'/>
+         <CustomHeader title='Checkup'isHome={true} navigation={navigation}/>
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Checkup!</Text>
           <TouchableOpacity
         style={{marginTop: 20}}
+        onPress={() => navigation.navigate('StartCheckup')}
         >
         <Text> Let's Get Started </Text>
       </TouchableOpacity>
@@ -122,10 +152,10 @@ function CheckupScreen() {
   );
 }
 
-function StartCheckupScreen() {
+function StartCheckupScreen({navigation}) {
   return (
      <SafeAreaView style={{ flex: 1 }}>
-         <CustomHeader title='StartCheckup'/>
+         <CustomHeader title='StartCheckup' navigation={navigation}/>
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Checkup!</Text>
           <TouchableOpacity
@@ -138,14 +168,15 @@ function StartCheckupScreen() {
   );
 }
 
-function VoiceScreen() {
+function VoiceScreen({navigation}) {
   return (
      <SafeAreaView style={{ flex: 1 }}>
-      <CustomHeader title='Voice' />
+      <CustomHeader title='Voice' isHome={true} navigation={navigation}/>
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Voice!</Text>
             <TouchableOpacity
         style={{marginTop: 20}}
+        onPress={() => navigation.navigate('Alarm')}
         >
         <Text> Start Record  </Text>
       </TouchableOpacity>
@@ -154,10 +185,10 @@ function VoiceScreen() {
   );
 }
 
-function AlarmScreen() {
+function AlarmScreen({navigation}) {
   return (
      <SafeAreaView style={{ flex: 1 }}>
-      <CustomHeader title='Alarm' />
+      <CustomHeader title='Alarm'  navigation={navigation}/>
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Alarm Setting!</Text>
             <TouchableOpacity
@@ -170,14 +201,15 @@ function AlarmScreen() {
   );
 }
 
-function ProfileScreen() {
+function ProfileScreen({navigation}) {
   return (
      <SafeAreaView style={{ flex: 1 }}>
-      <CustomHeader title='Profile' />
+      <CustomHeader title='Profile' isHome={true} navigation={navigation}/>
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Profile!</Text>
            <TouchableOpacity
         style={{marginTop: 20}}
+         onPress={() => navigation.navigate('Setting')}
         >
         <Text> Setting  </Text>
       </TouchableOpacity>
@@ -187,80 +219,135 @@ function ProfileScreen() {
 }
 
 
-function SettingScreen() {
+function SettingScreen({navigation}) {
   return (
      <SafeAreaView style={{ flex: 1 }}>
-      <CustomHeader title='Profile' />
+      <CustomHeader title='Setting'  navigation={navigation}/>
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Setting!</Text>
+      <Text>Setting detial!</Text>
     </View>
      </SafeAreaView>
   );
 }
 
-const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const navOptionHandler = () => ({
+  headerShown: false
+})
+
+const StackHome = createStackNavigator();
 
 function HomeStack() {
   return (
-    <Stack.Navigator initialRouteName='Home'>
-      <Stack.Screen name='Home' component={HomeScreen}/>
-      <Stack.Screen name='Graph' component={Graph}/>
-     </Stack.Navigator>
+    <StackHome.Navigator initialRouteName='Home'>
+      <StackHome.Screen name='Home' component={HomeScreen} options={navOptionHandler} />
+      <StackHome.Screen name='Graph' component={Graph} options={navOptionHandler}/>
+     </StackHome.Navigator>
 
   )
 }
 
-function DairyStack() {
+const StackDiary = createStackNavigator();
+
+function DiaryStack() {
   return (
-    <Stack.Navigator initialRouteName='Calendar'>
-      <Stack.Screen name='Calendar' component={CalendarScreen}/>
-      <Stack.Screen name='Dairy' component={DairyScreen}/>
-      <Stack.Screen name='Mood' component={MoodScreen}/>
-     </Stack.Navigator>
+    <StackDiary.Navigator initialRouteName='Calendar'>
+      <StackDiary.Screen name='Calendar' component={CalendarScreen} options={navOptionHandler}/>
+      <StackDiary.Screen name='Diary' component={DiaryScreen} options={navOptionHandler}/>
+       <StackDiary.Screen name='Mood' component={MoodScreen} options={navOptionHandler}/>
+     </StackDiary.Navigator>
 
   )
 }
+
+const StackCheckup = createStackNavigator();
 
 function CheckupStack() {
   return (
-    <Stack.Navigator initialRouteName='Checkup'>
-      <Stack.Screen name='Checkup' component={CheckupScreen}/>
-      <Stack.Screen name='StartCheckup' component={StartCheckupScreen}/>
-     </Stack.Navigator>
+    <StackCheckup.Navigator initialRouteName='Checkup'>
+      <StackCheckup.Screen name='Checkup' component={CheckupScreen} options={navOptionHandler}/>
+      <StackCheckup.Screen name='StartCheckup' component={StartCheckupScreen} options={navOptionHandler}/>
+     </StackCheckup.Navigator>
 
   )
 }
+
+const StackBear = createStackNavigator();
 
 function BearStack() {
   return (
-    <Stack.Navigator initialRouteName='Voice'>
-      <Stack.Screen name='Voice' component={VoiceScreen}/>
-      <Stack.Screen name='Alarm' component={AlarmScreen}/>
-     </Stack.Navigator>
+    <StackBear.Navigator initialRouteName='Voice'>
+      <StackBear.Screen name='Voice' component={VoiceScreen} options={navOptionHandler}/>
+      <StackBear.Screen name='Alarm' component={AlarmScreen} options={navOptionHandler}/>
+     </StackBear.Navigator>
 
   )
 }
 
-function Profiletack() {
+const StackProfile = createStackNavigator();
+
+function ProfileStack() {
   return (
-    <Stack.Navigator initialRouteName='Profile'>
-      <Stack.Screen name='Profile' component={ProfileScreen}/>
-      <Stack.Screen name='Setting' component={Graph}/>
-     </Stack.Navigator>
+    <StackProfile.Navigator initialRouteName='Profile'>
+      <StackProfile.Screen name='Profile' component={ProfileScreen} options={navOptionHandler}/>
+      <StackProfile.Screen name='Setting' component={SettingScreen} options={navOptionHandler}/>
+     </StackProfile.Navigator>
 
   )
 }
+
+
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Dairy" component={CalendarScreen} />
-        <Tab.Screen name="Checkup" component={CheckupScreen} />
-        <Tab.Screen name="Voice" component={VoiceScreen} />
-        <Tab.Screen name="Profile" component={ProfileScreen} />
+     <Tab.Navigator
+          screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'Home') {
+              iconName = focused
+                ? require('./assets/images/Home-Black.png') 
+                : require('./assets/images/Home.png');
+            } 
+            else if (route.name === 'Diary') {
+              iconName = focused 
+               ? require('./assets/images/diary-black.png') 
+               : require('./assets/images/diary.png');
+            } 
+            else if (route.name === 'Checkup') {
+              iconName = focused 
+               ? require('./assets/images/quiz.png')
+               : require('./assets/images/quiz-pink.png') ;
+            }
+            else if (route.name === 'Bear') {
+              iconName = focused 
+               ? require('./assets/images/voice-black.png')
+               : require('./assets/images/voice.png') ;
+            }
+             else if (route.name === 'Profile') {
+              iconName = focused 
+               ? require('./assets/images/profile.png')
+               : require('./assets/images/profile.png') ;
+            }
+            
+            return <Image source={iconName} style={{width:28 , height: 28}} 
+            resizeMode='contain'/>;
+          },
+
+          showLabel : false
+        })}
+       tabBarOptions={{
+          showLabel : false,
+        }}
+     >
+        <Tab.Screen name="Home" component={HomeStack} />
+        <Tab.Screen name="Diary" component={DiaryStack} />
+        <Tab.Screen name="Checkup" component={CheckupStack} />
+        <Tab.Screen name="Bear" component={BearStack} />
+        <Tab.Screen name="Profile" component={ProfileStack} />
       </Tab.Navigator>
     </NavigationContainer>
   );
