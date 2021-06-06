@@ -34,7 +34,7 @@ class quizScreen extends Component{
  
 <SafeAreaView>
 <View>
-<Bg1/>
+<Bg2/>
  
 <View style={{flexDirection: 'row' ,justifyContent: 'space-around', alignItems: 'center'}}>
 

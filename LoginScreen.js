@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
-import { View, Text, Image, StyleSheet, SafeAreaView,
-        Button, TouchableHighlight,Alert,Separator
-        ,TextInput} 
-        from 'react-native';
+import { StyleSheet, View, Text, Image, SafeAreaView, Button
+       , TouchableHighlight,TouchableOpacity, Dementions, TextInput}
+       from 'react-native';
+import Bg1 from './components/Bg1';
+import Bg2 from './components/Bg2';
+
+import CustomHeader from './CustomHeader';
 
 
 
- class login extends Component{
+class LoginScreen extends Component {
 
    constructor(props) {
      super(props);
@@ -14,17 +17,18 @@ import { View, Text, Image, StyleSheet, SafeAreaView,
                     Password : ''
      };
    }
- render() {
 
-     
-    return (
-    <View >
-      <View style ={styles.form}></View>
+  render() {
+return (
+       <View >
+   
+      <View style ={styles.form}></View> 
+      
         <View style={[styles.container, containerStyle]}>
 
-
+ 
          <View style={styles.Input}>
-        
+    
           <TextInput 
             placeholder="Username"
             style = {[styles.TextInput,TextInputStyle]}
@@ -60,12 +64,14 @@ import { View, Text, Image, StyleSheet, SafeAreaView,
         
 
    <View style = {styles.button}>
-    <TouchableHighlight onPress={() => navigation.navigate('home')}>
+     <TouchableOpacity
+        style={{marginTop: 20}}
+         onPress={() => this.props.navigation.navigate('HomeApp')}
+        >
         <View style = {styles.buttonLogin}>   
-            <Text style = {styles.textLogin}>Login</Text>   
-        </View>
-    </TouchableHighlight>
-
+            <Text style = {styles.textLogin}>Login</Text>         
+ </View>
+</TouchableOpacity>
    <View style={{flexDirection: 'row', alignItems: 'center'}}>
   <View style={{width: 150, height: 1, backgroundColor: '#E79995',marginTop: 12}} />
     <View>
@@ -74,16 +80,18 @@ import { View, Text, Image, StyleSheet, SafeAreaView,
     <View style={{width: 150, height: 1 ,backgroundColor: '#E79995',marginTop: 12}} />    
  </View>
 
-  <TouchableHighlight  underlayColor='#FDF5F5'>
+  <TouchableOpacity
+        style={{marginTop: 20}}
+         onPress={() => this.props.navigation.navigate('Register')}
+        >
    <View style = {styles.buttonRegister}>   
             <Text style = {styles.textRegister}>Register</Text>   
-        </View>
-    </TouchableHighlight>
-   
+   </View>     
+   </TouchableOpacity>
  </View>
-    </View>   
-      
-    );
+ </View>
+   
+  );
   }
 }
 
@@ -91,17 +99,22 @@ const containerStyle = {
 
         flex: 1 ,
         flexDirection: 'column' ,  
+        
+        
+         
 }
 
 const formStyle = {
 
  flex: 1,
-  flexDirection: 'column' ,        
-            
+  flexDirection: 'column' ,  
+ 
+          
 }
 
 const TextInputStyle = {
 paddingLeft: 40,
+ 
 }
 
 
@@ -110,17 +123,19 @@ paddingLeft: 40,
 const styles = StyleSheet.create({
     
    container: {   
-       backgroundColor: '#FFFFFF',
+        backgroundColor: '#FFFFFF',
         alignItems: 'center',
         justifyContent: 'center', 
         width: '100%',
         height: '100%',
+       
+        
         
           
    },
  
     button: {
-        marginTop: 58,
+        marginTop: 48,
         alignItems: 'center',
         
          
@@ -146,7 +161,7 @@ const styles = StyleSheet.create({
         height: 39,
         width: 327,
         borderRadius: 5,
-        marginTop: 14,
+        marginTop: -7,
         borderWidth: 1,
         borderColor: '#E79995'
 
@@ -207,6 +222,7 @@ const styles = StyleSheet.create({
 
     Input: {
       marginTop: 390,
+    
     },
 
     image: {
@@ -220,7 +236,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default login;
-
-
- 
+export default LoginScreen;

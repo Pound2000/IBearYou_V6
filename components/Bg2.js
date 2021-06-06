@@ -6,26 +6,12 @@ export default function Bg2() {
   
     return (
       <View style={styles.container}>
-      
-          <View style = {styles.header}>
-      <Text>I Bear You</Text>
-       </View>
+       
       <View style= {styles.circle1} ></View>
       <View style= {styles.circle2} ></View>
       <View style= {styles.circle3} ></View>
       <View style= {styles.circle4} ></View>
-      <View style= {styles.circle5} ></View>
-            <View style= {styles.manu}></View>
-             <Image source={require('../assets/images/Home.png')}
-     style={styles.imageHome}/> 
-            <Image source={require('../assets/images/diary.png')}
-     style={styles.imageDiary}/> 
-             <Image source={require('../assets/images/quiz.png')}
-     style={styles.imageQuiz}/> 
-            <Image source={require('../assets/images/voice.png')}
-     style={styles.imageVoice}/> 
-          <Image source={require('../assets/images/profile.png')}
-     style={styles.imageProfile}/> 
+      <View style= {styles.circle5} ></View>  
  
        </View>
  
@@ -43,19 +29,7 @@ const styles = StyleSheet.create({
       
        },
  
-   header: {
-      height: 53,
-      width: 414,
-      padding: 18,
-      backgroundColor: '#FFFFFF',
-      alignItems: 'center',
-   },
- 
-   text: {
-       fontSize: 18,
-       color: '#000000',
-       textAlign: 'center'
-   },
+   
  
    circle1: {
        backgroundColor: '#FDF1F3',
@@ -103,48 +77,6 @@ const styles = StyleSheet.create({
        marginTop: -30,
    },
  
-   manu: {
-       width: 414,
-       height: 71,
-       backgroundColor: '#FFFFFF',
-     
-       marginTop: -55,
-   },
-  
- imageHome: {
-     marginTop: -60,
-     marginRight: 310,
-     width: 28,
-     height: 26,
- },
- 
-   imageDiary: {
-     marginTop: -27,
-     marginRight: 160,
-     width: 20.42,
-     height: 25.9,
- },
- 
-   imageQuiz: {
-     marginTop: -26,
-     marginRight: 10,
-     width: 30.56,
-     height: 25.9,
- },
- 
-   imageVoice: {
-     marginTop: -25,
-     marginRight: -150,
-     width: 25.99,
-     height: 25.99,
- },
- 
-    imageProfile: {
-     marginTop: -28,
-     marginRight: -310,
-     width: 26,
-     height: 26,
- },
  
  
  

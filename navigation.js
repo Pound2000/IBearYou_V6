@@ -16,221 +16,27 @@ import checkup6 from './checkup6';
 import checkup7 from './checkup7';
 import checkup8 from './checkup8';
  
-import resultScreen from './resultScreen';
 
 
-function CustomHeader({title,isHome,navigation}) {
-  return (
-    <View style={{flexDirection: 'row',height: 50}}>
-<View>
-{
-  isHome?
-  
-    null
-    :
-    <View>
-   
-    <TouchableOpacity
-    style={{flexDirection:'row', alignItems: 'center'}}
-    onPress = {() => navigation.goBack()}
-    > 
-    <Image source={require('./assets/images/back.png')} 
-    style={{width: 14.32,height:26,marginLeft: 20}} 
-    resizeMode='contain'
-    />
-    </TouchableOpacity>
-    </View>
-}
-</View>
-
-  <View style={{flex: 1.5, justifyContent: 'center'}}>
-    <Text style={{textAlign: 'center'}}>I Bear You</Text>
-    </View>
-     </View>
-  );
-}
+import CustomHeader from './CustomHeader';
+import HomeScreen from './HomeScreen';
+import Graph from './Graph';
+import CalendarScreen from './CalendarScreen';
+import MoodScreen from './MoodScreen';
+import DiaryScreen from './DiaryScreen';
+import CheckupScreen from './CheckupScreen';
+import StartCheckupScreen from './StartCheckupScreen';
+import VoiceScreen from './VoiceScreen';
+import AlarmScreen from './AlarmScreen';
+import ProfileScreen from './ProfileScreen';
+import SettingScreen from './SettingScreen';
+import WelcomeScreen from './WelcomeScreen';
+import LoginScreen from './LoginScreen';
+import RegisterScreen from './RegisterScreen'; 
 
 
-function HomeScreen({navigation}) {
-  return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <CustomHeader title='Home' isHome={true} navigation={navigation} />
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Home!</Text>
-          <TouchableOpacity
-        style={{marginTop: 20}}
-        onPress={() => navigation.navigate('Graph')}
-        >
-        <Text> Go to graph </Text>
-      </TouchableOpacity>
-      </View>
-    </SafeAreaView>
-  );
-}
-
-function Graph({navigation}) {
-  return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <CustomHeader title='Graph' navigation={navigation}/>
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Home!</Text>
-      </View>
-    </SafeAreaView>
-  );
-}
-
-function CalendarScreen({navigation}) {
-  return (
-     <SafeAreaView style={{ flex: 1 }}>
-     <CustomHeader title='Calendar' isHome={true} navigation={navigation}/>
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Calendar!</Text>
-        <TouchableOpacity
-        style={{marginTop: 20}}
-        onPress={() => navigation.navigate('Mood')}
-        >
-        <Text> mood </Text>
-      </TouchableOpacity>
-
-       <TouchableOpacity
-        style={{marginTop: 20}}
-        onPress ={() => navigation.navigate('Diary')}
-        >
-        <Text> diary </Text>
-      </TouchableOpacity>
-    </View>
-     </SafeAreaView>
-  );
-}
-
-function MoodScreen({navigation}) {
-  return (
-     <SafeAreaView style={{ flex: 1 }}>
-     <CustomHeader title='Mood'  navigation={navigation}/>
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>How do you feel?</Text>
-        <TouchableOpacity
-        style={{marginTop: 20}}
-        >
-        <Text> Let's Get Started </Text>
-      </TouchableOpacity>
-    </View>
-     </SafeAreaView>
-  );
-}
-
-function DiaryScreen({navigation}) {
-  return (
-     <SafeAreaView style={{ flex: 1 }}>
-     <CustomHeader title='Diary'  navigation={navigation}/>
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>What happened today?!</Text>
-        <TouchableOpacity
-        style={{marginTop: 20}}
-        >
-        <Text> Let's Get Started </Text>
-      </TouchableOpacity>
-    </View>
-     </SafeAreaView>
-  );
-}
-
-function CheckupScreen({navigation}) {
-  return (
-     <SafeAreaView style={{ flex: 1 }}>
-         <CustomHeader title='Checkup'isHome={true} navigation={navigation}/>
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Checkup!</Text>
-          <TouchableOpacity
-        style={{marginTop: 20}}
-        onPress={() => navigation.navigate('StartCheckup')}
-        >
-        <Text> Let's Get Started </Text>
-      </TouchableOpacity>
-    </View>
-     </SafeAreaView>
-  );
-}
-
-function StartCheckupScreen({navigation}) {
-  return (
-     <SafeAreaView style={{ flex: 1 }}>
-         <CustomHeader title='StartCheckup' navigation={navigation}/>
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Checkup!</Text>
-          <TouchableOpacity
-        style={{marginTop: 20}}
-        >
-        <Text> Next </Text>
-      </TouchableOpacity>
-    </View>
-     </SafeAreaView>
-  );
-}
-
-function VoiceScreen({navigation}) {
-  return (
-     <SafeAreaView style={{ flex: 1 }}>
-      <CustomHeader title='Voice' isHome={true} navigation={navigation}/>
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Voice!</Text>
-            <TouchableOpacity
-        style={{marginTop: 20}}
-        onPress={() => navigation.navigate('Alarm')}
-        >
-        <Text> Start Record  </Text>
-      </TouchableOpacity>
-    </View>
-     </SafeAreaView>
-  );
-}
-
-function AlarmScreen({navigation}) {
-  return (
-     <SafeAreaView style={{ flex: 1 }}>
-      <CustomHeader title='Alarm'  navigation={navigation}/>
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Alarm Setting!</Text>
-            <TouchableOpacity
-        style={{marginTop: 20}}
-        >
-        <Text> Start Alarm setting  </Text>
-      </TouchableOpacity>
-    </View>
-     </SafeAreaView>
-  );
-}
-
-function ProfileScreen({navigation}) {
-  return (
-     <SafeAreaView style={{ flex: 1 }}>
-      <CustomHeader title='Profile' isHome={true} navigation={navigation}/>
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Profile!</Text>
-           <TouchableOpacity
-        style={{marginTop: 20}}
-         onPress={() => navigation.navigate('Setting')}
-        >
-        <Text> Setting  </Text>
-      </TouchableOpacity>
-    </View>
-     </SafeAreaView>
-  );
-}
 
 
-function SettingScreen({navigation}) {
-  return (
-     <SafeAreaView style={{ flex: 1 }}>
-      <CustomHeader title='Setting'  navigation={navigation}/>
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Setting detial!</Text>
-    </View>
-     </SafeAreaView>
-  );
-}
-
-const Tab = createBottomTabNavigator();
 
 const navOptionHandler = () => ({
   headerShown: false
@@ -299,10 +105,11 @@ function ProfileStack() {
 
 
 
-export default function App() {
-  return (
-    <NavigationContainer>
-     <Tab.Navigator
+const Tab = createBottomTabNavigator();
+
+function TabNavigator() {
+  return(
+ <Tab.Navigator
           screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
@@ -337,7 +144,7 @@ export default function App() {
             resizeMode='contain'/>;
           },
 
-          showLabel : false
+         
         })}
        tabBarOptions={{
           showLabel : false,
@@ -349,6 +156,33 @@ export default function App() {
         <Tab.Screen name="Bear" component={BearStack} />
         <Tab.Screen name="Profile" component={ProfileStack} />
       </Tab.Navigator>
+  )
+}
+
+
+const Drawer = createDrawerNavigator();
+
+function DrawerNavigator() {
+  return(
+      <Drawer.Navigator initialRouteName='MenuTab'>
+      <Drawer.Screen name='MenuTab' component={TabNavigator} options={navOptionHandler}/>
+     </Drawer.Navigator>
+  )
+}
+
+const StackApp = createStackNavigator();
+
+
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <StackApp.Navigator initialRouteName='Welcome'>
+      <StackApp.Screen name='Welcome' component={WelcomeScreen} options={navOptionHandler}/>
+      <StackApp.Screen name='Login' component={LoginScreen} options={navOptionHandler}/>
+      <StackApp.Screen name='Register' component={RegisterScreen} options={navOptionHandler}/>
+      <StackApp.Screen name='HomeApp' component={DrawerNavigator} options={navOptionHandler}/>
+     </StackApp.Navigator>
     </NavigationContainer>
   );
 }

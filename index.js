@@ -24,6 +24,8 @@ import navigation from './navigation';
 //import checkup7 from './checkup7';
 //import checkup8 from './checkup8';
 
+//import HomeScreen from './HomeScreen';
+
 import {name as appName} from './app.json';
 
 //AppRegistry.registerComponent(appName, () => welcome
@@ -46,6 +48,8 @@ AppRegistry.registerComponent(appName, () => navigation
 //AppRegistry.registerComponent(appName, () => checkup6
 //AppRegistry.registerComponent(appName, () => checkup7
 //AppRegistry.registerComponent(appName, () => checkup8
+
+//AppRegistry.registerComponent(appName, () => HomeScreen
 
 
 );
