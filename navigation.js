@@ -74,6 +74,7 @@ function CheckupStack() {
     <StackCheckup.Navigator initialRouteName='Checkup'>
       <StackCheckup.Screen name='Checkup' component={CheckupScreen} options={navOptionHandler}/>
       <StackCheckup.Screen name='StartCheckup' component={StartCheckupScreen} options={navOptionHandler}/>
+
      </StackCheckup.Navigator>
 
   )

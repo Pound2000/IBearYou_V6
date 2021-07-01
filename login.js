@@ -18,7 +18,7 @@ import { View, Text, Image, StyleSheet, SafeAreaView,
 
      
     return (
-    <View >
+    <View  >
       <View style ={styles.form}></View>
         <View style={[styles.container, containerStyle]}>
 
@@ -60,7 +60,7 @@ import { View, Text, Image, StyleSheet, SafeAreaView,
         
 
    <View style = {styles.button}>
-    <TouchableHighlight onPress={() => navigation.navigate('home')}>
+    <TouchableHighlight onPress={() => this.props.navigation.navigate('HomeApp')}>
         <View style = {styles.buttonLogin}>   
             <Text style = {styles.textLogin}>Login</Text>   
         </View>
@@ -74,7 +74,7 @@ import { View, Text, Image, StyleSheet, SafeAreaView,
     <View style={{width: 150, height: 1 ,backgroundColor: '#E79995',marginTop: 12}} />    
  </View>
 
-  <TouchableHighlight  underlayColor='#FDF5F5'>
+  <TouchableHighlight  underlayColor='#FDF5F5' onPress={() => this.props.navigation.navigate('Register')}>
    <View style = {styles.buttonRegister}>   
             <Text style = {styles.textRegister}>Register</Text>   
         </View>

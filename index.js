@@ -11,6 +11,8 @@ import navigation from './navigation';
 //import welcome from './welcome';
 //import quiz from './quiz';
 //import resultScreen from './resultScreen';
+//import welcomeBack from './welcomeBack';
+//import welcomeFirst from './welcomeFirst';
 
 
 //test function : Check-up
@@ -36,6 +38,8 @@ import {name as appName} from './app.json';
 AppRegistry.registerComponent(appName, () => navigation
 //AppRegistry.registerComponent(appName, () => quiz
 //AppRegistry.registerComponent(appName, () => resultScreen
+//AppRegistry.registerComponent(appName, () => welcomeBack
+//AppRegistry.registerComponent(appName, () => welcomeFirst
 
 
 //test function : Check-up
