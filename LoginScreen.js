@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, Image, SafeAreaView, Button
        from 'react-native';
 import CustomHeader from './CustomHeader';
 
-//จริง
+
 
 
 class LoginScreen extends Component {

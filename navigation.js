@@ -8,12 +8,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import login from './login';
  
 import checkup1 from './checkup1';
-import checkup2 from './checkup2';
-import checkup3 from './checkup3';
-import checkup4 from './checkup4';
-import checkup5 from './checkup5';
-import checkup6 from './checkup6';
-import checkup7 from './checkup7';
 import checkup8 from './checkup8';
  
 
@@ -33,7 +27,7 @@ import SettingScreen from './SettingScreen';
 import WelcomeScreen from './WelcomeScreen';
 import LoginScreen from './LoginScreen';
 import RegisterScreen from './RegisterScreen'; 
-
+import HistoryScreen from './HistoryScreen'; 
 
 
 
@@ -74,7 +68,7 @@ function CheckupStack() {
     <StackCheckup.Navigator initialRouteName='Checkup'>
       <StackCheckup.Screen name='Checkup' component={CheckupScreen} options={navOptionHandler}/>
       <StackCheckup.Screen name='StartCheckup' component={StartCheckupScreen} options={navOptionHandler}/>
-
+      <StackCheckup.Screen name='History' component={HistoryScreen} options={navOptionHandler}/>  
      </StackCheckup.Navigator>
 
   )
@@ -133,7 +127,7 @@ function TabNavigator() {
             else if (route.name === 'Bear') {
               iconName = focused 
                ? require('./assets/images/voice-black.png')
-               : require('./assets/images/voice.png') ;
+               : require('./assets/images/voice-pink.png') ;
             }
              else if (route.name === 'Profile') {
               iconName = focused 

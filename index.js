@@ -13,6 +13,8 @@ import navigation from './navigation';
 //import resultScreen from './resultScreen';
 //import welcomeBack from './welcomeBack';
 //import welcomeFirst from './welcomeFirst';
+//import BgQuiz from './components/BgQuiz';
+
 
 
 //test function : Check-up
@@ -40,17 +42,11 @@ AppRegistry.registerComponent(appName, () => navigation
 //AppRegistry.registerComponent(appName, () => resultScreen
 //AppRegistry.registerComponent(appName, () => welcomeBack
 //AppRegistry.registerComponent(appName, () => welcomeFirst
-
+//AppRegistry.registerComponent(appName, () => BgQuiz
 
 //test function : Check-up
 
 //AppRegistry.registerComponent(appName, () => checkup1
-//AppRegistry.registerComponent(appName, () => checkup2
-//AppRegistry.registerComponent(appName, () => checkup3
-//AppRegistry.registerComponent(appName, () => checkup4
-//AppRegistry.registerComponent(appName, () => checkup5
-//AppRegistry.registerComponent(appName, () => checkup6
-//AppRegistry.registerComponent(appName, () => checkup7
 //AppRegistry.registerComponent(appName, () => checkup8
 
 //AppRegistry.registerComponent(appName, () => HomeScreen

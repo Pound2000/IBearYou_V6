@@ -5,6 +5,7 @@ import { StyleSheet, View, Text, Image, SafeAreaView, Button
 //import SwitchSelector from "react-native-switch-selector";
 import Bg1 from './components/Bg1';
 import Bg2 from './components/Bg2';
+import BgQuiz from './components/BgQuiz';
 import {CompositeNavigationProp} from '@react-navigation/native' ;
 import SwitchSelector from "react-native-switch-selector";
 
@@ -34,7 +35,7 @@ class quizScreen extends Component{
  
 <SafeAreaView>
 <View>
-<Bg2/>
+<BgQuiz/>
  
 <View style={{flexDirection: 'row' ,justifyContent: 'space-around', alignItems: 'center'}}>
 
@@ -67,7 +68,7 @@ class quizScreen extends Component{
       </View>
  
       <View style={{alignItems: 'center',}}>
-       <Text style={styles.textContent}>วันนี้เป็นยังไงบ้าง มาทบทวนตัวเองไปกับน้องหมีกันไหม?</Text>
+       <Text style={styles.textContent}>มาทบทวนตัวเองไปกับน้องหมีกันไหม?</Text>
      </View>
  
  

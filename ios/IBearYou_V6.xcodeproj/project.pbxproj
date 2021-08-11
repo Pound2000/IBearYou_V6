@@ -11,9 +11,21 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		22F2674B26BBECF9001C1EE9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB61A68108700A75B9A /* Info.plist */; };
+		22F2676C26BBF75B001C1EE9 /* Philosopher-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B73EF2DB9A94A8BA3F83265 /* Philosopher-Bold.ttf */; };
+		22F2676D26BBF75E001C1EE9 /* Philosopher-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 473FD63D9CCD41F69A150C9C /* Philosopher-Regular.ttf */; };
+		2B7FF3F6651D4C929426A660 /* Quark-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2AE9FEFBF7834878A0D4A818 /* Quark-Bold.otf */; };
 		2BEE57CCF5A29E4B666C91AA /* libPods-IBearYou_V6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0D91E5E2F0B239CDA14FC2 /* libPods-IBearYou_V6.a */; };
+		53F30EF7F7104F6D9DF533F1 /* Philosopher-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F539CC0E99044855A4D2B77B /* Philosopher-Italic.ttf */; };
+		58EFBE6B4FE64AC7B4973F8A /* Philosopher-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B73EF2DB9A94A8BA3F83265 /* Philosopher-Bold.ttf */; };
+		63270D02C9524C4DBFA43918 /* Philosopher-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 473FD63D9CCD41F69A150C9C /* Philosopher-Regular.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		89D764AEBD71B89F42132425 /* libPods-IBearYou_V6-IBearYou_V6Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A17E4E819F7D4AC62E8F995 /* libPods-IBearYou_V6-IBearYou_V6Tests.a */; };
+		D6DF7B037B1B447A8E92CCB4 /* Quark-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAD87943B6C049A0B7BCEFF0 /* Quark-Light.otf */; };
+		D7EE841F6D2F4F1F8FFC4C69 /* Philosopher-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47EE7991B1C94B1E8ACAC201 /* Philosopher-BoldItalic.ttf */; };
+		E4288008CD7946AB8FE81A89 /* iannnnn-DUCK-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B29FF60665D48EE82F4F00A /* iannnnn-DUCK-Bold.ttf */; };
+		8EC21D1D70644BC0B6E6B92A /* iannnnn-DUCK-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE171DCBBD462888DA552D /* iannnnn-DUCK-Light.ttf */; };
+		1C388F6FAA794BAAB4BDF9E2 /* iannnnn-DUCK-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C167AC9150F4464085AC5C45 /* iannnnn-DUCK-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,14 +48,23 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = IBearYou_V6/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = IBearYou_V6/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = IBearYou_V6/main.m; sourceTree = "<group>"; };
+		2AE9FEFBF7834878A0D4A818 /* Quark-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Quark-Bold.otf"; path = "../assets/fonts/Quark-Bold.otf"; sourceTree = "<group>"; };
 		33BBFD8F9AEC77CAE01FF7D7 /* Pods-IBearYou_V6-IBearYou_V6Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IBearYou_V6-IBearYou_V6Tests.release.xcconfig"; path = "Target Support Files/Pods-IBearYou_V6-IBearYou_V6Tests/Pods-IBearYou_V6-IBearYou_V6Tests.release.xcconfig"; sourceTree = "<group>"; };
 		3A17E4E819F7D4AC62E8F995 /* libPods-IBearYou_V6-IBearYou_V6Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IBearYou_V6-IBearYou_V6Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		473FD63D9CCD41F69A150C9C /* Philosopher-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Philosopher-Regular.ttf"; path = "../assets/fonts/Philosopher-Regular.ttf"; sourceTree = "<group>"; };
+		47EE7991B1C94B1E8ACAC201 /* Philosopher-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Philosopher-BoldItalic.ttf"; path = "../assets/fonts/Philosopher-BoldItalic.ttf"; sourceTree = "<group>"; };
+		5B73EF2DB9A94A8BA3F83265 /* Philosopher-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Philosopher-Bold.ttf"; path = "../assets/fonts/Philosopher-Bold.ttf"; sourceTree = "<group>"; };
 		66F401FDC7F4E9A5CDE5816A /* Pods-IBearYou_V6-IBearYou_V6Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IBearYou_V6-IBearYou_V6Tests.debug.xcconfig"; path = "Target Support Files/Pods-IBearYou_V6-IBearYou_V6Tests/Pods-IBearYou_V6-IBearYou_V6Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		7B0D91E5E2F0B239CDA14FC2 /* libPods-IBearYou_V6.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IBearYou_V6.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = IBearYou_V6/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D7F3DC486A9E262880E860B9 /* Pods-IBearYou_V6.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IBearYou_V6.release.xcconfig"; path = "Target Support Files/Pods-IBearYou_V6/Pods-IBearYou_V6.release.xcconfig"; sourceTree = "<group>"; };
+		DAD87943B6C049A0B7BCEFF0 /* Quark-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Quark-Light.otf"; path = "../assets/fonts/Quark-Light.otf"; sourceTree = "<group>"; };
 		E1ED59EFE828B0352FDF0F38 /* Pods-IBearYou_V6.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IBearYou_V6.debug.xcconfig"; path = "Target Support Files/Pods-IBearYou_V6/Pods-IBearYou_V6.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F539CC0E99044855A4D2B77B /* Philosopher-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Philosopher-Italic.ttf"; path = "../assets/fonts/Philosopher-Italic.ttf"; sourceTree = "<group>"; };
+		7B29FF60665D48EE82F4F00A /* iannnnn-DUCK-Bold.ttf */ = {isa = PBXFileReference; name = "iannnnn-DUCK-Bold.ttf"; path = "../assets/fonts/iannnnn-DUCK-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5BEE171DCBBD462888DA552D /* iannnnn-DUCK-Light.ttf */ = {isa = PBXFileReference; name = "iannnnn-DUCK-Light.ttf"; path = "../assets/fonts/iannnnn-DUCK-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C167AC9150F4464085AC5C45 /* iannnnn-DUCK-Regular.ttf */ = {isa = PBXFileReference; name = "iannnnn-DUCK-Regular.ttf"; path = "../assets/fonts/iannnnn-DUCK-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +127,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2DE377A7F2A84330B1B4A7E3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5B73EF2DB9A94A8BA3F83265 /* Philosopher-Bold.ttf */,
+				473FD63D9CCD41F69A150C9C /* Philosopher-Regular.ttf */,
+				47EE7991B1C94B1E8ACAC201 /* Philosopher-BoldItalic.ttf */,
+				F539CC0E99044855A4D2B77B /* Philosopher-Italic.ttf */,
+				2AE9FEFBF7834878A0D4A818 /* Quark-Bold.otf */,
+				DAD87943B6C049A0B7BCEFF0 /* Quark-Light.otf */,
+				7B29FF60665D48EE82F4F00A /* iannnnn-DUCK-Bold.ttf */,
+				5BEE171DCBBD462888DA552D /* iannnnn-DUCK-Light.ttf */,
+				C167AC9150F4464085AC5C45 /* iannnnn-DUCK-Regular.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +159,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				CC02BD5E4B05BFD65D7673B6 /* Pods */,
+				2DE377A7F2A84330B1B4A7E3 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -145,7 +183,6 @@
 				66F401FDC7F4E9A5CDE5816A /* Pods-IBearYou_V6-IBearYou_V6Tests.debug.xcconfig */,
 				33BBFD8F9AEC77CAE01FF7D7 /* Pods-IBearYou_V6-IBearYou_V6Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -201,7 +238,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1210;
+				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
@@ -236,6 +273,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22F2676D26BBF75E001C1EE9 /* Philosopher-Regular.ttf in Resources */,
+				22F2674B26BBECF9001C1EE9 /* Info.plist in Resources */,
+				22F2676C26BBF75B001C1EE9 /* Philosopher-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +285,15 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				58EFBE6B4FE64AC7B4973F8A /* Philosopher-Bold.ttf in Resources */,
+				63270D02C9524C4DBFA43918 /* Philosopher-Regular.ttf in Resources */,
+				D7EE841F6D2F4F1F8FFC4C69 /* Philosopher-BoldItalic.ttf in Resources */,
+				53F30EF7F7104F6D9DF533F1 /* Philosopher-Italic.ttf in Resources */,
+				2B7FF3F6651D4C929426A660 /* Quark-Bold.otf in Resources */,
+				D6DF7B037B1B447A8E92CCB4 /* Quark-Light.otf in Resources */,
+				E4288008CD7946AB8FE81A89 /* iannnnn-DUCK-Bold.ttf in Resources */,
+				8EC21D1D70644BC0B6E6B92A /* iannnnn-DUCK-Light.ttf in Resources */,
+				1C388F6FAA794BAAB4BDF9E2 /* iannnnn-DUCK-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,13 +480,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 66F401FDC7F4E9A5CDE5816A /* Pods-IBearYou_V6-IBearYou_V6Tests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = IBearYou_V6Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -458,10 +508,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 33BBFD8F9AEC77CAE01FF7D7 /* Pods-IBearYou_V6-IBearYou_V6Tests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = IBearYou_V6Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -577,7 +628,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -635,7 +686,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
