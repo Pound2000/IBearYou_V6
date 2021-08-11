@@ -1,0 +1,160 @@
+{
+    "User" : [{
+        "userId" : "001",
+        "firstName" : "Chayanut",
+        "lastName" : "Uthaipornchai",
+        "password" : "1234",
+        "email" : "pound@hotmail.com",
+        "birthday" : "01-1999-08",
+        "profilePic" : "dog.jpg",
+        "createDate" : "2004-10-01 10:23:54+02",
+        "updateDate" : "2004-10-02 10:23:54+02"
+    },{
+        "userId" : "002",
+        "firstName" : "Fang",
+        "lastName" : "Narak",
+        "password" : "0123",
+        "email" : "fang@hotmail.com",
+        "birthday" : "1999-02-09",
+        "profilePic" : "cat.jpg",
+        "createDate" : "2004-10-03 10:23:54+02",
+        "updateDate" : "2004-10-04 10:23:54+02"
+    },{
+        "userId" : "003",
+        "firstName" : "Rin",
+        "lastName" : "Lilly",
+        "password" : "4567",
+        "email" : "rin@hotmail.com",
+        "birthday" : "1999-03-10",
+        "profilePic" : "fish.jpg",
+        "createDate" : "2004-10-05 10:23:54+02",
+        "updateDate" : "2004-10-06 10:23:54+02"
+    }
+    ],
+    "Diary" : [{
+        "diaryId" : "1",
+        "date" : "1999-03-10",
+        "title" : "I Bear You",
+        "good" : "สอบได้คะแนนมากขึ้น",
+        "bad" : "วันนี้ฝนตกหนักมาก",
+        "wish" : "ขอให้พรุ่งนี้ฝนไม่ตก",
+        "feel" : "รู้สึกท้อแท้",
+        "createDate" : "2004-10-05 10:23:54+02",
+        "updateDate" : "2004-10-06 10:23:54+02",
+        "diaryPic" : "dog.jpg",
+        "userId" : "001"
+    },{
+        "diaryId" : "2",
+        "date" : "1999-03-11",
+        "title" : "ทำโปรเจค",
+        "good" : "วันนี้ทำ test ใน postman ได้แล้วจ้า",
+        "bad" : "เมื่อไหร่โปรเจคจะเสร็จซะที",
+        "wish" : "หวังว่าจะเสร็จเร็วๆนี้นะ",
+        "feel" : "รู้สึกดีใจ",
+        "createDate" : "2004-11-07 10:23:54+02",
+        "updateDate" : "2004-02-06 10:23:54+02",
+        "diaryPic" : "dog.jpg",
+        "userId" : "002"
+    },{
+        "diaryId" : "3",
+        "date" : "1999-03-02",
+        "title" : "น้องดิโอ",
+        "good" : "วันนี้น้องดิโอกระโดดเล่นไปมา",
+        "bad" : "วันนี้น้องดิโอฉี่ราดใส่เสื้อ",
+        "wish" : "หวังว่าน้องดิโอจะฉี่เป็นที่ซะที",
+        "feel" : "รู้สึกปลื้มปริ่ม",
+        "createDate" : "2004-01-07 10:23:54+02",
+        "updateDate" : "2004-03-06 10:23:54+02",
+        "diaryPic" : "dog.jpg",
+        "userId" : "003"
+    }],
+    "Alarm" :[{
+        "alarmId" : "21",
+        "alarmName" : "กินยา",
+        "alarmTime" : "2015-01-07 10:23:54+02",
+        "alarmVoice" : "alarmVoice_01",
+        "createDate" : "2015-01-07 10:23:54+02",
+        "updateDate" : "2015-01-07 10:23:54+02",
+        "snooze" : "05:00:06"        
+    },{
+        "alarmId" : "22",
+        "alarmName" : "ตื่นได้แล้ว",
+        "alarmTime" : "2015-02-07 10:23:54+02",
+        "alarmVoice" : "alarmVoice_02",
+        "createDate" : "2015-02-07 10:23:54+02",
+        "updateDate" : "2015-02-07 10:23:54+02",
+        "snooze" : "04:05:06"
+    },{
+        "alarmId" : "23",
+        "alarmName" : "ได้เวลานอน",
+        "alarmTime" : "2015-03-07 10:23:54+02",
+        "alarmVoice" : "alarmVoice_03",
+        "createDate" : "2015-03-07 10:23:54+02",
+        "updateDate" : "2015-03-07 10:23:54+02",
+        "snooze" : "06:00:00"
+    }],
+    "Card" : [{
+        "cardId": "1",
+        "cardName": "Your dream will come true.",
+        "cardDescription": "เธอยังไม่พร้อมมีการผูกมัดกับความรักครั้งใหม่ เธออาจต้องการใช้ชีวิตที่อิสระหรือเยียวยาบาดแผลในอดีต เมื่อถึงวันที่คุณพร้อมความรักครั้งใหม่หรือการผูกมัดกับใครสักคนอาจไม่ได้เป็นเรื่องแย่เสมอไป",
+        "cheerUp": "ไม่ว่าเหตุผลอะไรที่ทำให้เธอยังไม่กล้าผูกมัดกับใครและทำให้คุณเศร้าในวันนี้มากอดๆกันนะ",
+        "voiceResult": "voice-01.mp3",
+        "imageResult": "cat.jpg"
+     },{
+      "cardId": "2",
+      "cardName": "Spring will come soon.",
+      "cardDescription": "อดีตเป็นเพียงหนึ่งบทเรียนที่สอนเรา มันอาจจะเป็นเรื่องเจ็บปวด ในวันนี้หากเธอยังไม่พร้อมที่จะก้าวข้ามผ่านมันไป ก็ไม่เป็นไร สักวันมันจะดีขึ้นเอง",
+      "cheerUp": "เสียใจได้แต่อย่าเสียใจนานเลยนะ น้องหมีไม่อยากให้หัวใจเธอต้องเจ็บปวด",
+      "voiceResult": "voice-02.mp3",
+      "imageResult": "fish.jpg"
+   },{
+      "cardId": "3",
+      "cardName": "Lavender midnight.",
+      "cardDescription": "การเดินออกมาในความสัมพันธ์ที่ไม่ชัดเจน วันนี้เธออาจเจ็บปวด แต่ในอนาคตเธอจะเจอความสัมพันธ์ที่ชัดเจนวันนี้ถอยออกมารักตัวเองก่อนนะ",
+      "cheerUp": "เหนื่อยก็พัก เขาไม่รักก็พอ แต่น้องหมีรักและชัดเจนกับเธอเสมอนะ",
+      "voiceResult": "voice-02.mp3",
+      "imageResult": "dog.jpg"
+    }],
+    "QuestionType": [{
+           "quesTypeId": "1",
+           "name": "ตัวเลือก"
+        },{
+         "quesTypeId": "2",
+         "name": "พิมพ์ข้อความ"
+      },{
+         "quesTypeId": "3",
+         "name": "ประโยคให้กำลังใจ"
+      },{
+         "quesTypeId": "4",
+         "name": "คำถามสุดท้าย"
+      }],
+      "Result" : [{
+          "result" : "31",
+          "userPrompt" : "ฉันแค่ต้องการใครสักคนอยู่ข้างๆฉัน",
+          "createDate" : "2010-07-04 10:23:54+02",
+          "updateDate" : "2010-07-04 10:23:54+02",
+          "choiceId" : "",
+          "questionId" : "",
+          "userId" : "001",
+          "cardId" : "1"
+      },{
+          "result" : "32",
+          "userPrompt" : "",
+          "createDate" : "2005-03-05 10:23:54+02",
+          "updateDate" : "2005-03-05 10:23:54+02",
+          "choiceId" : "",
+          "questionId" : "",
+          "userId" : "002",
+          "cardId" : "2"
+      },{
+        "result" : "33",
+        "userPrompt" : "ฉันอยากให้เขาหันมาสนใจฉันบ้าง",
+        "createDate" : "2005-03-06 10:23:54+02",
+        "updateDate" : "2005-03-06 10:23:54+02",
+        "choiceId" : "",
+        "questionId" : "",
+        "userId" : "003",
+        "cardId" : "3"
+      }]
+
+}
