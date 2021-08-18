@@ -1,0 +1,35 @@
+{
+    "User" : [{
+        "userId" : "001",
+        "firstName" : "Chayanut",
+        "lastName" : "Uthaipornchai",
+        "password" : "",
+        "email" : "pound@hotmail.com",
+        "birthday" : "01-1999-08",
+        "profilePic" : "dog.jpg",
+        "createDate" : "2004-10-01 10:23:54+02",
+        "updateDate" : "2004-10-02 10:23:54+02"
+    },{
+        "userId" : "002",
+        "firstName" : "Fang",
+        "lastName" : "Narak",
+        "password" : "",
+        "email" : "fang@hotmail.com",
+        "birthday" : "1999-02-09",
+        "profilePic" : "cat.jpg",
+        "createDate" : "2004-10-03 10:23:54+02",
+        "updateDate" : "2004-10-04 10:23:54+02"
+    },{
+        "userId" : "003",
+        "firstName" : "Rin",
+        "lastName" : "Lilly",
+        "password" : "",
+        "email" : "rin@hotmail.com",
+        "birthday" : "1999-03-10",
+        "profilePic" : "fish.jpg",
+        "createDate" : "2004-10-05 10:23:54+02",
+        "updateDate" : "2004-10-06 10:23:54+02"
+    }
+    ]
+
+}
