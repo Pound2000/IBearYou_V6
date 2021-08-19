@@ -1,0 +1,12 @@
+{
+    "Questionnaires" : [{
+      
+       
+                "questionnaireId" : "0",
+                "questionnaire" : "คำถามเรื่องเพื่อน_1",
+                "questionId" : ["40001","40002","40003","4004"],
+                "cardId" : "1"
+              }
+
+            ]
+}
