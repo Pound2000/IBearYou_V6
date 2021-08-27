@@ -2,29 +2,27 @@
       {
       "Result" : [{
         "resultId" : "31",
-        "userPrompt" : "ฉันแค่ต้องการใครสักคนอยู่ข้างๆฉัน",
         "createDate" : "2010-07-04 10:23:54+02",
         "updateDate" : "2010-07-04 10:23:54+02",
-        "choiceId" : "",
-        "questionId" : "",
+        "questionnaireId" : "",
         "userId" : "001",
         "cardId" : "1"
-    },{
+    },
+    
+    {
         "resultId" : "32",
-        "userPrompt" : "",
         "createDate" : "2005-03-05 10:23:54+02",
         "updateDate" : "2005-03-05 10:23:54+02",
-        "choiceId" : "",
-        "questionId" : "",
+        "questionnaireId" : "",
         "userId" : "002",
         "cardId" : "2"
-    },{
+    },
+    
+    {
       "resultId" : "33",
-      "userPrompt" : "ฉันอยากให้เขาหันมาสนใจฉันบ้าง",
       "createDate" : "2005-03-06 10:23:54+02",
       "updateDate" : "2005-03-06 10:23:54+02",
-      "choiceId" : "",
-      "questionId" : "",
+      "questionnaireId" : "",
       "userId" : "003",
       "cardId" : "3"
     }]
