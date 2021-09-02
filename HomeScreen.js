@@ -7,6 +7,7 @@ import Bg2 from './components/Bg2';
 
 import CustomHeader from './CustomHeader';
 
+import User from './Json/User' ;
 
 class HomeScreen extends Component {
   constructor(props) {
@@ -31,6 +32,9 @@ class HomeScreen extends Component {
         >
         <Text> Go to graph </Text>
       </TouchableOpacity>
+
+
+
       </View>
   
     </View>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, Text, View } from 'react-native';
 
-export default App = () => {
+export default  TestFetch= () => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 

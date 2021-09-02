@@ -7,14 +7,14 @@ import {AppRegistry} from 'react-native';
 //import login from './login';
 //import quizScreen from './quizScreen';
 //import home from './home';
-import navigation from './navigation';
+//import navigation from './navigation';
 //import welcome from './welcome';
 //import quiz from './quiz';
 //import resultScreen from './resultScreen';
 //import welcomeBack from './welcomeBack';
 //import welcomeFirst from './welcomeFirst';
 //import BgQuiz from './components/BgQuiz';
-
+import TestFetch from './TestFetch';
 
 
 //test function : Check-up
@@ -37,12 +37,13 @@ import {name as appName} from './app.json';
 //AppRegistry.registerComponent(appName, () => Bg1
 //AppRegistry.registerComponent(appName, () => home
 //AppRegistry.registerComponent(appName, () => login
-AppRegistry.registerComponent(appName, () => navigation
+//AppRegistry.registerComponent(appName, () => navigation
 //AppRegistry.registerComponent(appName, () => quiz
 //AppRegistry.registerComponent(appName, () => resultScreen
 //AppRegistry.registerComponent(appName, () => welcomeBack
 //AppRegistry.registerComponent(appName, () => welcomeFirst
 //AppRegistry.registerComponent(appName, () => BgQuiz
+AppRegistry.registerComponent(appName, () => TestFetch
 
 //test function : Check-up
 
