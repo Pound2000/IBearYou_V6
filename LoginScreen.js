@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, View, Text, Image, SafeAreaView, Button
-       , TouchableHighlight,TouchableOpacity, Dementions, TextInput,Separator}
+       , TouchableHighlight,TouchableOpacity, Dementions, TextInput,Separator,KeyboardAvoidingView
+       , AsyncStorage} 
        from 'react-native';
 import CustomHeader from './CustomHeader';
 
@@ -11,10 +12,12 @@ class LoginScreen extends Component {
 
    constructor(props) {
      super(props);
-     this.state = { Username : '',
-                    Password : ''
+     this.state = { username : '',
+                    password : ''
      };
    }
+
+
 
   render() {
 return (
@@ -40,35 +43,42 @@ return (
 </View>
      
 
-        <View style={styles.Input}>       
-<TextInput
-           placeholder="Username"
-          placeholderTextColor="#707070"
-           style = {[styles.TextInput,TextInputStyle]}
-           autoCapitalize='none'
-           />
+        <View style={styles.Input}>    
 
+
+       
+
+<TextInput
+          placeholder="Username"
+          placeholderTextColor="#707070"
+          onchangeText={ (username) => this.setState({username}) }
+          style = {styles.TextInputUsername}
+          autoCapitalize='none'
+
+           />
+ 
          <View style= {styles.image}>
          <Image source={require('./assets/images/People.png')}
-              style ={{width: 19.61, height: 23 ,marginLeft:2}}/>
-</View>
+              style ={{width: 19.61, height: 23 ,marginLeft:2,marginTop: 43}}/>
 
+</View> 
  <TextInput
            placeholder="Password"
             placeholderTextColor="#707070"
+            onchangeText={ (password) => this.setState({password})}
            secureTextEntry={true}
-           style = {[styles.TextInput,TextInputStyle]}
-           autoCapitalize='none'
+           style = {styles.TextInputPassword}
+            autoCapitalize='none'
            />
 
               <View style= {styles.image}>
          <Image source={require('./assets/images/Lock.png')}
-              style ={{width: 19.61, height: 23 ,marginLeft:2}}/>
+              style ={{width: 19.61, height: 23 ,marginLeft:2,marginTop: 43}}/>
 </View>
-           
+          
  </View>  
 
-       
+    
   
 
   <View style = {styles.forget}>  
@@ -95,13 +105,12 @@ return (
   <View style = {styles.buttonRegister}>  
            <Text style = {styles.textRegister}>Sign up</Text>  
        </View>
-   </TouchableOpacity>
+  </TouchableOpacity>
  
  
  
  
 </View>
- 
 
 
     </SafeAreaView>   
@@ -116,16 +125,6 @@ const containerStyle = {
         flex: 1 ,
         flexDirection: 'column' ,  
 }
-
-
-const TextInputStyle = {
-paddingLeft: 40,
-marginTop: 40,
-
-
-}
-
-
 
 
 const styles = StyleSheet.create({
@@ -216,30 +215,61 @@ const styles = StyleSheet.create({
 
     },
 
-    TextInput: {
-      margin: 48,
+    TextInputUsername: {
+
       height: 40,
       width: 360,
-      padding: 20,
+      paddingLeft: 40,
       fontSize: 20,
       borderBottomWidth: 1,
       borderBottomColor: '#707070',
+      color:'#E79995',
+      fontFamily: 'Philosopher',
       
+    },
+
+      TextInputPassword: {
       
+      marginTop: 50,
+      height: 40,
+      width: 360,
+      paddingLeft: 40,
+      fontSize: 20,
+      borderBottomWidth: 1,
+      borderBottomColor: '#707070',
+      color:'#E79995',
+      fontFamily: 'Philosopher',
       
     },
 
     Input: {
-      marginBottom: 20,
+      marginBottom: 25,
+      
     },
 
     image: {
       alignItems: 'flex-start',
-      marginTop: -82 ,
-      paddingLeft: 47,
+      marginTop: -80 ,
+      
       
     },
+
+    keyboard: {
+       fontSize: 20,
+       color: 'black',
+    },
    
+
+    inputr:{
+    height: 200,
+    width : 300,
+    margin: 30,
+    borderWidth: 1,
+    paddingLeft : 15,
+    paddingBottom: 145,
+    fontSize : 18,
+
+    },
 
 });
 

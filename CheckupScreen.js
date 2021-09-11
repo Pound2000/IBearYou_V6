@@ -46,7 +46,7 @@ class CheckupScreen extends Component {
     style={{width:552.17 ,height: 323.61,marginTop: -180}} />     
  </View>
 
-         <View style={{flex: 1, alignItems : 'flex-start',marginTop: -60}}>
+         <View style={{flex: 1, alignItems : 'flex-start',marginTop: -52}}>
  <CustomHeader title='CheckUp' isHome={true} navigation={this.props.navigation}/>
  </View>
 
@@ -124,7 +124,7 @@ class CheckupScreen extends Component {
       </View>
  
       <View style={styles.Content}>
-       <Text style={styles.textContent}>วันนี้เป็นยังไงบ้าง มาทบทวนตัวเองไปกับน้องหมีกันไหม? How are you to day</Text>
+       <Text style={styles.textContent}>วันนี้เป็นยังไงบ้าง มาทบทวนตัวเองไปกับน้องหมีกันไหม?</Text>
      </View>
    
 
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
   Content: {
       alignItems: 'center',
       width: 350,
-      height: 240,
+      height: 230,
       backgroundColor: '#FFFFFF',
       borderRadius: 10,
       shadowColor: '#E79995',
@@ -249,6 +249,8 @@ const styles = StyleSheet.create({
    textStart: {
      color: '#FFFFFF',
      fontSize: 20,
+     fontFamily: 'Quark',
+     fontWeight: 'bold',
    }
  
 });

@@ -22,6 +22,7 @@ return (
       <Text>Checkup!</Text>
           <TouchableOpacity
         style={{marginTop: 20}}
+        onPress={() => this.props.navigation.navigate('Result')}
         >
         <Text> Next </Text>
       </TouchableOpacity>

@@ -1,29 +1,22 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, View, Text, Image, SafeAreaView, Button
-      , TouchableHighlight,TouchableOpacity, Dementions
-      , TextInput}
-      from 'react-native';
-import Bg1 from './components/Bg1';
-import Bg2 from './components/Bg2';
- 
+       , TouchableHighlight,TouchableOpacity, Dementions
+       , TextInput}
+       from 'react-native';
+
 import CustomHeader from './CustomHeader';
- 
-class DiaryScreen extends Component {
- 
+
+class EditDiaryScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = { good : '',
-                   bad : '',
-                   wish : '',
+    this.state = {
     };
   }
- 
- 
- render() {
-return (
-    <SafeAreaView style={{ flex: 1 ,backgroundColor: '#EAD6A4'}}>
-     
-<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+
+  render() {
+    return (
+<SafeAreaView style={{ flex: 1,backgroundColor: '#EAD6A4' }}>
+   <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 
 <View style={{flex: 1, marginTop : -610}}>
  <View style={{flex: 1, alignItems: 'center',}}> 
@@ -33,7 +26,7 @@ return (
 
 
 <View style={{flex: 1, alignItems : 'center',marginTop:610}}>  
-   <CustomHeader title='Diary'  navigation={this.props.navigation}/>
+   <CustomHeader title='EditDiary'  navigation={this.props.navigation}/>
 </View>
 
 
@@ -136,9 +129,9 @@ return (
  
 <View style={{flex: 1,flexDirection: 'row' , justifyContent: 'space-between',alignItems: 'flex-end',marginBottom: 30}}>
   <TouchableOpacity style={styles.button} activeOpacity ={0.75}
-     onPress = {() => this.props.navigation.navigate('Mood')}
+     onPress = {() => this.props.navigation.navigate('CalendarHistory')}
    >
-       <Text style={styles.textButton}>ย้อนกลับ</Text>
+       <Text style={styles.textButton}>ยกเลิก</Text>
   </TouchableOpacity>
  
      <TouchableOpacity style={styles.button} activeOpacity ={0.75}
@@ -283,5 +276,4 @@ button:{
 
 
 });
-
-export default DiaryScreen;
+export default EditDiaryScreen;

@@ -14,7 +14,6 @@ import checkup8 from './checkup8';
 
 import CustomHeader from './CustomHeader';
 import HomeScreen from './HomeScreen';
-import Graph from './Graph';
 import CalendarScreen from './CalendarScreen';
 import MoodScreen from './MoodScreen';
 import DiaryScreen from './DiaryScreen';
@@ -28,8 +27,13 @@ import WelcomeScreen from './WelcomeScreen';
 import LoginScreen from './LoginScreen';
 import RegisterScreen from './RegisterScreen'; 
 import HistoryScreen from './HistoryScreen'; 
-
-
+import resultScreen from './resultScreen'; 
+import GoodScreen from './GoodScreen'; 
+import BadScreen from './BadScreen'; 
+import WishScreen from './WishScreen'; 
+import CalendarHistoryScreen from './CalendarHistoryScreen'; 
+import DiaryHistoryScreen from './DiaryHistoryScreen'; 
+import EditDiaryScreen from './EditDiaryScreen'; 
 
 
 const navOptionHandler = () => ({
@@ -42,7 +46,9 @@ function HomeStack() {
   return (
     <StackHome.Navigator initialRouteName='Home'>
       <StackHome.Screen name='Home' component={HomeScreen} options={navOptionHandler} />
-      <StackHome.Screen name='Graph' component={Graph} options={navOptionHandler}/>
+      <StackHome.Screen name='goodStory' component={GoodScreen} options={navOptionHandler}/>
+      <StackHome.Screen name='badStory' component={BadScreen} options={navOptionHandler}/>
+      <StackHome.Screen name='wish' component={WishScreen} options={navOptionHandler}/>
      </StackHome.Navigator>
 
   )
@@ -55,7 +61,10 @@ function DiaryStack() {
     <StackDiary.Navigator initialRouteName='Calendar'>
       <StackDiary.Screen name='Calendar' component={CalendarScreen} options={navOptionHandler}/>
       <StackDiary.Screen name='Diary' component={DiaryScreen} options={navOptionHandler}/>
-       <StackDiary.Screen name='Mood' component={MoodScreen} options={navOptionHandler}/>
+      <StackDiary.Screen name='Mood' component={MoodScreen} options={navOptionHandler}/>
+      <StackDiary.Screen name='CalendarHistory' component={CalendarHistoryScreen} options={navOptionHandler}/>
+      <StackDiary.Screen name='DiaryHistory' component={DiaryHistoryScreen} options={navOptionHandler}/>
+      <StackDiary.Screen name='EditDiary' component={EditDiaryScreen} options={navOptionHandler}/>
      </StackDiary.Navigator>
 
   )
@@ -69,6 +78,7 @@ function CheckupStack() {
       <StackCheckup.Screen name='Checkup' component={CheckupScreen} options={navOptionHandler}/>
       <StackCheckup.Screen name='StartCheckup' component={StartCheckupScreen} options={navOptionHandler}/>
       <StackCheckup.Screen name='History' component={HistoryScreen} options={navOptionHandler}/>  
+      <StackCheckup.Screen name='Result' component={resultScreen} options={navOptionHandler}/>
      </StackCheckup.Navigator>
 
   )

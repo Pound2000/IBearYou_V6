@@ -15,6 +15,7 @@ import navigation from './navigation';
 //import welcomeFirst from './welcomeFirst';
 //import BgQuiz from './components/BgQuiz';
 //import TestFetch from './TestFetch';
+//import Bg_Rainy from './components/Bg_Rainy';
 
 
 //test function : Check-up
@@ -44,6 +45,7 @@ AppRegistry.registerComponent(appName, () => navigation
 //AppRegistry.registerComponent(appName, () => welcomeFirst
 //AppRegistry.registerComponent(appName, () => BgQuiz
 //AppRegistry.registerComponent(appName, () => TestFetch
+//AppRegistry.registerComponent(appName, () => Bg_Rainy
 
 //test function : Check-up
 

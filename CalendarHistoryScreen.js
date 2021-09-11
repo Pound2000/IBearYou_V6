@@ -1,56 +1,35 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, View, Text, Image, SafeAreaView, Button
-      , TouchableHighlight,TouchableOpacity, Dementions
-      , TextInput}
-      from 'react-native';
-import Bg1 from './components/Bg1';
-import Bg2 from './components/Bg2';
- 
+       , TouchableHighlight,TouchableOpacity, Dementions
+       , TextInput}
+       from 'react-native';
+
 import CustomHeader from './CustomHeader';
- 
-class DiaryScreen extends Component {
- 
+
+class CalendarHistoryScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = { good : '',
-                   bad : '',
-                   wish : '',
+    this.state = {
     };
   }
- 
- 
- render() {
-return (
-    <SafeAreaView style={{ flex: 1 ,backgroundColor: '#EAD6A4'}}>
-     
-<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 
-<View style={{flex: 1, marginTop : -610}}>
- <View style={{flex: 1, alignItems: 'center',}}> 
-      <Image source={require('./assets/images/rainy.png')}
-   style={{width:392 ,height:294,marginTop: 540}} /> 
-</View>
+  render() {
+    return (
+<SafeAreaView style={{ flex: 1,backgroundColor: '#EAD6A4' }}>
+     <CustomHeader title='CalendarHistory'  navigation={this.props.navigation}/>
+     <View style={{flex: 1}}>
+        <Text>CalendarHistory</Text>
+     </View>
+
+ <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 
 
-<View style={{flex: 1, alignItems : 'center',marginTop:610}}>  
-   <CustomHeader title='Diary'  navigation={this.props.navigation}/>
-</View>
 
 
-<View style={{marginTop: -10}}>
-  <View style={styles.buttonFeel}>
-    <Text style={styles.textFeel}>วันนี้เป็นยังไงบ้าง</Text>
-  </View>
-</View>
+<View style={{marginTop: -70}}></View>
 
-</View>
-
-<View style={{marginTop: 320}}>
- 
-
-</View>
-
-
+<TouchableOpacity activeOpacity={0.75}  
+  onPress ={() => this.props.navigation.navigate('DiaryHistory')}>
 
 <View >
 
@@ -64,19 +43,19 @@ return (
 </View>
 
 
-<View style={{marginTop: 270}}>
+<View style={{marginTop: -30}}>
  <View style={{flex: 1}} >
  <Image source={require('./assets/images/line.png')}
-   style={{width: 290,height:256,marginTop: 220,marginLeft: 35}}
+   style={{width: 290,height:256,marginTop: -232,marginLeft: 35}}
    resizeMode='contain' />  
  </View>
 
-<View style={{marginTop: 5}}>
+<View style={{marginTop: -450}}>
  <View>
 <Text style={styles.textDate}>10 กันยายน 2564</Text>
  </View>
 <View style={styles.buttonEmoji}>
-<TouchableOpacity activeOpacity={0.75}>
+<TouchableOpacity activeOpacity={0.75} disabled={true} >
      <Text style={styles.textEmoji}>เลือกอิโมจิในวันนี้ของเธอ</Text>
       <Image source={require('./assets/images/pencil.png')}
    style={{width: 10.32,height:10.32,marginTop: -15,marginLeft:310}}
@@ -88,7 +67,7 @@ return (
 </View>
 
 
-<View style={{flex: 1,marginTop: 10}}>
+<View style={{flex: 1,marginTop: -420}}>
 
 <View style={{flex: 1,marginTop: -11}}>
   <Text style={styles.textType}>เรื่องราวที่ดี</Text>
@@ -97,6 +76,7 @@ return (
             autoCapitalize='none'
             onchangeText={ (good) => this.setState({good}) }
             style={styles.textContent}
+             editable={false}
  />
  </View>
 
@@ -108,6 +88,7 @@ return (
             autoCapitalize='none'
             onchangeText={ (bad) => this.setState({bad}) }
             style={styles.textContent}
+             editable={false}
  />
   </View>
 
@@ -119,6 +100,7 @@ return (
             autoCapitalize='none'
             onchangeText={ (wish) => this.setState({wish}) }
             style={styles.textContent}
+             editable={false}
  />
 </View>
 
@@ -128,44 +110,23 @@ return (
 </View>
 </View>
 
-<View style={{flex: 1,marginTop: 135}}>
- <Image source={require('./assets/images/rain-doll.png')}
-   style={{width: 91,height:95.71,marginLeft: 10}}
-   resizeMode='contain' />  
- </View>
- 
-<View style={{flex: 1,flexDirection: 'row' , justifyContent: 'space-between',alignItems: 'flex-end',marginBottom: 30}}>
-  <TouchableOpacity style={styles.button} activeOpacity ={0.75}
-     onPress = {() => this.props.navigation.navigate('Mood')}
-   >
-       <Text style={styles.textButton}>ย้อนกลับ</Text>
-  </TouchableOpacity>
- 
-     <TouchableOpacity style={styles.button} activeOpacity ={0.75}
-       onPress ={() => this.props.navigation.navigate('CalendarHistory')}
-     >
-       <Text style={styles.textButton}>บันทึก</Text>
-     </TouchableOpacity>
+</TouchableOpacity> 
+
 </View>
 
 
-</View>
- 
-   
-    </SafeAreaView>
- );
- }
+</SafeAreaView>
+    );
+  }
 }
-
-
 
 const styles = StyleSheet.create({
 textDate: {
      color: '#000000',
      fontSize: 14,
      fontFamily: 'Quark',
-     textAlign: 'center', 
-      marginLeft: -170
+     textAlign: 'center',   
+     marginLeft: -165,
 },
 
 textEmoji: {
@@ -174,7 +135,7 @@ textEmoji: {
      fontFamily: 'Quark',
      textAlign: 'center',   
      marginTop: -20,
-    marginLeft: 165
+     marginLeft: 165,
      
 },
 
@@ -200,7 +161,7 @@ button:{
        shadowOpacity:  0.4,
        shadowRadius: 3,
        elevation: 2,
-       margin: 60,
+       margin: 30,
        marginBottom: 4,
        
         
@@ -212,7 +173,7 @@ button:{
       backgroundColor: '#FFFFFF',
       borderRadius: 10,
       marginTop: 90,
-      marginLeft: 70,
+      marginLeft: 5,
       borderRadius: 10,
       shadowColor: '#87D6E8',
       shadowOffset: { width: 0, height: 3 },
@@ -241,7 +202,7 @@ button:{
       shadowRadius:3,
       elevation: 2,
       marginLeft: -25,
-      marginTop: 465,
+      marginTop: 85,
     },
 
     textContent:{
@@ -249,7 +210,7 @@ button:{
      fontSize: 14,
      fontFamily: 'Quark',
      textAlign: 'center',
-     
+     marginTop: 10,
     },
 
     spine:{
@@ -263,7 +224,7 @@ button:{
       shadowRadius:3,
       elevation: 2,
       marginTop: -394,
-      marginLeft: -25,
+      marginLeft: -24,
     },
 
     textType: {
@@ -271,17 +232,19 @@ button:{
      fontSize: 13,
      fontFamily: 'Quark',
      fontWeight: 'bold',
-     marginLeft: 43,
+     marginLeft: 45,
     },
 
     Type: {
       flex: 1,
       marginTop: -30,
     
-    }
+    },
+
+ 
     
 
 
 });
 
-export default DiaryScreen;
+export default CalendarHistoryScreen;
