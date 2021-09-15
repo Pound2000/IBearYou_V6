@@ -4,12 +4,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
+import thunk from 'redux-thunk';
 
 import login from './login';
  
-import checkup1 from './checkup1';
-import checkup8 from './checkup8';
- 
+import choices from './choices';
+import typeMessage from './typeMessage';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
+
 
 
 import CustomHeader from './CustomHeader';
@@ -34,8 +36,16 @@ import WishScreen from './WishScreen';
 import CalendarHistoryScreen from './CalendarHistoryScreen'; 
 import DiaryHistoryScreen from './DiaryHistoryScreen'; 
 import EditDiaryScreen from './EditDiaryScreen'; 
-
-
+import Questions from './reducers/Questions';
+import {Provider} from 'react-redux' ;
+const store = createStore(
+  combineReducers({ Questions
+  }),
+  {}, // initial state
+  compose(
+      applyMiddleware(thunk) 
+  )
+  );   
 const navOptionHandler = () => ({
   headerShown: false
 })
@@ -79,6 +89,8 @@ function CheckupStack() {
       <StackCheckup.Screen name='StartCheckup' component={StartCheckupScreen} options={navOptionHandler}/>
       <StackCheckup.Screen name='History' component={HistoryScreen} options={navOptionHandler}/>  
       <StackCheckup.Screen name='Result' component={resultScreen} options={navOptionHandler}/>
+      <StackCheckup.Screen name='typeMessage' component={typeMessage} options={navOptionHandler}/>  
+      <StackCheckup.Screen name='choices' component={choices} options={navOptionHandler}/>
      </StackCheckup.Navigator>
 
   )
@@ -181,6 +193,7 @@ const StackApp = createStackNavigator();
 
 export default function App() {
   return (
+    <Provider store={store} >
     <NavigationContainer>
       <StackApp.Navigator initialRouteName='Welcome'>
       <StackApp.Screen name='Welcome' component={WelcomeScreen} options={navOptionHandler}/>
@@ -189,5 +202,6 @@ export default function App() {
       <StackApp.Screen name='HomeApp' component={DrawerNavigator} options={navOptionHandler}/>
      </StackApp.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 }

@@ -6,10 +6,55 @@ import Bg1 from './components/Bg1';
 import Bg2 from './components/Bg2';
 import BgQuiz from './components/BgQuiz';
 import SwitchSelector from "react-native-switch-selector";
-
 import CustomHeader from './CustomHeader';
+//const fs = require('fs');
+import Questions from './Json/Questions'
+import { connect } from 'react-redux';
+import {fetchQuestions} from './actions/Questions';
+/*
+const readQuestion=async()=>{
+      try {
+      const jsonString = fs.readFileSync("./Question.json");
+      const question = JSON.parse(jsonString);
+      return question;
+    } catch (err) {
+      console.log(err);
+      return {};
+    }
+} */
+/*********** Scoring 
+m.onsave(async (m) => { 
+                  const score = m.data.items.map((m,i)=>{
+                    return {"subject":i+1,"score":m.value,"max":m.max} 
+                     
+                  })
+                  //console.log("score: ",score)
+                  const fillAll = await score.every((o)=>{
+                    //console.log( ' parseInt(o.score) < parseInt(o.max)', parseInt(o.score) < parseInt(o.max))
+                    //console.log( ' isNumber(parseInt(o.score))',  isNumber(parseInt(o.score)))
+                    return  parseInt(o.score) <= parseInt(o.max) && isNumber(parseInt(o.score))
+
+                  })
+                 // console.log("fillAll : ",fillAll)
+                 if(fillAll){
+                   const scorereq = {}
+                   //console.log('this.admin.admin_id: ',this.admin.admin_id)
+                   scorereq.admin_id =this.admin.admin_id
+                   scorereq.ideal_final ="ideal"
+                   scorereq.pro_id = data.pro_id
+                   //console.log('data ',data)
+                   scorereq.score_json_ideal =JSON.stringify(score)
+                   scorereq.score_json_final =""
+                   //console.log('scorereq',scorereq)
+                   const sum = score.reduce((ret,e)=>{
+                     return ret + parseFloat(e.score)
+                   },0)
+                   scorereq.score_cal_ideal = sum
+                   scorereq.score_cal_final = 0
 
 
+
+ */
 
 const switchOption = [
   {label: 'Check-up', value: 'Check-up'},
@@ -25,13 +70,35 @@ class CheckupScreen extends Component {
      checkupSwitch:'',
    };
   }
-
-  setSwitch(checkupSwitch) {
+ componentDidMount(){
+   console.log("componentDidmount CheckupScreen");
+ }
+ async setSwitch(checkupSwitch) {
       this.setState({checkupSwitch:checkupSwitch});
     }
-
+ 
+   startCheckUp= async()=>{
+   // this.props.navigation.navigate('StartCheckup')
+  /* const questions = readQuestion();
+   console.log("questions : ", questions);*/ 
+   const {Question} = Questions  //destructuring js
+   //console.log(Question[1])
+   const  xx = Question.map((e, i)=>{
+     //console.log(`question no. ${i } questid ${e.questionId}`)
+     const newDetail = "รายละเอียด "+e.detial + " ขี้เกียจทำ"
+     return {"questionId":e.questionId,atty:"value", "newDetail":newDetail}
+   })
+   //console.log(xx)
+   await this.props.dispatch(fetchQuestions(Question));
+   console.log("this.props.questions ",this.props.questions)
+   const findQuestionId = Question.find(e=>e.questionId === "41001"  )
+   //console.log(findQuestionId)
+   const questionLength =  Question.length
+   console.log("questionLength : ",questionLength)
+  }
 
   render() {
+    const {questions} = this.props
   return (
      <SafeAreaView style={[styles.container, containerStyle]}> 
  
@@ -47,7 +114,7 @@ class CheckupScreen extends Component {
  </View>
 
          <View style={{flex: 1, alignItems : 'flex-start',marginTop: -52}}>
- <CustomHeader title='CheckUp' isHome={true} navigation={this.props.navigation}/>
+ <CustomHeader title='Checkup' isHome={true} navigation={this.props.navigation}/>
  </View>
 
 <View style={{flex: 1, alignItems: 'center',}}>  
@@ -95,7 +162,7 @@ class CheckupScreen extends Component {
     <SwitchSelector
       options={switchOption}
       initial={0}
-      onPress={value => this.setSwitch(value)}
+      onPress={() => this.props.navigation.navigate('History')}
       textColor='#565656' 
       fontSize={16}
       selectedColor='#FFFFFF'
@@ -131,7 +198,7 @@ class CheckupScreen extends Component {
       <View style = {styles.button}>
           <TouchableOpacity
         style={{marginTop: 20}}
-        onPress={() => this.props.navigation.navigate('StartCheckup')}
+        onPress={() => this.startCheckUp()}
         >
         <View style = {styles.buttonStart}>
         <Text style = {styles.textStart}> Let's Get Started </Text>
@@ -254,5 +321,9 @@ const styles = StyleSheet.create({
    }
  
 });
-
-export default CheckupScreen;
+const mapStateToProps=(state,props)=>{
+  return{
+    questions:state.Questions.questions
+  }
+}
+export default connect(mapStateToProps)(CheckupScreen);

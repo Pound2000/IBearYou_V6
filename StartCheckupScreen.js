@@ -19,12 +19,28 @@ return (
      <SafeAreaView style={{ flex: 1 }}>
          <CustomHeader title='StartCheckup' navigation={this.props.navigation}/>
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Checkup!</Text>
-          <TouchableOpacity
+      <Text style={{fontWeight: 'bold'}}>Checkup!</Text>
+           <TouchableOpacity
+        style={{marginTop: 20}}
+        onPress={() => this.props.navigation.navigate('choices')}
+        >
+        <Text>choices</Text>
+      </TouchableOpacity>
+    
+
+         <TouchableOpacity
+        style={{marginTop: 20}}
+        onPress={() => this.props.navigation.navigate('typeMessage')}
+        >
+        <Text>type message</Text>
+      </TouchableOpacity>
+    
+
+        <TouchableOpacity
         style={{marginTop: 20}}
         onPress={() => this.props.navigation.navigate('Result')}
         >
-        <Text> Next </Text>
+        <Text>Result</Text>
       </TouchableOpacity>
     </View>
      </SafeAreaView>

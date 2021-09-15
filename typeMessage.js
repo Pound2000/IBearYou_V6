@@ -5,9 +5,9 @@ import { StyleSheet, View, Text, Image, SafeAreaView, Button
 import Bg1 from './components/Bg1';
 import Bg2 from './components/Bg2';
 
+import CustomHeader from './CustomHeader';
 
-
-class checkup8 extends Component {
+class typeMessage extends Component {
  
  
    constructor(props) {
@@ -19,8 +19,13 @@ class checkup8 extends Component {
 
   render() {
     return (
-      <View>
-      <Bg2/>
+      <SafeAreaView>
+
+      <View style={{flex: 1, alignItems : 'flex-start'}}>
+ <CustomHeader title='typeMessage'  navigation={this.props.navigation}/>
+ </View>
+
+      
 <View style={{flexDirection: 'column' ,justifyContent: 'center', alignItems: 'center',marginTop: 100}}>
 
        <Text style={{color: '#E79995',
@@ -40,27 +45,25 @@ class checkup8 extends Component {
      
 
      </View>
-
-     <TouchableHighlight onPress={() => navigation.navigate('resaultScreen')}>
-        <View style = {{borderRadius: 5,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#E79995',
-        height: 41,
-        width: 102,
-        borderWidth: 1,
-        borderColor: '#E79995', 
-        shadowColor: '#000000',
-       shadowOffset: { width: 0, height: 5 },
-       shadowOpacity:  0.4,
-       shadowRadius:5,
-       elevation: 5,}}>   
-            <Text style = {{color: '#FFFFFF',fontSize: 20}}>Next</Text>   
-        </View>
-    </TouchableHighlight>
    
     </View>
-    </View>
+
+ 
+<View style={{flex: 1,flexDirection: 'row' , justifyContent: 'space-between',alignItems: 'flex-end',marginBottom: 30}}>
+  <TouchableOpacity style={styles.button} activeOpacity ={0.75}
+     onPress = {() => this.props.navigation.navigate('choices')}
+   >
+       <Text style={styles.textButton}>ย้อนกลับ</Text>
+  </TouchableOpacity>
+ 
+     <TouchableOpacity style={styles.button} activeOpacity ={0.75}
+       onPress ={() => this.props.navigation.navigate('StartCheckup')}
+     >
+       <Text style={styles.textButton}>บันทึก</Text>
+     </TouchableOpacity>
+</View>
+
+    </SafeAreaView>
    );
  }
 }
@@ -84,6 +87,35 @@ const styles = StyleSheet.create({
     elevation: 3,
     },
    
-  });
 
-export default checkup8 ;
+  textButton:{
+     color: '#FFFFFF',
+     fontSize: 20,
+     fontFamily: 'Quark',
+     fontWeight: 'bold',
+     textAlign: 'center',
+     
+        
+},
+
+button:{
+       borderRadius: 5,
+       alignItems: 'center',
+       justifyContent: 'center',
+       backgroundColor: '#E79995',
+       height: 41,
+       width: 102,
+       shadowColor: '#000000',
+       shadowOffset: { width: 0, height: 4 },
+       shadowOpacity:  0.4,
+       shadowRadius: 3,
+       elevation: 2,
+       margin: 60,
+       marginBottom: -40,
+       marginLeft: 45
+        
+},
+
+});
+
+export default typeMessage ;

@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React, {Component,useState} from 'react';
 import { StyleSheet, View, Text, Image, SafeAreaView, Button
        , TouchableHighlight,TouchableOpacity, Dementions, TextInput,Separator,KeyboardAvoidingView
        , AsyncStorage} 
        from 'react-native';
 import CustomHeader from './CustomHeader';
-
+const Card = require('./Json/Card')
 
 
 
@@ -16,8 +16,16 @@ class LoginScreen extends Component {
                     password : ''
      };
    }
-
-
+   handleChange = (e) =>
+        {
+          	this.setState({[e.target.name]: e.target.value })
+          //  console.log(this.state.first_name)
+        }
+   logIn=()=>{
+   console.log("this.state.username : ",this.state.username," this.state.password : ",this.state.password)
+   console.dir(Card)
+ 
+ }
 
   render() {
 return (
@@ -51,7 +59,8 @@ return (
 <TextInput
           placeholder="Username"
           placeholderTextColor="#707070"
-          onchangeText={ (username) => this.setState({username}) }
+          defaultValue={this.state.username}
+          onChangeText={username=>this.setState({username})} 
           style = {styles.TextInputUsername}
           autoCapitalize='none'
 
@@ -65,7 +74,8 @@ return (
  <TextInput
            placeholder="Password"
             placeholderTextColor="#707070"
-            onchangeText={ (password) => this.setState({password})}
+            defaultValue={this.state.password}
+            onChangeText={password=>this.setState({password})} 
            secureTextEntry={true}
            style = {styles.TextInputPassword}
             autoCapitalize='none'
@@ -87,7 +97,7 @@ return (
  
 
 <View style = {styles.button}>
-   <TouchableOpacity onPress={() => this.props.navigation.navigate('HomeApp')}>
+   <TouchableOpacity onPress={() => this.logIn()}>
        <View style = {styles.buttonLogin}>  
            <Text style = {styles.textLogin}>Login</Text>  
        </View>

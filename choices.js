@@ -5,31 +5,35 @@ import { StyleSheet, View, Text, Image, SafeAreaView, Button
 import Bg1 from './components/Bg1';
 import Bg2 from './components/Bg2';
 
+import CustomHeader from './CustomHeader';
 
 
 
-
-class checkup1 extends Component {
+class choices extends Component {
 
   render() {
 
 let {navigation} = this.props 
 
     return (
-      <View>
-      <Bg2/>
-<View style={{flexDirection: 'column' ,justifyContent: 'center', alignItems: 'center',marginTop: 100}}>
+      <SafeAreaView>
+      
+<View style={{flexDirection: 'column' ,justifyContent: 'center', alignItems: 'center'}}>
+
+<View style={{flex: 1, alignItems : 'flex-start'}}>
+ <CustomHeader title='choices'  navigation={this.props.navigation}/>
+ </View>
 
        <Text style={{color: '#E79995',
-       fontSize: 25}} title="checkup1">วันนี้เป็นยังไงบ้าง</Text>
+       fontSize: 25,marginTop: 60}} title="checkup1">วันนี้เป็นยังไงบ้าง</Text>
 
        </View>
 
      <View style={{flexDirection: 'column' ,justifyContent: 'center', alignItems: 'center'}}>
 <View >
      <TouchableOpacity
-     onPress={() => this.props.navigation.navigate('checkup2')}
-       style={{marginTop:40, borderRadius: 10,
+     onPress={() => this.props.navigation.navigate('typeMessage')}
+       style={{marginTop:30, borderRadius: 10,
        backgroundColor: '#FFFFFF',
        height: 50,
        width: 314,
@@ -119,7 +123,23 @@ let {navigation} = this.props
      </View>
    
     </View>
-    </View>
+
+ 
+<View style={{flex: 1,flexDirection: 'row' , justifyContent: 'space-between',alignItems: 'flex-end',marginBottom: 30}}>
+  <TouchableOpacity style={styles.button} activeOpacity ={0.75}
+     onPress = {() => this.props.navigation.navigate('StartCheckup')}
+   >
+       <Text style={styles.textButton}>ย้อนกลับ</Text>
+  </TouchableOpacity>
+ 
+     <TouchableOpacity style={styles.button} activeOpacity ={0.75}
+       onPress ={() => this.props.navigation.navigate('typeMessage')}
+     >
+       <Text style={styles.textButton}>บันทึก</Text>
+     </TouchableOpacity>
+</View>
+
+    </SafeAreaView>
  
 
 
@@ -129,4 +149,36 @@ let {navigation} = this.props
  }
 }
  
-export default checkup1;
+const styles = StyleSheet.create({
+
+textButton:{
+     color: '#FFFFFF',
+     fontSize: 20,
+     fontFamily: 'Quark',
+     fontWeight: 'bold',
+     textAlign: 'center',
+     
+        
+},
+
+button:{
+       borderRadius: 5,
+       alignItems: 'center',
+       justifyContent: 'center',
+       backgroundColor: '#E79995',
+       height: 41,
+       width: 102,
+       shadowColor: '#000000',
+       shadowOffset: { width: 0, height: 4 },
+       shadowOpacity:  0.4,
+       shadowRadius: 3,
+       elevation: 2,
+       margin: 60,
+       marginBottom: -160,
+      marginLeft: 45
+        
+},
+
+});
+
+export default choices;
