@@ -10,7 +10,8 @@ import CustomHeader from './CustomHeader';
 //const fs = require('fs');
 import Questions from './Json/Questions'
 import { connect } from 'react-redux';
-import {fetchQuestions} from './actions/Questions';
+import {fetchQuestions,setCurrentQuestion} from './actions/Questions';
+import {setQuestionId,incrementAction} from './actions/Questions';
 /*
 const readQuestion=async()=>{
       try {
@@ -60,6 +61,12 @@ const switchOption = [
   {label: 'Check-up', value: 'Check-up'},
   {label: 'History', value: 'History'},
 ];
+function   plus(val1,val2){
+    return val1+val2
+  }
+function printVal(val){
+   console.log(val)
+}
 
 class CheckupScreen extends Component {
 
@@ -73,32 +80,57 @@ class CheckupScreen extends Component {
  componentDidMount(){
    console.log("componentDidmount CheckupScreen");
  }
- async setSwitch(checkupSwitch) {
-      this.setState({checkupSwitch:checkupSwitch});
-    }
- 
-   startCheckUp= async()=>{
-   // this.props.navigation.navigate('StartCheckup')
-  /* const questions = readQuestion();
-   console.log("questions : ", questions);*/ 
-   const {Question} = Questions  //destructuring js
-   //console.log(Question[1])
-   const  xx = Question.map((e, i)=>{
-     //console.log(`question no. ${i } questid ${e.questionId}`)
-     const newDetail = "รายละเอียด "+e.detial + " ขี้เกียจทำ"
-     return {"questionId":e.questionId,atty:"value", "newDetail":newDetail}
-   })
-   //console.log(xx)
-   await this.props.dispatch(fetchQuestions(Question));
-   console.log("this.props.questions ",this.props.questions)
-   const findQuestionId = Question.find(e=>e.questionId === "41001"  )
-   //console.log(findQuestionId)
-   const questionLength =  Question.length
-   console.log("questionLength : ",questionLength)
+ async setfirstquestion(){
+   	 
+   
+   
+   //console.log(this.props.action)
+   //console.log(Questions)
+  // await this.props.dispatch(setQuestionId("40002"));
+   //this.props.navigation.navigate('choices')
+
+ }
+   setSwitch = async()=> {
+     const {Question} =Questions 
+    //const no. ${i } questid ${e.questionId}`)
+     //const newDetail = "รายละเอียด "+e.detial + " ขี้เกียจทำ"
+     //return {"questionId":e.questionId,atty:"value", "newDetail":newDetail}
+   //});
+   //console.log(questionProcess)
+  //fetchQuestions(2)
+   //incrementAction(2) 
+  const questionForUser=   Question.map((q,i)=>{
+    
+     return {...q,"answer":""}
+
   }
+  )
+   
+   await this.props.dispatch(fetchQuestions(questionForUser));
+   // console.log("this.props.questions ",this.props.questions)
+   await this.props.dispatch(setQuestionId(Question[0].questionId));
+   //console.log("this.props.questionId ",this.props.questionId)
+   const currentQ = Question.find(e=>e.questionId === this.props.questionId )
+   //console.log("currentQ " ,currentQ) 
+   //printVal(Question[71])
+   
+const currentId = Question.findIndex(e=>e.questionId === '45002')
+console.log('current element: ', Question[currentId])
+
+const nextId = currentId+1
+console.log('next element: ', Question[nextId] )
+
+const previousId = currentId-1
+console.log('previous element: ', Question[previousId])
+
+   //const questionLength =  Question.length
+   //console.log("questionLength : ",questionLength)
+   //this.props.navigation.navigate('choices') 
+  }
+    
 
   render() {
-    const {questions} = this.props
+    const {questions,questionId} = this.props
   return (
      <SafeAreaView style={[styles.container, containerStyle]}> 
  
@@ -108,12 +140,9 @@ class CheckupScreen extends Component {
        <Image source={require('./assets/images/Bg-Blue.png')}
     style={{width:568 ,height: 580,marginTop:87,marginRight: 40}} />     
  </View>
-        <View style={{flex: 1, alignItems: 'center',}}>  
-       <Image source={require('./assets/images/Vector-Pink.png')}
-    style={{width:552.17 ,height: 323.61,marginTop: -180}} />     
- </View>
+    
 
-         <View style={{flex: 1, alignItems : 'flex-start',marginTop: -52}}>
+         <View style={{flex: 1, alignItems : 'flex-start',marginTop: -26}}>
  <CustomHeader title='Checkup' isHome={true} navigation={this.props.navigation}/>
  </View>
 
@@ -123,7 +152,7 @@ class CheckupScreen extends Component {
  </View>
  <View style={{flex: 1, alignItems: 'center',}}>  
        <Image source={require('./assets/images/Sunflower.png')}
-    style={{width:58.18, height: 58.18, marginTop: 70,marginRight: 185}} />     
+    style={{width:58.18, height: 58.18, marginTop: 70,marginRight: 110}} />     
  </View>
  <View style={{flex: 1, alignItems: 'center',}}>  
        <Image source={require('./assets/images/Sunflower.png')}
@@ -177,7 +206,7 @@ class CheckupScreen extends Component {
       shadowRadius:3,
       elevation: 2,
       width: 290,
-      marginTop: -320,
+      marginTop: -370,
 }}
     />
 
@@ -187,19 +216,19 @@ class CheckupScreen extends Component {
 
 <View style={styles.textHeaderStyle}>
     
-       <Text style={styles.textHeader}>Hi Riboots !</Text>
+       <Text style={styles.textHeader}>Hi Atty !</Text>
       </View>
  
       <View style={styles.Content}>
-       <Text style={styles.textContent}>วันนี้เป็นยังไงบ้าง มาทบทวนตัวเองไปกับน้องหมีกันไหม?</Text>
+       <Text style={styles.textContent}>" คำถาม T T "</Text>
      </View>
    
 
       <View style = {styles.button}>
           <TouchableOpacity
-        style={{marginTop: 20}}
-        onPress={() => this.startCheckUp()}
-        >
+        style={{marginTop: 20}} activeOpacity={0.75}
+        //onPress={() => this.startCheckUp()}
+        onPress = {() => this.setSwitch()} >
         <View style = {styles.buttonStart}>
         <Text style = {styles.textStart}> Let's Get Started </Text>
         </View>
@@ -322,8 +351,10 @@ const styles = StyleSheet.create({
  
 });
 const mapStateToProps=(state,props)=>{
+  
   return{
-    questions:state.Questions.questions
+    questions:state.Questions.questions,
+    questionId:state.Questions.questionId
   }
 }
 export default connect(mapStateToProps)(CheckupScreen);
