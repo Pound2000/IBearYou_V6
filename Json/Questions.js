@@ -3,7 +3,7 @@ const Questions = {
     
     {
       "questionId" : "40001",
-      "detail" : "ปัญหาเรื่องเรียนกระทบต่อจิตใจเธอมากแค่ไหน",
+      "detail" : "วันนี้เธอเป็นยังไงบ้าง",
       "choices" : [
         {"seq" : "1", "desc" : "อารมณ์ดีมาก","nextQuestionId" : "40002"},
         {"seq" : "2", "desc" : "อารมณ์ดี","nextQuestionId" : "40002"},
@@ -26,7 +26,7 @@ const Questions = {
 
     {
       "questionId" : "40003",
-      "detail" : "ปัญหาเรื่องเรียนกระทบต่อจิตใจเธอมากแค่ไหน",
+      "detail" : "เธอกําลังรู้สึกเศร้าหรือเครียดเรื่องอะไรอยู่",
       "choices" : [
         {"seq" : "1", "desc" : "เรื่องเพื่อน","nextQuestionId" : "41001"},
         {"seq" : "2", "desc" : "เรื่องเรียน","nextQuestionId" : "42001"},
@@ -375,7 +375,7 @@ const Questions = {
     "questionId" : "45008",
     "detail" : "ต่อจากนี้ให้น้องหมีได้ช่วยเยียวยาจิตใจของเธอนะ",
     "nextQuestionId" : "",
-    "questionType" : "4"
+    "questionType" : "3"
   },
  
   {
@@ -447,7 +447,7 @@ const Questions = {
     "questionId" : "45016",
     "detail" : "หากวันไหนที่เธอไม่สบายใจ สามารถมาคุยกับน้องหมีได้เสมอนะ",
     "nextQuestionId" : "",
-    "questionType" : "4"
+    "questionType" : "3"
   },
 
   {
@@ -520,7 +520,7 @@ const Questions = {
     "questionId" : "45024",
     "detail" : "เธอเหมาะสมกับการได้รับความรัก",
     "nextQuestionId" : "",
-    "questionType" : "4"
+    "questionType" : "3"
   },
 
   {
@@ -594,7 +594,7 @@ const Questions = {
     "questionId" : "45032",
     "detail" : "ความรักที่ดี จะไม่ทำให้เรานั้นทุกข์ใจมากกว่ามีความสุข ",
     "nextQuestionId" : "",
-    "questionType" : "4"
+    "questionType" : "3"
   },
 
   {

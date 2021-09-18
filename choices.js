@@ -8,6 +8,7 @@ import CustomHeader from './CustomHeader';
 import { connect } from 'react-redux'; 
 import {fetchQuestions,setCurrentQuestion} from './actions/Questions';
 import {setQuestionId,incrementAction} from './actions/Questions';
+import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 
 
 
@@ -37,6 +38,11 @@ constructor(props) {
   render() {
 
 let {questions,questionId,currentQuestion} = this.props 
+
+const choice_props = (typeof(currentQuestion.choices)!=='undefined' &&currentQuestion.choices!==null) ? currentQuestion.choices.map((e)=>{
+   return {...e,label:e.desc,value:e.seq}
+}) : {}
+
 
     return (
       <SafeAreaView  style={[styles.container, containerStyle]}>
@@ -118,98 +124,25 @@ let {questions,questionId,currentQuestion} = this.props
 </View>
      
 
-     <View style={{flexDirection: 'column' ,justifyContent: 'center', alignItems: 'center'}}>
-<View >
-     <TouchableOpacity
-       style={{marginTop:30, borderRadius: 10,
-       backgroundColor: '#FFFFFF',
-       height: 50,
-       width: 314,
-       alignItems: 'flex-start',
-       justifyContent: 'center',
-       shadowColor: '#000000',
-       shadowOffset: { width: 1, height: 4 },
-       shadowOpacity:  0.20,
-       shadowRadius:3,
-       elevation: 5,
-       }}>
-     <Text style={styles.textChoices}>
-     อารมณ์ดีมาก 
-     </Text>
-     </TouchableOpacity>
-
-          <TouchableOpacity
-       style={{marginTop:20, borderRadius: 10,
-       backgroundColor: '#FFFFFF',
-       height: 50,
-       width: 314,
-       alignItems: 'flex-start',
-       justifyContent: 'center',
-       shadowColor: '#000000',
-       shadowOffset: { width: 1, height: 4 },
-       shadowOpacity:  0.20,
-       shadowRadius:3,
-       elevation: 5,
-       }}>
-     <Text style={styles.textChoices}>อารมณ์ดี</Text>
-     </TouchableOpacity>
-
-          <TouchableOpacity
-       style={{marginTop:20, borderRadius: 10,
-       backgroundColor: '#FFFFFF',
-       height: 50,
-       width: 314,
-       alignItems: 'flex-start',
-       justifyContent: 'center',
-       shadowColor: '#000000',
-       shadowOffset: { width: 1, height: 4 },
-       shadowOpacity:  0.20,
-       shadowRadius:3,
-       elevation: 5,
-       }}>
-     <Text style={styles.textChoices}>
-     รู้สึกเฉยๆ
-     </Text>
-     </TouchableOpacity>
-
-          <TouchableOpacity
-       style={{marginTop:20, borderRadius: 10,
-       backgroundColor: '#FFFFFF',
-       height: 50,
-       width: 314,
-       alignItems: 'flex-start',
-       justifyContent: 'center',
-       shadowColor: '#000000',
-       shadowOffset: { width: 1, height: 4 },
-       shadowOpacity:  0.20,
-       shadowRadius:3,
-       elevation: 5,
-       }}>
-     <Text style={styles.textChoices}>
-     ไม่ค่อยดี
-     </Text>
-     </TouchableOpacity>
-
-          <TouchableOpacity
-       style={{marginTop:20, borderRadius: 10,
-       backgroundColor: '#FFFFFF',
-       height: 50,
-       width: 314,
-       alignItems: 'flex-start',
-       justifyContent: 'center',
-       shadowColor: '#000000',
-       shadowOffset: { width: 1, height: 4 },
-       shadowOpacity:  0.20,
-       shadowRadius:3,
-       elevation: 5,
-       }}>
-     <Text style={styles.textChoices}>
-     รู้สึกเศร้า
-     </Text>
-     </TouchableOpacity>
+<View style={{flexDirection: 'column' ,justifyContent: 'center', alignItems: 'center'}}>
+{currentQuestion.questionType==="1" &&
+     <View >
+      <View style={{height: 200,width: 300, backgroundColor: '#FFFFFF',borderRadius: 10,marginTop: 40,paddingTop: 20,marginBottom: 120}}>
+     <RadioForm
+          radio_props={choice_props}
+          initial={0}
+          onPress={(value) => {this.setState({value:value})}}
+          buttonColor={'#FE8150'}
+          buttonInnerColor={'#FE8150'}
+          buttonWrapStyle={{marginLeft: 10}}
+          labelStyle={{fontSize: 18, color: '#000000',  fontFamily: 'Quark',}}
+          style={styles.radioButton}
+        />
+      </View>
      </View>
+}
    
-    </View>
+</View> 
 
  
 <View style={{flex: 1,flexDirection: 'row' , justifyContent: 'space-between',alignItems: 'flex-end',marginBottom: 30}}>
@@ -362,11 +295,13 @@ date: {
     },
 
     textQuestion: {
-      fontSize: 24,
+      fontSize: 22,
       color:'#000000',
       fontFamily: 'Quark',
       fontWeight: 'bold',
       textAlign: 'center',
+      paddingLeft: 10,
+      paddingRight: 10,
     },
 
     textChoices: {
@@ -374,6 +309,10 @@ date: {
       color:'#000000',
       fontFamily: 'Quark',
       marginLeft: 20,
+    },
+
+    radioButton: {
+      marginLeft: 15,
     }
 
 
