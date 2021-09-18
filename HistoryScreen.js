@@ -30,9 +30,20 @@ constructor(props) {
     return (
        <SafeAreaView style={[styles.container, containerStyle]}> 
  
-          <View style={{flex: 1, alignItems : 'flex-start',marginTop: -52}}>
+
+<View style={{flex: 1, alignItems: 'center',}}>  
+       <Image source={require('./assets/images/Bg-Blue.png')}
+    style={{width:568 ,height: 580,marginTop:100,marginRight: 40}} />     
+ </View>
+
+
+          <View style={{flex: 1, alignItems : 'flex-start',marginTop: -420}}>
  <CustomHeader title='History'  navigation={this.props.navigation}/>
  </View>
+
+ 
+
+
 
  <SwitchSelector
       options={switchOption}
@@ -52,10 +63,35 @@ constructor(props) {
       shadowRadius:3,
       elevation: 2,
       width: 290,
-      marginTop: -320,
+      marginTop: -320
+   
 }}
     />
+
+     <View style={{flexDirection: 'row', alignItems: 'center',height: 91 ,width: 201
+    , backgroundColor: 'white',borderRadius: 10,marginTop: 20, borderWidth: 2.5
+    , borderColor : '#E79995' ,shadowColor: '#000000',
+       shadowOffset: { width: 0, height: 5 },
+       shadowOpacity:  0.3,
+       shadowRadius:5,
+       elevation: 5,
+      }}>
+ <View style={{alignItems: 'center',paddingLeft: 30,paddingRight: 30}}>
+<Text style={{ color: '#E79995',fontSize: 30,fontWeight: "bold",marginLeft: 17}}>History</Text>
+     </View>
+    </View>
+
+    <View style={{flex: 1, alignItems: 'center',}}>  
+       <Image source={require('./assets/images/Frame.png')}
+    style={styles.image} />     
+ </View>
+
+ <View style={{flex:1, marginTop: -370,marginLeft: -40}}> 
+ <Text style={styles.textDate}>date</Text>
+ <Text style={styles.textCard}>Name card</Text>
+ </View>
  
+
       </SafeAreaView >
     );
   }
@@ -78,6 +114,38 @@ const styles = StyleSheet.create({
        justifyContent: 'center' 
         
   },
+
+  textContent :{
+      color: '#E79995',
+      fontSize: 18,
+      textAlign: 'center',
+      fontFamily: 'Quark',
+      marginTop: 5,
+     
+    },
+
+
+    image: {
+       width: 62,
+       height: 81,
+       resizeMode: 'center',
+       marginTop: 20,
+       marginLeft: -210
+    },
+
+    textDate: {
+      color: '#AAAAAA',
+      fontSize: 14,
+      fontWeight: 'bold',
+      fontFamily: 'Quark',
+    },
+
+    textCard: {
+      color: '#E79995',
+      fontSize: 18,
+      fontWeight: 'bold',
+      fontFamily: 'Quark',
+    }
 
 });
 export default HistoryScreen;

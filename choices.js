@@ -5,17 +5,38 @@ import { StyleSheet, View, Text, Image, SafeAreaView, Button
 import Bg1 from './components/Bg1';
 import Bg2 from './components/Bg2';
 import CustomHeader from './CustomHeader';
-import { connect } from 'react-redux';
-import Questions from './Json/Questions'
-
+import { connect } from 'react-redux'; 
+import {fetchQuestions,setCurrentQuestion} from './actions/Questions';
+import {setQuestionId,incrementAction} from './actions/Questions';
 
 
 
 class Choices extends Component {
+  
+constructor(props) {
+   super(props)
+  
+  }
+  nextQuestion=async()=>{ 
+    const currentIndex = this.props.questions.findIndex(e=>e.questionId === this.props.questionId)
+    if(currentIndex>=this.props.questions.length-1) return;
+    const nextIndex =currentIndex+1
+    await this.props.dispatch(setCurrentQuestion(this.props.questions[nextIndex])) //Question.currentQuestion
+    await this.props.dispatch(setQuestionId(this.props.questions[nextIndex].questionId));  
 
+  }
+
+   previousQuestion=async()=>{ 
+    const currentIndex = this.props.questions.findIndex(e=>e.questionId === this.props.questionId)
+    if(currentIndex<1) return;
+    const previousIndex =currentIndex-1
+    await this.props.dispatch(setCurrentQuestion(this.props.questions[previousIndex])) //Question.currentQuestion
+    await this.props.dispatch(setQuestionId(this.props.questions[previousIndex].questionId));  
+
+  }
   render() {
 
-let {navigation,questions,questionId} = this.props 
+let {questions,questionId,currentQuestion} = this.props 
 
     return (
       <SafeAreaView  style={[styles.container, containerStyle]}>
@@ -47,7 +68,7 @@ let {navigation,questions,questionId} = this.props
 
 
 <View style={{flex: 1, alignItems : 'flex-start',marginTop: -55}}>
- <CustomHeader title='choices'  navigation={this.props.navigation}/>
+ <CustomHeader title='Choices'  navigation={this.props.navigation}/>
  </View>
 
 
@@ -92,7 +113,7 @@ let {navigation,questions,questionId} = this.props
 
 <View style={{flex:1}}>
   <View style={styles.question}>
-       <Text style={styles.textQuestion} >วันนี้เป็นยังไงบ้าง </Text>
+       <Text style={styles.textQuestion} >{currentQuestion.detail} </Text>
   </View>
 </View>
      
@@ -113,7 +134,7 @@ let {navigation,questions,questionId} = this.props
        elevation: 5,
        }}>
      <Text style={styles.textChoices}>
-     อารมณ์ดีมาก {questions}
+     อารมณ์ดีมาก 
      </Text>
      </TouchableOpacity>
 
@@ -193,13 +214,13 @@ let {navigation,questions,questionId} = this.props
  
 <View style={{flex: 1,flexDirection: 'row' , justifyContent: 'space-between',alignItems: 'flex-end',marginBottom: 30}}>
   <TouchableOpacity style={styles.button} activeOpacity ={0.75}
-    
+    onPress = {() => this.previousQuestion()}
    >
        <Text style={styles.textButton}>ย้อนกลับ</Text>
   </TouchableOpacity>
  
      <TouchableOpacity style={styles.button} activeOpacity ={0.75}
-        onPress = {() => this.props.navigation.navigate('typeMessage')}
+        onPress = {() => this.nextQuestion()}
      >
        <Text style={styles.textButton}>ถัดไป</Text>
      </TouchableOpacity>
@@ -357,13 +378,13 @@ date: {
 
 
 });
-const mapStateToProps=(state,props)=>{
-  console.log(state)
+const mapStateToProps=(state,props)=>{ 
   
   return{
 
     questions:state.Questions.questions,
     questionId:state.Questions.questionId,
+    currentQuestion:state.Questions.currentQuestion
   }
 }
 export default connect (mapStateToProps) (Choices);

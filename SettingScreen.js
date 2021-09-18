@@ -20,7 +20,7 @@ class SettingScreen extends Component {
      <SafeAreaView style={{ flex: 1 }}>
       <CustomHeader title='Setting'  navigation={this.props.navigation}/>
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Setting detial!</Text>
+      <Text>Setting detail!</Text>
     </View>
      </SafeAreaView>
   );

@@ -93,7 +93,7 @@ class CheckupScreen extends Component {
    setSwitch = async()=> {
      const {Question} =Questions 
     //const no. ${i } questid ${e.questionId}`)
-     //const newDetail = "รายละเอียด "+e.detial + " ขี้เกียจทำ"
+     //const newDetail = "รายละเอียด "+e.detail + " ขี้เกียจทำ"
      //return {"questionId":e.questionId,atty:"value", "newDetail":newDetail}
    //});
    //console.log(questionProcess)
@@ -114,23 +114,25 @@ class CheckupScreen extends Component {
    //console.log("currentQ " ,currentQ) 
    //printVal(Question[71])
    
-const currentId = Question.findIndex(e=>e.questionId === '45002')
-console.log('current element: ', Question[currentId])
+//const currentId = Question.findIndex(e=>e.questionId === '45002')
+//console.log('current element: ', Question[currentId])
 
-const nextId = currentId+1
-console.log('next element: ', Question[nextId] )
+//const nextId = currentId+1
+//console.log('next element: ', Question[nextId] )
 
-const previousId = currentId-1
-console.log('previous element: ', Question[previousId])
+//const previousId = currentId-1
+//console.log('previous element: ', Question[previousId])
 
    //const questionLength =  Question.length
-   //console.log("questionLength : ",questionLength)
-   //this.props.navigation.navigate('choices') 
+   //console.log("questionLength : ",questionLength) 
+   await this.props.dispatch(setCurrentQuestion(currentQ))
+   //console.log("this.props.currentQuestion :",this.props.currentQuestion)
+   this.props.navigation.navigate('Choices') 
   }
     
 
   render() {
-    const {questions,questionId} = this.props
+    const {questions,questionId,currentQuestion} = this.props
   return (
      <SafeAreaView style={[styles.container, containerStyle]}> 
  
@@ -354,7 +356,8 @@ const mapStateToProps=(state,props)=>{
   
   return{
     questions:state.Questions.questions,
-    questionId:state.Questions.questionId
+    questionId:state.Questions.questionId,
+    currentQuestion:state.Questions.currentQuestion
   }
 }
 export default connect(mapStateToProps)(CheckupScreen);

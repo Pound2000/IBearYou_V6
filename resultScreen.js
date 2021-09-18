@@ -54,6 +54,13 @@ class resultScreen extends Component {
      </View>
     </View>
 
+<View style={{flex:1}}>
+     <TouchableOpacity style={styles.button} activeOpacity ={0.75}
+       // onPress = {() => }
+     >
+       <Text style={styles.textButton}>กลับไปหน้าแรก</Text>
+     </TouchableOpacity>
+</View>
  </SafeAreaView>
     );
   }
@@ -75,7 +82,36 @@ const styles = StyleSheet.create({
       fontFamily: 'Quark',
       marginTop: 5,
      
-    }
+    },
+
+    textButton:{
+     color: '#FFFFFF',
+     fontSize: 20,
+     fontFamily: 'Quark',
+     fontWeight: 'bold',
+     textAlign: 'center',
+     
+        
+},
+
+button:{
+       borderRadius: 5,
+       alignItems: 'center',
+       justifyContent: 'center',
+       backgroundColor: '#E79995',
+       height: 41,
+       width: 102,
+       shadowColor: '#000000',
+       shadowOffset: { width: 0, height: 4 },
+       shadowOpacity:  0.4,
+       shadowRadius: 3,
+       elevation: 2,
+       margin: 60,
+       marginBottom: -10,
+      alignItems: 'center',
+        
+},
+
 });
  
 
