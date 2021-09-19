@@ -118,7 +118,7 @@ const Questions = {
     "questionId" : "41009",
     "detail" : "เธออาจต้องการใครสักคน ให้น้องหมีอยู่ข้างๆเธอนะ",
     "nextQuestionId" : "",
-    "questionType" : "4"
+    "questionType" : "3"
   },
   {
     "questionId" : "42001",
@@ -203,7 +203,7 @@ const Questions = {
     "questionId" : "42009",
     "detail" : "ในวันที่รู้สึกไม่ไหว หยุดพักได้นะ ไม่ต้องรีบเดิน",
     "nextQuestionId" : "",
-    "questionType" : "4"
+    "questionType" : "3"
   },
 
   {

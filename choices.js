@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, View, Text, Image, SafeAreaView, Button
-       , TouchableHighlight,TouchableOpacity, Dementions}
+       , TouchableHighlight,TouchableOpacity, Dementions,TextInput}
        from 'react-native';
 import Bg1 from './components/Bg1';
 import Bg2 from './components/Bg2';
@@ -14,10 +14,10 @@ import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-
 
 class Choices extends Component {
   
-constructor(props) {
-   super(props)
-  
-  }
+constructor(props, context) {
+        super(props, context);
+    }
+    
   nextQuestion=async()=>{ 
     const currentIndex = this.props.questions.findIndex(e=>e.questionId === this.props.questionId)
     if(currentIndex>=this.props.questions.length-1) return;
@@ -35,13 +35,27 @@ constructor(props) {
     await this.props.dispatch(setQuestionId(this.props.questions[previousIndex].questionId));  
 
   }
+  setAnswerForType1=async(value)=>{
+     const currentIndex = this.props.questions.findIndex(e=>e.questionId === this.props.currentQuestion.questionId)
+     const currentQ= {...this.props.currentQuestion}
+           currentQ.answer= value 
+      //await this.props.dispatch(setCurrentQuestion(currentQ))
+      let mQuestions =this.props.questions
+      mQuestions[currentIndex]=currentQ
+      await this.props.dispatch(fetchQuestions(mQuestions));
+      console.log("this.props.questions ",this.props.questions)
+
+  }
   render() {
 
 let {questions,questionId,currentQuestion} = this.props 
 
-const choice_props = (typeof(currentQuestion.choices)!=='undefined' &&currentQuestion.choices!==null) ? currentQuestion.choices.map((e)=>{
-   return {...e,label:e.desc,value:e.seq}
-}) : {}
+/*const choice_props = (typeof(currentQuestion.choices)!=='undefined' &&currentQuestion.choices!==null) ? currentQuestion.choices.map((e)=>{
+   return {...e,label:e.desc,value:parseInt(e.seq)} 
+}) : {} */
+const choice_props =  currentQuestion.questionType==="1"? currentQuestion.choices.map((e)=>{
+   return {...e,label:e.desc,value:parseInt(e.seq)} 
+}) : {} 
 
 
     return (
@@ -73,7 +87,7 @@ const choice_props = (typeof(currentQuestion.choices)!=='undefined' &&currentQue
 </View>
 
 
-<View style={{flex: 1, alignItems : 'flex-start',marginTop: -55}}>
+<View style={{flex: 1, alignItems : 'flex-start',marginTop: 40}}>
  <CustomHeader title='Choices'  navigation={this.props.navigation}/>
  </View>
 
@@ -117,28 +131,67 @@ const choice_props = (typeof(currentQuestion.choices)!=='undefined' &&currentQue
     style={{width:145.52, height: 155.24,marginTop: 270,marginRight: -200}} />     
  </View>
 
-<View style={{flex:1}}>
-  <View style={styles.question}>
-       <Text style={styles.textQuestion} >{currentQuestion.detail} </Text>
-  </View>
-</View>
+
      
 
 <View style={{flexDirection: 'column' ,justifyContent: 'center', alignItems: 'center'}}>
 {currentQuestion.questionType==="1" &&
+
      <View >
-      <View style={{height: 200,width: 300, backgroundColor: '#FFFFFF',borderRadius: 10,marginTop: 40,paddingTop: 20,marginBottom: 120}}>
+     <View style={{flex:1}}>
+  <View style={styles.question}>
+       <Text style={styles.textQuestion} >{currentQuestion.detail} Answer : {currentQuestion.answer} </Text>
+  </View>
+</View>
+      <View style={{height: 200,width: 300, backgroundColor: '#FFFFFF',borderRadius: 10,marginTop: 40,paddingTop: 20,marginBottom: 120,marginLeft: 30}}>
      <RadioForm
           radio_props={choice_props}
-          initial={0}
-          onPress={(value) => {this.setState({value:value})}}
-          buttonColor={'#FE8150'}
-          buttonInnerColor={'#FE8150'}
+          initial={parseInt(currentQuestion.answer)>0?parseInt(currentQuestion.answer)-1:-1}
+          onPress={(value) => {this.setAnswerForType1(value)}}
+          buttonColor={'#E79995'}
           buttonWrapStyle={{marginLeft: 10}}
           labelStyle={{fontSize: 18, color: '#000000',  fontFamily: 'Quark',}}
           style={styles.radioButton}
         />
       </View>
+     </View>
+}
+
+{currentQuestion.questionType==="2" &&
+     <View >
+           
+
+   <View style={{flex:1}}>
+  <View style={styles.questionM}>
+       <Text style={styles.textQuestionM}> {currentQuestion.detail} Answer : {currentQuestion.answer}</Text>
+ </View>
+</View>
+ 
+
+     <View style={{flexDirection: 'column' ,justifyContent: 'center', alignItems: 'center'}}>
+        <View >
+        <TextInput 
+        style={styles.input}
+         placeholder="บอกความในใจของเธอมาได้เลย..."
+         placeholderTextColor="#000000"
+         autoCapitalize='none'
+            
+      />
+      </View>
+   </View>
+   
+     </View>
+}
+
+{currentQuestion.questionType==="3" &&
+     <View >
+           
+<View style={{flexDirection: 'column' ,justifyContent: 'center', alignItems: 'center',marginTop: 100}}>
+    <View style= {styles.containerS}>
+        <Text style={styles.textS}>{currentQuestion.detail} Answer : {currentQuestion.answer}</Text>
+    </View>
+ </View>
+   
      </View>
 }
    
@@ -290,7 +343,7 @@ date: {
        shadowOpacity:  1,
        shadowRadius:0,
        elevation: 2,
-      marginTop: -90
+      marginTop: 100
 
     },
 
@@ -313,7 +366,80 @@ date: {
 
     radioButton: {
       marginLeft: 15,
-    }
+    },
+
+    input:{
+    height: 270,
+    width : 320,
+    margin: 30,
+    borderWidth: 1,
+    paddingLeft : 15,
+    paddingBottom: 200,
+    fontSize : 18,
+    fontFamily: 'Quark',
+    backgroundColor : '#FFFFFF',
+    borderRadius: 10,
+    borderColor : '#FFFFFF' ,
+    shadowColor: '#E79995',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity:  5,
+    shadowRadius:2,
+    elevation: 1,
+    marginBottom: -40,
+    marginTop: -360,
+    },
+   
+   questionM: {
+       borderRadius: 10,
+       alignItems: 'center',
+       justifyContent: 'center',
+       backgroundColor: '#FFFFFF',
+       height: 127,
+       width: 355,
+       shadowColor: '#E79995',
+       shadowOffset: { width: 0, height: 4 },
+       shadowOpacity:  1,
+       shadowRadius:0,
+       elevation: 2,
+       marginTop: 205,
+       marginLeft: 15
+       
+
+    },
+
+    textQuestionM: {
+      fontSize: 20,
+      color:'#000000',
+      fontFamily: 'Quark',
+      fontWeight: 'bold',
+      textAlign: 'center',
+    },
+
+textS:{
+     color: 'pink',
+     fontSize: 24,
+     fontFamily: 'Quark',
+     fontWeight: 'bold',
+     textAlign: 'center',
+     
+        
+},
+
+containerS: {
+       height: 116,
+       width: 298,
+       borderRadius: 5,
+       alignItems: 'center',
+       justifyContent: 'center',
+       backgroundColor: '#FFFFFF',
+       shadowColor: '#000000',
+       shadowOffset: { width: 0, height: 4 },
+       shadowOpacity:  0.4,
+       shadowRadius: 3,
+       elevation: 2,
+       margin: 60,
+},
+
 
 
 });
