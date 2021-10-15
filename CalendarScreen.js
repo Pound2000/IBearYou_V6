@@ -33,9 +33,13 @@ class CalendarScreen extends Component {
   <Calendar
     theme={{calendarBackground: '#E79995',
             dayTextColor: '#000000',
+            todayTextColor: '#FFFFFF',
             monthTextColor: '#000000',
             selectedDayBackgroudColor: '#CB6863',
             selectedDayTextColor: '#FFFFFF',
+            textSectionTitleColor: '#000000',
+            textDisabledColor: '#FFFFFF',
+            arrowColor: '#000000',
     }}
   style={styles.calendar}/>
 
@@ -157,6 +161,8 @@ const styles = StyleSheet.create({
       shadowRadius: 3,
       shadowOpacity: 0.4,
       elevation: 3,
+
+   
       
     }
 
