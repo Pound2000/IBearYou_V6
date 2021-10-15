@@ -6,6 +6,14 @@ import Bg1 from './components/Bg1';
 import Bg2 from './components/Bg2';
 
 import CustomHeader from './CustomHeader';
+import {Calendar, LocaleConfig} from 'react-native-calendars';
+  /*LocaleConfig.locales['ts'] = {
+    monthNames: ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'],
+    monthNamesShort: ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'],
+    dayNames: ['จันทร์','อังคาร','พุธ','พฤหัสบดี','ศุกร์','เสาร์','อาทิตย์'],
+    dayNamesShort: ['จ.','อ.','พ.','พฤ.','ศ.','ส.','อา.']
+  }
+  LocaleConfig.defaultLocale = 'tr';*/
 
 class CalendarScreen extends Component {
   constructor(props) {
@@ -14,12 +22,26 @@ class CalendarScreen extends Component {
     };
   }
 
+  
+
   render() {
    return (
      <SafeAreaView style={{ flex: 1,backgroundColor: '#EAD6A4' }}>
      <CustomHeader title='Calendar' isHome={true} navigation={this.props.navigation}/>
 
+<View>
+  <Calendar
+    theme={{calendarBackground: '#E79995',
+            dayTextColor: '#000000',
+            monthTextColor: '#000000',
+            selectedDayBackgroudColor: '#CB6863',
+            selectedDayTextColor: '#FFFFFF',
+    }}
+  style={styles.calendar}/>
 
+
+
+</View>
 
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 
@@ -32,7 +54,7 @@ class CalendarScreen extends Component {
 
  <View style = {styles.button}>
           <TouchableOpacity
-        style={{marginTop: 20}}
+        style={{marginTop: 120}}
         onPress={() => this.props.navigation.navigate('Mood')  }
        activeOpacity={0.75} >
         <View style = {styles.buttonStart}>
@@ -43,17 +65,17 @@ class CalendarScreen extends Component {
 
       <View style={{flex: 1, alignItems: 'center',}}>  
        <Image source={require('./assets/images/boots.png')}
-    style={{width:50.91,height:41.96,marginTop:-125,marginRight:-320}} />     
+    style={{width:50.91,height:41.96,marginTop:-45,marginRight:-320}} />     
  </View>
 
    <View style={{flex: 1, alignItems: 'center',}}>  
        <Image source={require('./assets/images/umbrella-blue.png')}
-    style={{width:135.42 ,height:111,marginTop: -460,marginRight: -180}} />     
+    style={{width:135.42 ,height:111,marginTop: -290,marginRight: -180}} />     
  </View>
 
  <View style={{flex: 1, alignItems: 'center',}}>  
        <Image source={require('./assets/images/raincoat.png')}
-    style={{width:98.08 ,height:107.17,marginTop: -405,marginLeft: -280}} />     
+    style={{width:98.08 ,height:107.17,marginTop: -140,marginLeft: -280}} />     
  </View>
      </View>
     </View>
@@ -82,7 +104,7 @@ const styles = StyleSheet.create({
       shadowOpacity:  1,
       shadowRadius:0,
       elevation: 2,
-      marginTop: 100,
+      marginTop: 95,
     },
 
        button: {
@@ -127,7 +149,16 @@ const styles = StyleSheet.create({
      marginLeft: -20
    },
 
-
+    calendar: {
+      //borderBottomRightRadius: 25,
+      //borderBottomLeftRadius: 25,
+      shadowColor: '#000000',
+      shadowOffset: { width: 0, height: 4 },
+      shadowRadius: 3,
+      shadowOpacity: 0.4,
+      elevation: 3,
+      
+    }
 
   });
 export default CalendarScreen;

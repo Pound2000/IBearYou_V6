@@ -4,10 +4,32 @@
             {
                 "questionnaireId" : "0",
                 "questionnaire" : "คำถามเริ่มต้น",
-                "questionId" : ["40001","40002","40003"],
-                "nextQuestionnaireId" : ["1","2","3","4","9"],
-                "card" : ""
+                "nextQuestionnaireId" : "1"
+
             },
+            {
+              "questionnaireId" : "0",
+              "questionnaire" : "คำถามเริ่มต้น",
+              "nextQuestionnaireId" : "2"             
+          },
+
+          {
+            "questionnaireId" : "0",
+            "questionnaire" : "คำถามเริ่มต้น",
+            "nextQuestionnaireId" : "3"            
+        },
+
+        {
+          "questionnaireId" : "0",
+          "questionnaire" : "คำถามเริ่มต้น",
+          "nextQuestionnaireId" : "4"            
+      },
+
+      {
+        "questionnaireId" : "0",
+        "questionnaire" : "คำถามเริ่มต้น",
+        "nextQuestionnaireId" : "9"            
+    },
 
             {
                 "questionnaireId" : "1",

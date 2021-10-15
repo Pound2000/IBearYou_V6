@@ -91,6 +91,7 @@ class CheckupScreen extends Component {
 
  }
    setSwitch = async()=> {
+
      const {Question} =Questions 
     //const no. ${i } questid ${e.questionId}`)
      //const newDetail = "รายละเอียด "+e.detail + " ขี้เกียจทำ"
@@ -222,7 +223,7 @@ class CheckupScreen extends Component {
       </View>
  
       <View style={styles.Content}>
-       <Text style={styles.textContent}>" คำถาม T T "</Text>
+       <Text style={styles.textContent}>"แบบทดสอบนี้ จะพาเธอไปสำรวจตนเอง ถ้าหากเธอกำลังเผชิญปัญหา หมดกำลังใจ เรามาทำแบบทดสอบนี้กัน"</Text>
      </View>
    
 
@@ -230,7 +231,8 @@ class CheckupScreen extends Component {
           <TouchableOpacity
         style={{marginTop: 20}} activeOpacity={0.75}
         //onPress={() => this.startCheckUp()}
-        onPress = {() => this.setSwitch()} >
+        onPress = {() => this.setSwitch()}
+         >
         <View style = {styles.buttonStart}>
         <Text style = {styles.textStart}> Let's Get Started </Text>
         </View>
