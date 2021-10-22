@@ -9,8 +9,6 @@ import thunk from 'redux-thunk';
 import login from './login';
  
 import Choices from './Choices';
-import typeMessage from './typeMessage';
-import sentence from './sentence';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 
 
@@ -90,9 +88,7 @@ function CheckupStack() {
       <StackCheckup.Screen name='StartCheckup' component={StartCheckupScreen} options={navOptionHandler}/>
       <StackCheckup.Screen name='History' component={HistoryScreen} options={navOptionHandler}/>  
       <StackCheckup.Screen name='Result' component={resultScreen} options={navOptionHandler}/>
-      <StackCheckup.Screen name='typeMessage' component={typeMessage} options={navOptionHandler}/>  
       <StackCheckup.Screen name='Choices' component={Choices} options={navOptionHandler}/>
-      <StackCheckup.Screen name='sentence' component={sentence} options={navOptionHandler}/>
      </StackCheckup.Navigator>
 
   )

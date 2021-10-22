@@ -13,92 +13,182 @@ class MoodScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      feel : true,
+      next : false
     };
+  }
+
+  selectedFeel = () => {
+     this.setState({
+       feel: !this.state.feel
+     })
+      console.log ('help me pls.')
   }
 
   render() {
  return (
-     <SafeAreaView style={{ flex: 1 ,backgroundColor: '#EAD6A4'}}>
+<SafeAreaView style={{ flex: 1 ,backgroundColor: '#EAD6A4'}}>
      
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}> 
+ <View style={{ flex: 1,flexDirection: 'column',justifyContent: 'center', alignItems: 'center' }}> 
       
- <View > 
-       <View style={{flex: 1, alignItems: 'center',}}>  
+    <View style={{flex: 1, alignItems: 'center',}}>  
        <Image source={require('./assets/images/rainy.png')}
-    style={{width:392 ,height:294,marginTop: -17}} />  
-</View>
-    <View style={{flex: 1, alignItems : 'flex-start',marginTop:-30}}>   
- <CustomHeader title='Mood'  navigation={this.props.navigation}/>
- </View>
- 
- <View style={styles.boxContent}>
-        <Text style={styles.textContent}>วันนี้เธอรู้สึกอย่างไร</Text>
-</View>
-
-<View style={{marginTop: -400}}>
-
-       <View style={styles.clickVeryGood}></View>
-
-        <TouchableOpacity style={styles.buttonVeryGood} activeOpacity={1}> 
-        <Text style={styles.textMood}>รู้สึกอารมณ์ดีมาก</Text>
-         <Image source={require('./assets/images/bear-verygood.png')}
-        style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}} 
-        /> 
-      </TouchableOpacity>
-      </View>
-
-      <View style={styles.clickGood}></View>
-
-        <TouchableOpacity style={styles.buttonGood} activeOpacity={1}>
-        <Text style={styles.textMood}>รู้สึกอารมณ์ดี</Text>
-         <Image source={require('./assets/images/bear-good.png')}
-        style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}} 
-        /> 
-      </TouchableOpacity>
-
-      <View style={styles.clickIndifferent}></View>
-
-        <TouchableOpacity style={styles.buttonIndifferent} activeOpacity={1}>        
-        <Text style={styles.textMood}>รู้สึกเฉยๆ</Text>
-         <Image source={require('./assets/images/bear-indifferent.png')}
-        style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}} 
-        /> 
-      </TouchableOpacity>
-
-      <View style={styles.clickBad}></View>
-
-        <TouchableOpacity style={styles.buttonBad} activeOpacity={1}>
-        <Text style={styles.textMood}>รู้สึกอารมณ์ไม่ค่อยดี</Text>
-         <Image source={require('./assets/images/bear-bad.png')}
-        style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}} 
-        /> 
-      </TouchableOpacity>
-
-      <View style={styles.clickVeryBad}></View>
-
-        <TouchableOpacity style={styles.buttonVeryBad} activeOpacity={1}>
-        <Text style={styles.textMood}>รู้สึกอารมณ์ไม่ดีเลย</Text>
-         <Image source={require('./assets/images/bear-verybad.png')}
-        style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}} 
-        /> 
-      </TouchableOpacity>
-</View>
-
-<Image source={require('./assets/images/bear-rain.png')}
-        style={{width:100.56,height:104.02,marginTop: -38,marginLeft: -20,marginBottom: -35}} 
-        /> 
-
-<Image source={require('./assets/images/polygon2.png')}
-        style={{width:201.655,height:118.87,marginTop: -38,marginLeft: -320,marginBottom: -40}} 
-        />
-
-<Image source={require('./assets/images/footprint.png')}
-        style={{width:48,height:18.78,marginTop: -38,marginLeft: -120,marginBottom: 55}} 
-        />
-
-
+        style={{width:392 ,height:294,marginTop: -47}} />  
     </View>
 
+
+    <View style={{flex: 1, alignItems : 'center',marginTop:-165}}>   
+      <CustomHeader title='Mood'  navigation={this.props.navigation}/>
+    </View>
+</View>
+    
+  <View style={{flex: 1}}>
+    <View style={styles.boxContent}>
+        <Text style={styles.textContent}>วันนี้เธอรู้สึกอย่างไร</Text>
+    </View>
+    
+
+  </View>
+
+<View style={{flex: 1,marginBottom: 110}}>
+{this.state.feel ?
+
+       <TouchableOpacity style={styles.buttonVeryGood} activeOpacity={1}
+       onPress ={() => this.selectedFeel()}>
+       <View>
+       <Text style={styles.textMood}>รู้สึกอารมณ์ดีมาก</Text>
+        <Image source={require('./assets/images/bear-verygood.png')}
+       style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}}
+       />
+       </View>
+       </TouchableOpacity>
+       :
+       <View>
+       <View style={styles.clickVeryGood}></View>
+       <TouchableOpacity style={styles.buttonVeryGood} activeOpacity={1}
+       onPress ={() => this.selectedFeel()}>
+       <Text style={styles.textMood}>รู้สึกอารมณ์ดีมาก</Text>
+        <Image source={require('./assets/images/bear-verygood.png')}
+       style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}}
+       />
+       </TouchableOpacity>
+       </View>
+     }
+
+{this.state.feel ?
+ 
+      <TouchableOpacity style={styles.buttonGood} activeOpacity={1}
+      onPress ={() => this.selectedFeel()}>
+      <View>
+      <Text style={styles.textMood}>รู้สึกอารมณ์ดี</Text>
+       <Image source={require('./assets/images/bear-good.png')}
+      style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}}
+      />
+      </View>
+      </TouchableOpacity>
+      :
+      <View>
+      <View style={styles.clickGood}></View>
+      <TouchableOpacity style={styles.buttonGood} activeOpacity={1}
+      onPress ={() => this.selectedFeel()}>
+      <Text style={styles.textMood}>รู้สึกอารมณ์ดี</Text>
+       <Image source={require('./assets/images/bear-good.png')}
+      style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}}
+      />
+      </TouchableOpacity>
+      </View>
+    }
+
+{this.state.feel ?
+ 
+      <TouchableOpacity style={styles.buttonIndifferent} activeOpacity={1}
+      onPress ={() => this.selectedFeel()}>
+      <View>
+      <Text style={styles.textMood}>รู้สึกเฉยๆ</Text>
+       <Image source={require('./assets/images//bear-indifferent.png')}
+      style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}}
+      />
+      </View>
+      </TouchableOpacity>
+      :
+      <View>
+      <View style={styles.clickIndifferent}></View>
+      <TouchableOpacity style={styles.buttonIndifferent} activeOpacity={1}
+      onPress ={() => this.selectedFeel()}>
+      <Text style={styles.textMood}>รู้สึกเฉยๆ</Text>
+       <Image source={require('./assets/images//bear-indifferent.png')}
+      style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}}
+      />
+      </TouchableOpacity>
+      </View>
+    }
+
+{this.state.feel ?
+ 
+      <TouchableOpacity style={styles.buttonBad} activeOpacity={1}
+      onPress ={() => this.selectedFeel()}>
+      <View>
+      <Text style={styles.textMood}>รู้สึกอารมณ์ไม่ค่อยดี</Text>
+       <Image source={require('./assets/images/bear-bad.png')}
+      style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}}
+      />
+      </View>
+      </TouchableOpacity>
+      :
+      <View>
+      <View style={styles.clickBad}></View>
+      <TouchableOpacity style={styles.buttonBad} activeOpacity={1}
+      onPress ={() => this.selectedFeel()}>
+      <Text style={styles.textMood}>รู้สึกอารมณ์ไม่ค่อยดี</Text>
+       <Image source={require('./assets/images/bear-bad.png')}
+      style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}}
+      />
+      </TouchableOpacity>
+      </View>
+    }
+
+{this.state.feel ?
+ 
+      <TouchableOpacity style={styles.buttonVeryBad} activeOpacity={1}
+      onPress ={() => this.selectedFeel()}>
+      <View>
+      <Text style={styles.textMood}>รู้สึกอารมณ์ไม่ดีเลย</Text>
+       <Image source={require('./assets/images/bear-verybad.png')}
+      style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}}
+      />
+      </View>
+      </TouchableOpacity>
+      :
+      <View>
+      <View style={styles.clickVeryBad}></View>
+      <TouchableOpacity style={styles.buttonVeryBad} activeOpacity={1}
+      onPress ={() => this.selectedFeel()}>
+      <Text style={styles.textMood}>รู้สึกอารมณ์ไม่ดีเลย</Text>
+       <Image source={require('./assets/images/bear-verybad.png')}
+      style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}}
+      />
+      </TouchableOpacity>
+      </View>
+    }
+
+
+      
+</View>
+
+<View>
+<Image source={require('./assets/images/bear-rain.png')}
+       style={{width:100.56,height:104.02,marginTop: 10,marginLeft:130,marginBottom: -65}}
+       />
+ 
+<Image source={require('./assets/images/polygon2.png')}
+       style={{width:201.655,height:118.87,marginTop: 0,marginLeft: -55,marginBottom: -90}}
+       />
+ 
+<Image source={require('./assets/images/footprint.png')}
+       style={{width:48,height:18.78,marginTop: 10,marginLeft: 110,marginBottom: 0}}
+       />
+</View>
+     
 <View>
         <TouchableOpacity 
         onPress = {() => this.props.navigation.navigate('Diary')}
@@ -113,6 +203,7 @@ class MoodScreen extends Component {
   }
 }
 
+
 const styles = StyleSheet.create({
 
     boxContent:{
@@ -120,8 +211,8 @@ const styles = StyleSheet.create({
       height: 50,
       backgroundColor: '#FFFFFF',
       borderRadius: 10,
-      marginBottom: 490,
       marginLeft: 80,
+      marginTop: -55,
       borderRadius: 10,
       shadowColor: '#87D6E8',
       shadowOffset: { width: 0, height: 3 },
@@ -152,9 +243,9 @@ const styles = StyleSheet.create({
       shadowOpacity:  0.4,
       shadowRadius: 3,
       elevation: 1,
-      marginTop: -69,
+      marginTop: -65,
       marginBottom: 15,
-      marginLeft: 40,
+      marginLeft: 32,
     },
 
       buttonGood: {
@@ -170,9 +261,9 @@ const styles = StyleSheet.create({
       shadowOpacity:  0.4,
       shadowRadius: 3,
       elevation: 2,
-      marginBottom: 15,
-      marginTop: -69,
-      marginLeft: 40,
+      marginBottom: 0,
+      marginLeft: 32,
+      marginTop: 7,
     },
 
       buttonIndifferent: {
@@ -180,7 +271,7 @@ const styles = StyleSheet.create({
       height: 50,
       backgroundColor: '#FFFFFF',
       borderColor: '#FFAD8A',
-       borderLeftWidth: 42,
+      borderLeftWidth: 42,
       borderRightWidth: 3,
       borderBottomWidth: 3,
       shadowColor: '#000000',
@@ -189,8 +280,8 @@ const styles = StyleSheet.create({
       shadowRadius: 3,
       elevation: 2,
       marginBottom: 15,
-      marginTop: -69,
-      marginLeft: 40,
+      marginTop: 22,
+      marginLeft: 32,
     },
 
       buttonBad: {
@@ -207,8 +298,8 @@ const styles = StyleSheet.create({
       shadowRadius: 3,
       elevation: 2,
       marginBottom: 15,
-      marginTop: -69,
-      marginLeft: 40,
+      marginLeft: 32,
+      marginTop: 7,
     },
 
       buttonVeryBad: {
@@ -224,9 +315,8 @@ const styles = StyleSheet.create({
       shadowOpacity:  0.4,
       shadowRadius: 3,
       elevation: 2,
-      marginBottom: 60,
-      marginTop: -69,
-      marginLeft: 40,
+      marginLeft: 32,
+      marginTop:7,
     },
 
     textMood: {
@@ -240,39 +330,56 @@ const styles = StyleSheet.create({
     },
 
     clickVeryGood: {
-      height: 70,
+      flex: 1,  
       width: 414,
       backgroundColor: '#70BA97',
-      marginBottom: 10,
+      marginBottom: 5,
+      marginLeft: -20,
+      marginTop: -72,
      
     },
 
     clickGood: {
-      height: 70,
+      flex: 1,
       width: 414,
       backgroundColor: '#FFF96E',
-      marginBottom: 10,
+      marginBottom: -60,
+      marginLeft: -20,
+      marginTop: -10,
+      paddingBottom: 70,
+      paddingTop: -72,
     },
 
     clickIndifferent: {
       height: 70,
       width: 414,
       backgroundColor: '#FFAD8A',
-      marginBottom: 10,
+      marginBottom: -80,
+      marginLeft: -20,
+      marginTop: 10,
+      paddingBottom: 6,
+      paddingTop: 3,
     },
 
     clickBad: {
-      height: 70,
+      height: 65,
       width: 414,
       backgroundColor: '#87D6E8',
-      marginBottom: 10,
+      marginBottom: -60,
+      marginLeft: -20,
+      marginTop: -5,
+      paddingBottom: 6,
+      paddingTop: 3,
     },
 
     clickVeryBad: {
       height: 70,
       width: 414,
       backgroundColor: '#00576A',
-      marginBottom: 10,
+      marginBottom: -63,
+      marginLeft: -20,
+      marginTop: -7,
+
     },
 
 buttonNext: {
