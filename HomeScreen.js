@@ -3,12 +3,8 @@ import { StyleSheet, View, Text, Image, SafeAreaView, Button
        , TouchableHighlight,TouchableOpacity, Dementions
        ,TextInput,KeyboardAvoidingView}
        from 'react-native';
-import Bg1 from './components/Bg1';
-import Bg2 from './components/Bg2';
-
 import CustomHeader from './CustomHeader';
 
-import User from './Json/User' ;
 
 class HomeScreen extends Component {
   constructor() {

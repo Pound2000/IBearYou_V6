@@ -5,8 +5,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import thunk from 'redux-thunk';
-
-import login from './login';
  
 import Choices from './Choices';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'

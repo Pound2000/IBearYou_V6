@@ -14,18 +14,29 @@ class MoodScreen extends Component {
     super(props);
     this.state = {
       feel : true,
-      next : false
+      next : true,
     };
+    this.veryGood = this.verygood;
+    this.good = this.good;
   }
 
   selectedFeel = () => {
      this.setState({
-       feel: !this.state.feel
+       feel: !this.state.feel,
+       next: !this.state.next,
      })
-      console.log ('help me pls.')
+      console.log ('selected seccess!')
   }
 
+
+
+ 
+
   render() {
+    const veryGood = this.state.veryGood ;
+    const good = this.state.good ;
+
+
  return (
 <SafeAreaView style={{ flex: 1 ,backgroundColor: '#EAD6A4'}}>
      
@@ -51,9 +62,10 @@ class MoodScreen extends Component {
   </View>
 
 <View style={{flex: 1,marginBottom: 110}}>
-{this.state.feel ?
 
-       <TouchableOpacity style={styles.buttonVeryGood} activeOpacity={1}
+   {this.state.feel
+      ?   
+      <TouchableOpacity style={styles.buttonVeryGood} activeOpacity={1}
        onPress ={() => this.selectedFeel()}>
        <View>
        <Text style={styles.textMood}>รู้สึกอารมณ์ดีมาก</Text>
@@ -73,10 +85,10 @@ class MoodScreen extends Component {
        />
        </TouchableOpacity>
        </View>
-     }
+  }  
+    
 
-{this.state.feel ?
- 
+     {this.state.feel?
       <TouchableOpacity style={styles.buttonGood} activeOpacity={1}
       onPress ={() => this.selectedFeel()}>
       <View>
@@ -97,7 +109,8 @@ class MoodScreen extends Component {
       />
       </TouchableOpacity>
       </View>
-    }
+    } 
+    
 
 {this.state.feel ?
  
@@ -190,13 +203,21 @@ class MoodScreen extends Component {
 </View>
      
 <View>
+{ this.state.next
+        ?
         <TouchableOpacity 
         onPress = {() => this.props.navigation.navigate('Diary')}
-        style={styles.buttonNext} activeOpacity={1} activeOpacity={0.75}>
+        style={styles.buttonNext_before} activeOpacity={0.75} disabled={true} >
         <Text style={styles.textNext}>ถัดไป</Text>
         </TouchableOpacity>
+        :
+        <TouchableOpacity 
+        onPress = {() => this.props.navigation.navigate('Diary')}
+        style={styles.buttonNext_after} activeOpacity={0.75}>
+        <Text style={styles.textNext}>ถัดไป</Text>
+        </TouchableOpacity>
+}
 </View>
-
 
      </SafeAreaView>
   );
@@ -212,7 +233,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#FFFFFF',
       borderRadius: 10,
       marginLeft: 80,
-      marginTop: -55,
+      marginTop: -50,
       borderRadius: 10,
       shadowColor: '#87D6E8',
       shadowOffset: { width: 0, height: 3 },
@@ -382,7 +403,24 @@ const styles = StyleSheet.create({
 
     },
 
-buttonNext: {
+buttonNext_before: {
+       borderRadius: 5,
+       alignItems: 'center',
+       justifyContent: 'center',
+       backgroundColor: '#A6A6A6',
+       height: 41,
+       width: 102,
+       marginTop: -55,
+       marginBottom: 30,
+       marginLeft: 260,
+       shadowColor: '#000000',
+       shadowOffset: { width: 0, height: 4 },
+       shadowOpacity:  0.4,
+       shadowRadius: 3,
+       elevation: 2,
+},
+
+buttonNext_after: {
        borderRadius: 5,
        alignItems: 'center',
        justifyContent: 'center',

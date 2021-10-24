@@ -1,109 +1,66 @@
 {
-  
-    "Questionnaires" : [
-            {
-                "questionnaireId" : "0",
-                "questionnaire" : "คำถามเริ่มต้น",
-                "nextQuestionnaireId" : "1"
-
-            },
-            {
-              "questionnaireId" : "0",
-              "questionnaire" : "คำถามเริ่มต้น",
-              "nextQuestionnaireId" : "2"             
-          },
-
-          {
-            "questionnaireId" : "0",
-            "questionnaire" : "คำถามเริ่มต้น",
-            "nextQuestionnaireId" : "3"            
-        },
-
-        {
-          "questionnaireId" : "0",
-          "questionnaire" : "คำถามเริ่มต้น",
-          "nextQuestionnaireId" : "4"            
-      },
-
-      {
-        "questionnaireId" : "0",
-        "questionnaire" : "คำถามเริ่มต้น",
-        "nextQuestionnaireId" : "9"            
+  "Questionnaires":
+  [
+    {
+        "questionnaire_id": 0,
+        "questionnaire": "คำถามเริ่มต้น",
+        "next_questionnaire_id": [
+            1,
+            2,
+            3,
+            4,
+            9
+        ]
     },
-
-            {
-                "questionnaireId" : "1",
-                "questionnaire" : "คำถามเรื่องเพื่อน",
-                "questionId" : ["41001","41002","41003","41004","41005","41006","41007","41008","41009"],
-                "nextQuestionnaireId" : "",
-                "card" : ["1","2","3","4","5","6","7","8","9","10",
-                          "11"]
-            },
-
-            {
-                "questionnaireId" : "2",
-                "questionnaire" : "คำถามเรื่องเรียน",
-                "questionId" : ["42001","42002","42003","42004","42005","42006","42007","42008","42009"],
-                "nextQuestionnaireId" : "",
-                "card" : ["12","13","14","15","16","17","18","19","20","21",
-                          "22","23","24"]
-            },
-
-            {
-              "questionnaireId" : "3",
-              "questionnaire" : "ครอบครัว",
-              "questionId" : ["43001, 43002, 43003, 43004, 43005, 43006, 43007, 43008, 43009"],
-              "nextQuestinnaireId" : "",
-              "cardId" : ["25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39"]
-              
-          },
-  
-          {
-              "questionnaireId" : "4",
-              "questionnaire" : "ความรัก_ตัวเลือก",
-              "questionId" : "44001",
-              "nextQuestinnaireId" : ["5, 6, 8, 9"],
-              "cardId" : ""
-          },
-  
-          {
-              "questionnaireId" : "5",
-              "questionnaire" : "ความรัก_โสด",
-              "questionId" : "45001, 45002, 45003, 45004, 45005, 45006, 45007, 45008",
-              "nextQuestinnaireId" : "",
-              "cardId" : "40, 41, 42, 43, 44, 45, 46, 47"
-          },
-
-          {
-            "questionnaireId" : "6",
-            "questionnaire" : "มีแฟน",
-            "questionId" : ["45009","45010","45011","45012","45013","45014","45015","45016"],
-            "nextQuestionnaireId" : "",
-            "card" : ["48","49","50"]
-          },
-
-          {
-          "questionnaireId" : "7",
-          "questionnaire" : "คนคุย",
-          "questionId" : ["45017","45018","45019","45020","45021","45022","45023","45024"],
-          "nextQuestionnaireId" : "",
-          "card" : ["51","52","53","54"]
-          },
-
-          {
-            "questionnaireId" : "8",
-            "questionnaire" : "มือที่ 3",
-            "questionId" : ["45025","45026","45027","45028","45029","45030","45031","45032"],
-            "nextQuestionnaireId" : "",
-            "card" : ["55","56"]
-        },
-
-        {
-          "questionnaireId" : "9",
-          "questionnaire" : "คำถามเรื่องการเงิน",
-          "questionId" : ["46001","46002","46003","46004","46005","46006","46007","46008","46009"],
-          "nextQuestionnaireId" : "",
-          "card" : ["57","58","59","60","61"]
-      }
-    ]
-  }
+    {
+        "questionnaire_id": 1,
+        "questionnaire": "คำถามเรื่องเพื่อน",
+        "next_questionnaire_id": []
+    },
+    {
+        "questionnaire_id": 2,
+        "questionnaire": "คำถามเรื่องเรียน",
+        "next_questionnaire_id": []
+    },
+    {
+        "questionnaire_id": 3,
+        "questionnaire": "ครอบครัว",
+        "next_questionnaire_id": []
+    },
+    {
+        "questionnaire_id": 4,
+        "questionnaire": "ความรัก_ตัวเลือก",
+        "next_questionnaire_id": [
+            5,
+            6,
+            8,
+            9
+        ]
+    },
+    {
+        "questionnaire_id": 5,
+        "questionnaire": "ความรักโสด",
+        "next_questionnaire_id": []
+    },
+    {
+        "questionnaire_id": 6,
+        "questionnaire": "มีแฟน",
+        "next_questionnaire_id": []
+    },
+    {
+        "questionnaire_id": 7,
+        "questionnaire": "คนคุย",
+        "next_questionnaire_id": []
+    },
+    {
+        "questionnaire_id": 8,
+        "questionnaire": "มือที่ 3",
+        "next_questionnaire_id": []
+    },
+    {
+        "questionnaire_id": 9,
+        "questionnaire": "คำถามเรื่องการเงิน",
+        "next_questionnaire_id": []
+    }
+]
+}

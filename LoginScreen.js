@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, Image, SafeAreaView, Button
        , AsyncStorage} 
        from 'react-native';
 import CustomHeader from './CustomHeader';
-const Card = require('./Json/Card')
+
 
 
 

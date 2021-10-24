@@ -16,10 +16,13 @@ class DiaryScreen extends Component {
                    bad : '',
                    wish : '',
     };
+   
   }
  
  
  render() {
+   
+
 return (
     <SafeAreaView style={{ flex: 1 ,backgroundColor: '#EAD6A4'}}>
      

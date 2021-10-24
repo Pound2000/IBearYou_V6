@@ -1,30 +1,14 @@
 
       {
-      "Result" : [{
-        "resultId" : "31",
-        "createDate" : "2010-07-04 10:23:54+02",
-        "updateDate" : "2010-07-04 10:23:54+02",
-        "questionnaireId" : "",
-        "userId" : "001",
-        "cardId" : "1"
-    },
-    
-    {
-        "resultId" : "32",
-        "createDate" : "2005-03-05 10:23:54+02",
-        "updateDate" : "2005-03-05 10:23:54+02",
-        "questionnaireId" : "",
-        "userId" : "002",
-        "cardId" : "2"
-    },
-    
-    {
-      "resultId" : "33",
-      "createDate" : "2005-03-06 10:23:54+02",
-      "updateDate" : "2005-03-06 10:23:54+02",
-      "questionnaireId" : "",
-      "userId" : "003",
-      "cardId" : "3"
-    }]
+      "Result" : [
+        {
+            "result_id": 1,
+            "user_prompt": "วันนี้เป็นวันที่แย่ที่สุดเลยยย",
+            "create_date": "2021-10-16T20:38:01.000Z",
+            "questionnaire_id": 1,
+            "user_id": 1,
+            "card_id": 8
+        }
+    ]
       }
     
