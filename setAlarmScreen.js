@@ -8,7 +8,7 @@ import Bg2 from './components/Bg2';
 import CustomHeader from './CustomHeader';
 
 
-class VoiceScreen extends Component {
+class setAlarmScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,16 +16,16 @@ class VoiceScreen extends Component {
   }
 
   render() {
-    return (
-     <SafeAreaView style={{ flex: 1 }}>
-      <CustomHeader title='Voice' isHome={true} navigation={this.props.navigation}/>
+  
+  return (
+     <SafeAreaView style={{ flex: 1 , backgroundColor: '#EAD6A4'}}>
+      <CustomHeader title='setAlarm'  navigation={this.props.navigation}/>
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Voice!</Text>
+      <Text>Alarm Setting!</Text>
             <TouchableOpacity
         style={{marginTop: 20}}
-        onPress={() => this.props.navigation.navigate('Alarm')}
         >
-        <Text> Start Record  </Text>
+        <Text> setting </Text>
       </TouchableOpacity>
     </View>
      </SafeAreaView>
@@ -33,4 +33,4 @@ class VoiceScreen extends Component {
   }
 }
 
-export default VoiceScreen;
+export default setAlarmScreen;

@@ -18,7 +18,7 @@ import MoodScreen from './MoodScreen';
 import DiaryScreen from './DiaryScreen';
 import CheckupScreen from './CheckupScreen';
 import StartCheckupScreen from './StartCheckupScreen';
-import VoiceScreen from './VoiceScreen';
+import setAlarmScreen from './setAlarmScreen';
 import AlarmScreen from './AlarmScreen';
 import ProfileScreen from './ProfileScreen';
 import SettingScreen from './SettingScreen';
@@ -96,9 +96,9 @@ const StackBear = createStackNavigator();
 
 function BearStack() {
   return (
-    <StackBear.Navigator initialRouteName='Voice'>
-      <StackBear.Screen name='Voice' component={VoiceScreen} options={navOptionHandler}/>
+    <StackBear.Navigator initialRouteName='Alarm'>
       <StackBear.Screen name='Alarm' component={AlarmScreen} options={navOptionHandler}/>
+      <StackBear.Screen name='setAlarm' component={setAlarmScreen} options={navOptionHandler}/>
      </StackBear.Navigator>
 
   )

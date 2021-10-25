@@ -27,9 +27,11 @@
     "react-native-screens": "^3.3.0",
     "react-native-simple-radio-button": "^2.7.4",
     "react-native-switch-selector": "^2.1.4",
+    "react-native-switch-toggle": "^2.2.1",
     "react-redux": "^7.2.5",
     "redux": "^4.1.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "toggle-switch-react-native": "^3.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

@@ -1,14 +1,18 @@
 {
-    "User" : [{
-        "userId" : "1",
-        "firstName" : "Aratitaya",
-        "lastName" : "Khamneovnag",
-        "email" : "fang.atty@gmail.com",
-        "birthday" : "01-1999-08",
-        "profilePic" : "",
-        "createDate" : "2004-10-01 10:23:54+02",
-        "updateDate" : "2004-10-02 10:23:54+02"
-    }
+    "User" : [
+        {
+            "user_id": 1,
+            "first_name": "DO",
+            "last_name": "RO",
+            "user_name": "Deo",
+            "password": "iloveu",
+            "email": "deoro@gmail.com",
+            "birthday": "2020-09-04T17:00:00.000Z",
+            "create_date": "2021-10-16T18:12:01.000Z",
+            "update_date": "2021-10-16T18:12:01.000Z",
+            "pic_id": 1,
+            "hs_id": null
+        }
     ]
 
 }

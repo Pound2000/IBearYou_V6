@@ -63,7 +63,7 @@ class CalendarScreen extends Component {
   
   markingType={'custom'}
     markedDates={{
-    '2021-10-20': {selected: true, marked: true, selectedColor: '#CB6863'},
+    '2021-10-25': {selected: true, marked: true, selectedColor: '#CB6863'},
     '2021-10-17': {selected: true,marked: true,},
     '2021-10-18': {marked: true, dotColor: 'red', activeOpacity: 0},
     '2021-10-19': {disabled: true, disableTouchEvent: true}
