@@ -14,8 +14,9 @@ class AlarmScreen extends Component {
     super(props);
     this.state = {
       toggle: true,
+      
     };
-    this.edit = this.edit;
+    this.edit = false;
   }
 
   switchToggle = () => {
@@ -35,7 +36,7 @@ class AlarmScreen extends Component {
 
   render() {
 
-const editAlarm = this.edit
+const editAlarm = this.state.edit
 
     return (
      <SafeAreaView style={{ flex: 1, backgroundColor: '#EAD6A4' }}>
@@ -73,7 +74,7 @@ const editAlarm = this.edit
 
           <View style={{width: 310, height: 1, backgroundColor: '#000000',marginTop: 8,marginLeft: 20}}></View>
         
-      <View style={{flexDirection: 'row',paddingLeft: 260,marginTop: 20}}>
+      <View style={{flexDirection: 'row',paddingLeft: 260,marginTop: 0}}>
 
         <TouchableOpacity onPress={() => this.props.navigation.navigate('setAlarm')}>
                   <View style={{flex: 1, alignItems: 'center'}}>  
@@ -82,92 +83,27 @@ const editAlarm = this.edit
                   </View>
         </TouchableOpacity>
 
+
         <TouchableOpacity>
          <View style={{flex: 1, alignItems: 'center',}}>  
        <Image source={require('./assets/images/edit.png')}
               style={{width:20,height:20,marginLeft: 10}} />     
         </View>
-        </TouchableOpacity>
-      </View>
-
-<View style={{flex: 1}}>
+        </TouchableOpacity> 
+  
       <View style={styles.editButton}>
-            <TouchableOpacity onPress={() => 'editAlarm'}>  
+            <TouchableOpacity >  
              <Text style={styles.textEdit}>แก้ไข</Text> 
              </TouchableOpacity>
       </View>
-</View>
-          <View style={{flex: 1,alignItems: 'center'}}>
 
-         <View style={{flex: 1,marginTop: -40}}>
-            <Text style={styles.textAlarmList}>ไม่มีรายการแจ้งเตือน</Text>
-          </View>
+  </View>
+       
 
 
-
-               <View style={{flex: 1,marginTop: -220,marginBottom: -280}}> 
-                <View style={{flex: 1}}>
-                  <View style={styles.alarmBox}>
-
-                      <View style={{flex: 1, alignItems: 'center',marginLeft: -220,marginTop: 20}}>  
-                        <Image source={require('./assets/images/day.png')}
-                                style={{width:35,height:35}} />     
-                      </View>
-
-                  <View style={{flex: 1,marginTop: -75,marginLeft: 60}}>
-                    <Text style={styles.textTime}>07:25</Text>
-                    <Text style={styles.textDay}>ทุกวัน</Text>
-                  </View>
-                  </View>
-
-                  
-                    <View style={{marginTop: -55,marginLeft: 255}}>
-                      <Switch
-                        trackColor={{false: '#FFFFFF', true: '#014A5C'}}
-                        thumbColor={this.state.toggle ? "#FFFFFF" : "#014A5C"}
-                        ios_backgroundColor="#FFFFFF"
-                        onValueChange={(value) => this.setState({toggle: value})}
-                        value={this.state.toggle}
-                        style={{ transform: [{ scaleX: .7 }, { scaleY: .6 }] }}
-                        />
-                    </View>
-                </View>
-              </View>
-
-                             <View style={{flex: 1,marginTop: 10}}> 
-                <View style={{flex: 1}}>
-                  <View style={styles.alarmBox}>
-
-                      <View style={{flex: 1, alignItems: 'center',marginLeft: -220,marginTop: 20}}>  
-                        <Image source={require('./assets/images/night.png')}
-                                style={{width:35,height:35}} />     
-                      </View>
-
-                  <View style={{flex: 1,marginTop: -75,marginLeft: 60}}>
-                    <Text style={styles.textTime}>07:25</Text>
-                    <Text style={styles.textDay}>ทุกวัน</Text>
-                  </View>
-                  </View>
-
-                  
-                    <View style={{marginTop: -55,marginLeft: 255}}>
-                      <Switch
-                        trackColor={{false: '#FFFFFF', true: '#014A5C'}}
-                        thumbColor={this.state.toggle ? "#FFFFFF" : "#014A5C"}
-                        ios_backgroundColor="#FFFFFF"
-                        onValueChange={(value) => this.setState({toggle: value})}
-                        value={this.state.toggle}
-                        style={{ transform: [{ scaleX: .7 }, { scaleY: .6 }] }}
-                        />
-                    </View>
-                </View>
-              </View>
-
-              
-
-          </View> 
-
-
+         <View style={{flex: 1,justifyContent: 'center' }}>
+           <Text style={styles.textAlarmList}>ไม่มีรายการแจ้งเตือน</Text>
+         </View>
 
       </View>
 </View>
@@ -252,8 +188,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.4,
     elevation: 3,
     justifyContent: 'center',
-    marginLeft: 245,
-    //marginTop: 25,
+    marginLeft: -100,
+    marginTop: 55,
   },
 
   textEdit: {
