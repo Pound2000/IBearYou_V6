@@ -52,8 +52,15 @@ onPress={() => this.props.navigation.navigate('goodStory')}>
 
   <TouchableOpacity  activeOpacity={0.75} 
   onPress={() => this.props.navigation.navigate('wish')}>
-  <View style = {styles.buttonWish}>  
+  <View style = {styles.buttonHome}>  
            <Text style = {styles.textType}>ความคาดหวัง</Text>  
+  </View>
+  </TouchableOpacity>
+
+  <TouchableOpacity   activeOpacity={0.75} 
+  onPress={() => this.props.navigation.navigate('Register_copy')} >
+  <View style = {styles.buttonBad}>  
+           <Text style = {styles.textType}>Home</Text>  
   </View>
   </TouchableOpacity>
 
@@ -189,6 +196,21 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       marginLeft: 20,
       marginTop: 11,
+    },
+
+    buttonHome: {
+       width: 354,
+      height: 47,
+      backgroundColor: '#FFFFFF',
+      borderRadius: 10,
+      borderLeftColor: '#FF9E45',
+      borderLeftWidth: 42,
+      shadowColor: '#FF9E45',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity:  1,
+      shadowRadius:0,
+      elevation: 2,  
+      marginBottom: 30,
     }
 
 

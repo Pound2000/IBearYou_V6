@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import { StyleSheet, View, Text, Image, SafeAreaView, Button
        , TouchableHighlight,TouchableOpacity, Dementions}
        from 'react-native';
-import Bg1 from './components/Bg1';
-import Bg2 from './components/Bg2';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 import CustomHeader from './CustomHeader';
 
@@ -12,6 +11,7 @@ class setAlarmScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      
     };
   }
 
@@ -44,6 +44,7 @@ class setAlarmScreen extends Component {
         </View>
       </View>
     
+    
 
   <View style={{flex:1,flexDirection: 'row',marginTop: 10,paddingTop: 5}}>
       <View style={styles.cancelButton}>
@@ -63,6 +64,8 @@ class setAlarmScreen extends Component {
   );
   }
 }
+
+
 
 const styles = StyleSheet.create({
 

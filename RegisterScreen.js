@@ -15,9 +15,6 @@ class RegisterScreen extends Component {
   return (
       <SafeAreaView style={[styles.container, containerStyle]}>
      
-           <View style={{flex: 1, alignItems : 'flex-start'}}>
- <CustomHeader title='Register'  navigation={this.props.navigation}/>
- </View>
 
 <View style={{flex: 1, alignItems: 'center'}}>
 <Image source={require('./assets/images/snow-3.png')} 
