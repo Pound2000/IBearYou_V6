@@ -34,12 +34,37 @@ componentDidUpdate(){
     <SafeAreaView style={{ flex: 1,backgroundColor: '#EAD6A4' }}>
        <CustomHeader title='Home' isHome={true} navigation={this.props.navigation}/>
    <View style={{ flex: 1,justifyContent: 'center', alignItems: 'center'}}>
-   <View style = {styles.graph}></View>
+   
+   <View style = {styles.banner}>
+
+      <View style={{flex: 1, alignItems: 'center',}}>  
+       <Image source={require('./assets/images/banner.png')}
+    style={{width:342 ,height:245,marginTop:8}} />    
+      
+       <Text style={styles.banner_sentence}>แนะนำทางเลือกสำหรับผู้ที่ต้องการแนวทางอื่นในการเยียวยา</Text> 
+        <View style={{flex: 1,marginRight: 180,marginTop: 10}}>
+        <TouchableOpacity  activeOpacity={0.75}>
+          <Text style={styles.banner_tel}>1323</Text> 
+            <View style={{flex: 1, alignItems: 'center',}}>  
+            <Image source={require('./assets/images/call_white.png')}
+            style={{width:33 ,height:33,marginTop: -45,marginRight: 85}} />     
+            </View>
+       </TouchableOpacity >
+          </View>
+    </View>
+      
+   </View>
 
 <TouchableOpacity  activeOpacity={0.75}   
 onPress={() => this.props.navigation.navigate('goodStory')}>
   <View style = {styles.buttonGood}>  
-           <Text style = {styles.textType}>เรี่องราวที่ดี</Text>  
+           <Text style = {styles.textType}>เรี่องราวที่ดี</Text> 
+
+            <View style={{flex: 1, alignItems: 'center',}}>  
+            <Image source={require('./assets/images/Arrow-green.png')}
+            style={{width:31 ,height:15,marginTop: -20,marginLeft: 240}} />     
+            </View>
+
   </View>
   </TouchableOpacity >
 
@@ -47,6 +72,12 @@ onPress={() => this.props.navigation.navigate('goodStory')}>
   onPress={() => this.props.navigation.navigate('badStory')} >
   <View style = {styles.buttonBad}>  
            <Text style = {styles.textType}>เรื่องราวที่ไม่ดี</Text>  
+  
+            <View style={{flex: 1, alignItems: 'center',}}>  
+            <Image source={require('./assets/images/Arrow-red.png')}
+            style={{width:31 ,height:15,marginTop: -20,marginLeft: 240}} />     
+            </View>
+
   </View>
   </TouchableOpacity>
 
@@ -54,13 +85,12 @@ onPress={() => this.props.navigation.navigate('goodStory')}>
   onPress={() => this.props.navigation.navigate('wish')}>
   <View style = {styles.buttonHome}>  
            <Text style = {styles.textType}>ความคาดหวัง</Text>  
-  </View>
-  </TouchableOpacity>
 
-  <TouchableOpacity   activeOpacity={0.75} 
-  onPress={() => this.props.navigation.navigate('Register_copy')} >
-  <View style = {styles.buttonBad}>  
-           <Text style = {styles.textType}>Home</Text>  
+            <View style={{flex: 1, alignItems: 'center',}}>  
+            <Image source={require('./assets/images/Arrow-orange.png')}
+            style={{width:31 ,height:15,marginTop: -20,marginLeft: 240}} />     
+            </View>
+
   </View>
   </TouchableOpacity>
 
@@ -71,7 +101,7 @@ onPress={() => this.props.navigation.navigate('goodStory')}>
 
   <View style={{flex: 1, alignItems: 'center',}}>  
        <Image source={require('./assets/images/crab.png')}
-    style={{width:43 ,height:25,marginTop:-185,marginRight:380}} />     
+    style={{width:43 ,height:25,marginTop:-196,marginRight:380}} />     
  </View>
 
     <View style={{flex: 1, alignItems: 'center',}}>  
@@ -81,7 +111,7 @@ onPress={() => this.props.navigation.navigate('goodStory')}>
 
   <View style={{flex: 1, alignItems: 'center',}}>  
        <Image source={require('./assets/images/bear-sun.png')}
-    style={{width:113.89,height:106.56,marginTop:-67,marginRight:250}} />     
+    style={{width:113.89,height:106.56,marginTop:-75,marginRight:250}} />     
  </View>
 
    <View style={{flex: 1, alignItems: 'center',}}>  
@@ -131,10 +161,10 @@ const styles = StyleSheet.create({
        color: 'red',
     },
 
-    graph: {
+    banner: {
       width: 354,
       height: 245,
-      backgroundColor: '#FFFFFF',
+      backgroundColor: '#014A5C',
       borderRadius: 10,
       shadowColor: '#0D2367',
       shadowOffset: { width: 0, height: 4 },
@@ -211,7 +241,28 @@ const styles = StyleSheet.create({
       shadowRadius:0,
       elevation: 2,  
       marginBottom: 30,
-    }
+    },
+
+    banner_sentence: {
+    color: '#FFFFFF',
+    fontFamily: 'Quark',
+    fontSize: 24,
+    flexWrap: 'wrap',
+    paddingLeft: 20,
+    paddingRight: 20,
+    marginLeft: 0,
+    marginTop: -190,
+  },
+
+    banner_tel: {
+    color: '#FFFFFF',
+    fontFamily: 'Quark',
+    fontSize: 36,
+    fontWeight: 'bold',
+    marginLeft: 0,
+    marginLeft: 50,
+  },
+
 
 
 });

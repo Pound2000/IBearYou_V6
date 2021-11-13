@@ -32,69 +32,120 @@ return (
  
         <SafeAreaView style={[styles.container, containerStyle]}>
      
-           <View style={{flex: 1, alignItems : 'flex-start'}}>
+
+
+<View style={{flex: 1,marginTop: 0}}>
+  <View style={{flex: 1, alignItems: 'center',}}> 
+      <Image source={require('./assets/images/sea.png')}
+   style={{width:390, height: 395, marginTop:20}} />    
+  </View>
+  
+  <View style={{flex: 1}}>
+     <Image source={require('./assets/images/shell-1.png')}
+  style={{width:45, height: 36.73, marginTop: 260,marginRight: 385}} />   
+  </View>
+  
+  <View style={{flex: 1}}>
+     <Image source={require('./assets/images/shell-2.png')}
+  style={{width:45, height: 36.73, marginTop: 330,marginLeft:385}} />   
+  </View>
+</View>
+
+  <View style={{flex: 1, alignItems : 'flex-start',marginTop: 0}}>
  <CustomHeader title='Login'  navigation={this.props.navigation}/>
  </View>
 
-      <View style={{flex: 1, alignItems: 'center',}}>  
-       <Image source={require('./assets/images/sea.png')}
-    style={{width:390, height: 395, marginTop:-70}} />     
- </View>
-    
-<View style={{flex: 1}}> 
-      <Image source={require('./assets/images/shell-1.png')}
-   style={{width:45, height: 36.73, marginTop: 70,marginRight: 385}} />    
-</View>
-     <View style={{flex: 1}}> 
-      <Image source={require('./assets/images/shell-2.png')}
-   style={{width:45, height: 36.73, marginTop: 30,marginLeft:385}} />    
-</View>
-     
 
-        <View style={styles.Input}>    
+<View>
+{ 
+  !this.state.username ? 
+  <View style={{flex:1,marginTop: 260,marginBottom:-40}}>
 
+        <View>
+        <Image source={require('./assets/images/People.png')}
+             style ={{width: 19.61, height: 23 ,marginLeft:2,marginTop: 170}}/> 
+        </View>
 
-       
+        <View style={{flex:1,marginTop: -25}}>
+        <TextInput  
+         placeholder="Username"
+         placeholderTextColor="#707070"
+         defaultValue={this.state.username}
+         onChangeText={username=>this.setState({username})}
+         style = {styles.TextInputUsername_fault}
+         autoCapitalize='none'
+        />
+        </View>    
 
-<TextInput
-          placeholder="Username"
-          placeholderTextColor="#707070"
-          defaultValue={this.state.username}
-          onChangeText={username=>this.setState({username})} 
-          style = {styles.TextInputUsername}
-          autoCapitalize='none'
+  </View>  
+:
+    <View style={{flex:1,marginTop: 260,marginBottom:-40}}>
 
-           />
- 
-         <View style= {styles.image}>
-         <Image source={require('./assets/images/People.png')}
-              style ={{width: 19.61, height: 23 ,marginLeft:2,marginTop: 43}}/>
+        <View>
+        <Image source={require('./assets/images/People-pink.png')}
+             style ={{width: 19.61, height: 23 ,marginLeft:2,marginTop: 170}}/> 
+        </View>
 
-</View> 
- <TextInput
-           placeholder="Password"
-            placeholderTextColor="#707070"
-            defaultValue={this.state.password}
-            onChangeText={password=>this.setState({password})} 
-           secureTextEntry={true}
-           style = {styles.TextInputPassword}
-            autoCapitalize='none'
-           />
+        <View style={{flex:1,marginTop: -25}}>
+        <TextInput  
+         placeholder="Username"
+         placeholderTextColor="#E79995"
+         defaultValue={this.state.username}
+         onChangeText={username=>this.setState({username})}
+         style = {styles.TextInputUsername_true}
+         autoCapitalize='none'
+        />
+        </View>    
 
-              <View style= {styles.image}>
-         <Image source={require('./assets/images/Lock.png')}
-              style ={{width: 19.61, height: 23 ,marginLeft:2,marginTop: 43}}/>
-</View>
-          
- </View>  
-
-    
+  </View>  
+  }
   
+  { 
+  !this.state.password ? 
+    <View style={{flex:1,marginTop: 30}}>
 
-  <View style = {styles.forget}>  
-           <Text style = {styles.textForget}>Forget Password ?</Text>  
-  </View>
- 
+       <View>
+       <Image source={require('./assets/images/Lock.png')}
+            style ={{width: 19.61, height: 23 ,marginLeft:2}}/>
+       </View>
+
+        <View style={{flex:1,marginTop: -75}}>
+        <TextInput
+         placeholder="Password"
+          placeholderTextColor="#707070"
+          defaultValue={this.state.password}
+          onChangeText={password=>this.setState({password})}
+         secureTextEntry={true}
+         style = {styles.TextInputPassword_true}
+          autoCapitalize='none'
+         />
+        </View>    
+
+  </View>  
+:
+ <View style={{flex:1,marginTop: 30}}>
+
+       <View>
+       <Image source={require('./assets/images/Lock-pink.png')}
+            style ={{width: 19.61, height: 23 ,marginLeft:2}}/>
+       </View>
+
+        <View style={{flex:1,marginTop: -75}}>
+        <TextInput
+         placeholder="Password"
+          placeholderTextColor="#707070"
+          defaultValue={this.state.password}
+          onChangeText={password=>this.setState({password})}
+         secureTextEntry={true}
+         style = {styles.TextInputPassword_fault}
+          autoCapitalize='none'
+         />
+        </View>    
+
+  </View>  
+  }
+</View>
+  
 
 <View style = {styles.button}>
    <TouchableOpacity onPress={() => this.logIn()}>
@@ -150,9 +201,9 @@ const styles = StyleSheet.create({
    },
  
     button: {
-        marginBottom: 20,
         alignItems: 'center',
-        
+        marginTop: -140,
+        marginBottom: 15,
          
     },
 
@@ -173,13 +224,13 @@ const styles = StyleSheet.create({
     },
 
       buttonRegister: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#FFFFFF',
-       height: 35,
-        width: 360,
-        borderRadius: 5,
-        marginTop: 14,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#FFFFFF',
+      height: 35,
+      width: 360,
+      borderRadius: 5,
+      marginTop: 14,
       shadowColor: '#000000',
       shadowOffset: { width: 0, height: 3 },
       shadowOpacity:  0.40,
@@ -225,7 +276,20 @@ const styles = StyleSheet.create({
 
     },
 
-    TextInputUsername: {
+    TextInputUsername_true: {
+
+      height: 40,
+      width: 360,
+      paddingLeft: 40,
+      fontSize: 20,
+      borderBottomWidth: 1,
+      borderBottomColor: '#E79995',
+      color:'#E79995',
+      fontFamily: 'Philosopher',
+      
+    },
+
+      TextInputUsername_fault: {
 
       height: 40,
       width: 360,
@@ -238,7 +302,7 @@ const styles = StyleSheet.create({
       
     },
 
-      TextInputPassword: {
+      TextInputPassword_true: {
       
       marginTop: 50,
       height: 40,
@@ -252,14 +316,23 @@ const styles = StyleSheet.create({
       
     },
 
-    Input: {
-      marginBottom: 25,
+     TextInputPassword_fault: {
+      
+      marginTop: 50,
+      height: 40,
+      width: 360,
+      paddingLeft: 40,
+      fontSize: 20,
+      borderBottomWidth: 1,
+      borderBottomColor: '#E79995',
+      color:'#E79995',
+      fontFamily: 'Philosopher',
       
     },
 
     image: {
       alignItems: 'flex-start',
-      marginTop: -80 ,
+      marginTop: 0 ,
       
       
     },
@@ -270,7 +343,7 @@ const styles = StyleSheet.create({
     },
    
 
-    inputr:{
+    input:{
     height: 200,
     width : 300,
     margin: 30,
@@ -278,7 +351,6 @@ const styles = StyleSheet.create({
     paddingLeft : 15,
     paddingBottom: 145,
     fontSize : 18,
-
     },
 
 });

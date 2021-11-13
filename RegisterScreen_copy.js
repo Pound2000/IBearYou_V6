@@ -164,7 +164,7 @@ onSubmit = (e) => {
 </View>
 
     <View style = {styles.button}>
-   <TouchableOpacity onPress={() => this.onSubmit}>
+   <TouchableOpacity onPress={() => this.props.navigation.navigate('HomeApp')}>
     <View style = {styles.buttonRegister}>  
            <Text style = {styles.textRegister}>Sign up</Text>  
        </View>  
