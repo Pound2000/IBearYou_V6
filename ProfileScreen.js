@@ -23,9 +23,9 @@ class ProfileScreen extends Component {
       <Text>Profile!</Text>
            <TouchableOpacity
         style={{marginTop: 20}}
-         onPress={() => this.props.navigation.navigate('Setting')}
+         onPress={() => this.props.navigation.navigate('Login')}
         >
-        <Text> Setting  </Text>
+        <Text>Sign out</Text>
       </TouchableOpacity>
     </View>
      </SafeAreaView>

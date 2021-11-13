@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import { StyleSheet, View, Text, Image, SafeAreaView, Button
        , TouchableHighlight,TouchableOpacity, Dementions
-       ,TextInput,KeyboardAvoidingView}
+       ,TextInput,KeyboardAvoidingView, Linking}
        from 'react-native';
 import CustomHeader from './CustomHeader';
+
 
 
 class HomeScreen extends Component {
@@ -43,8 +44,8 @@ componentDidUpdate(){
       
        <Text style={styles.banner_sentence}>แนะนำทางเลือกสำหรับผู้ที่ต้องการแนวทางอื่นในการเยียวยา</Text> 
         <View style={{flex: 1,marginRight: 180,marginTop: 10}}>
-        <TouchableOpacity  activeOpacity={0.75}>
-          <Text style={styles.banner_tel}>1323</Text> 
+        <TouchableOpacity  activeOpacity={0.75} onPress={()=>{Linking.openURL('tel:1323');} }>
+        <Text style={styles.banner_tel}>1323</Text>
             <View style={{flex: 1, alignItems: 'center',}}>  
             <Image source={require('./assets/images/call_white.png')}
             style={{width:33 ,height:33,marginTop: -45,marginRight: 85}} />     

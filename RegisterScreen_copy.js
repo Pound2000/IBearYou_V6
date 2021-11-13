@@ -61,6 +61,30 @@ InputPassword = () => {
       console.log ('selected seccess!')
   }
 
+   handleSubmit = (event) => {
+    event.preventDefault();
+
+    this.setState ({
+      firstname : this.state.firstname,
+      lastname : this.state.lastname,
+      date : this.state.date,
+      email : this.state.email,
+      username : this.state.username,
+      password : this.state.password,
+    
+    });
+
+    axios.post('http://localhost:3000/api/register', this.setState)
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+  }
+
+  handleSubmit_test = (e) => {
+     e.preventDefault();
+     console.log('Event: Form Submit');
+  };
 
 
 onSubmit = (e) => {
@@ -75,7 +99,7 @@ onSubmit = (e) => {
             password: this.state.password
         };
 
-        axios.post('localhost:3000/api/register', userObject)
+        axios.post('http://localhost:3000/api/register', userObject)
             .then((res) => {
                 console.log(res.data)
             }).catch((error) => {
@@ -84,6 +108,14 @@ onSubmit = (e) => {
 
         this.setState({ firstname : '',lastname : '',date : '',email : '',username : '',password : '' })
     }
+
+  selectedFeel = () => {
+     this.setState({
+       username: !this.state.username,
+       password: !this.state.password,
+     })
+      console.log ('selected seccess!')
+  }
 
 
   render() {
@@ -103,7 +135,7 @@ onSubmit = (e) => {
           onChangeText={firstname=>this.setState({firstname})} 
           style = {styles.TextInputUsername}
           autoCapitalize='none'
-          value = {this.state.firstname}
+          value = {this.state.InputFirstname}
            />
 
           <TextInput
@@ -113,7 +145,7 @@ onSubmit = (e) => {
           onChangeText={lastname=>this.setState({lastname})} 
           style = {styles.TextInputUsername}
           autoCapitalize='none'
-          value = {this.state.lastname}
+          value = {this.state.InputLastname}
 
            />
 
@@ -124,7 +156,7 @@ onSubmit = (e) => {
           onChangeText={date=>this.setState({date})} 
           style = {styles.TextInputUsername}
           autoCapitalize='none'
-          value = {this.state.date}
+          value = {this.state.InputDate}
            />
 
           <TextInput
@@ -135,7 +167,7 @@ onSubmit = (e) => {
           style = {styles.TextInputUsername}
           autoCapitalize='none'
            textContentType="emailAddress"
-
+          value = {this.state.InputEmail}
 
            />
 
@@ -146,7 +178,7 @@ onSubmit = (e) => {
           onChangeText={username=>this.setState({username})} 
           style = {styles.TextInputUsername}
           autoCapitalize='none'
-          value = {this.state.username}
+          value = {this.state.InputUsername}
 
            />
 
@@ -159,12 +191,12 @@ onSubmit = (e) => {
            secureTextEntry={true}
            style = {styles.TextInputPassword}
             autoCapitalize='none'
-            value = {this.state.password}
+            value = {this.state.InputPassword}
            />
 </View>
 
     <View style = {styles.button}>
-   <TouchableOpacity onPress={() => this.props.navigation.navigate('HomeApp')}>
+   <TouchableOpacity onPress={() =>  this.handleSubmit()}>
     <View style = {styles.buttonRegister}>  
            <Text style = {styles.textRegister}>Sign up</Text>  
        </View>  
