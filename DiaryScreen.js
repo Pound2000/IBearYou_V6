@@ -3,8 +3,7 @@ import { StyleSheet, View, Text, Image, SafeAreaView, Button
       , TouchableHighlight,TouchableOpacity, Dementions
       , TextInput}
       from 'react-native';
-import Bg1 from './components/Bg1';
-import Bg2 from './components/Bg2';
+import moment from 'moment';
  
 import CustomHeader from './CustomHeader';
  
@@ -76,11 +75,11 @@ return (
 
 <View style={{marginTop: 5}}>
  <View>
-<Text style={styles.textDate}>10 กันยายน 2564</Text>
+<Text style={styles.textDate}>{moment().format('YYYY-MM-DD')}</Text>
  </View>
 <View style={styles.buttonEmoji}>
 <TouchableOpacity activeOpacity={0.75}>
-     <Text style={styles.textEmoji}>เลือกอิโมจิในวันนี้ของเธอ</Text>
+     <Text style={styles.textEmoji}>ชื่อเรื่องราวของเธอ</Text>
       <Image source={require('./assets/images/pencil.png')}
    style={{width: 10.32,height:10.32,marginTop: -15,marginLeft:310}}
    resizeMode='contain'
@@ -168,7 +167,7 @@ textDate: {
      fontSize: 14,
      fontFamily: 'Quark',
      textAlign: 'center', 
-      marginLeft: -170
+      marginLeft: -190
 },
 
 textEmoji: {

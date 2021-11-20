@@ -1,106 +1,286 @@
 import React, {Component} from 'react';
-import { StyleSheet, View, Text, Image, SafeAreaView, Button
+import { StyleSheet, View, Text, Image, SafeAreaView, Button, Modal
        , TouchableHighlight,TouchableOpacity, Dementions, TextInput,Separator}
        from 'react-native';
 import CustomHeader from './CustomHeader';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import moment from 'moment';
+
 
 class RegisterScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {       firstname : '',
+                          lastname : '',
+                          date : '',
+                          email : '',
+                          username : '',
+                          password : ''
+     };
+  }
+
+  setDate= () => {
+     this.setState({
+       show : !this.state.date
+     })
+      console.log ('selected seccess!')
+  }
+
+  selectedDate = () => {
+    setDate(selectedDate);
   }
 
   render() {
   return (
       <SafeAreaView style={[styles.container, containerStyle]}>
      
+<View style={{flex: 1, alignItems : 'flex-start'}}>
+ <CustomHeader title='Register_copy'  navigation={this.props.navigation}/>
+ </View>
 
 <View style={{flex: 1, alignItems: 'center'}}>
 <Image source={require('./assets/images/snow-3.png')} 
-style={{width:390, height: 240, marginTop: -94}}
+style={{width:390, height: 240, marginTop: -170}}
 />
 </View>
 
+<View style={{flex:1,marginLeft: -20}}>
+      <View style={{ flexDirection: 'row',alignItems: 'center',justifyContent: 'space-between',marginBottom: 20}}>
+          { !this.state.firstname ?
+          <View style={{marginLeft: 10}}>
+          <View>
+            <Image source={require('./assets/images/Name.png')}
+              style ={{width: 20, height: 25,marginTop: 0,marginBottom: -30,marginLeft:10}}/>
+          </View>
 
+            <TextInput
+              placeholder="ชื่อจริง"
+              placeholderTextColor="#707070"
+              defaultValue={this.state.firstname}
+              onChangeText={firstname=>this.setState({firstname})} 
+              style = {styles.TextInputName_true}
+              autoCapitalize='none'
+              value = {this.state.InputFirstname}
+              />
+            </View>
+            :
+            <View style={{marginLeft: 10}}>
+           <View>
+            <Image source={require('./assets/images/Name-pink.png')}
+              style ={{width: 20, height: 25,marginTop: 0,marginBottom: -30,marginLeft:10}}/>
+          </View>
+
+            <TextInput
+              placeholder="ชื่อจริง"
+              placeholderTextColor="#707070"
+              defaultValue={this.state.firstname}
+              onChangeText={firstname=>this.setState({firstname})} 
+              style = {styles.TextInputName_fault}
+              autoCapitalize='none'
+              value = {this.state.InputFirstname}
+              />
+              </View>
+  }
+
+  {  !this.state.lastname ?      
+          <View style={{marginLeft: 10}}>
+            <TextInput
+              placeholder="นามสกุล"
+              placeholderTextColor="#707070"
+              defaultValue={this.state.lastname}
+              onChangeText={lastname=>this.setState({lastname})} 
+              style = {styles.TextInputLastname_true}
+              autoCapitalize='none'
+              value = {this.state.InputLastname}
+              />
+           </View> 
+           :
+            <View style={{marginLeft: 10}}>
+            <TextInput
+              placeholder="นามสกุล"
+              placeholderTextColor="#707070"
+              defaultValue={this.state.lastname}
+              onChangeText={lastname=>this.setState({lastname})} 
+              style = {styles.TextInputLastname_fault}
+              autoCapitalize='none'
+              value = {this.state.InputLastname}
+              />
+           </View> 
+       
+  }
+         </View>
+</View>
+
+<View style={{flex:1}}>
+
+      <TouchableOpacity onPress={() => console.log('selected date')}>
          
-<View style={{ flexDirection: 'row',alignItems: 'center',justifyContent: 'space-between'
-,marginLeft: 102,marginBottom: -50}}>
+         <View>
+            <Image source={require('./assets/images/Date.png')}
+              style ={{width: 30, height: 23,marginTop: -6,marginBottom: -30}}/>
+          </View>
 
-<TextInput
-           placeholder="Firstname"
-           placeholderTextColor="#707070"
-           style={styles.textName}
-           autoCapitalize='none'
-           />
-
-         <View style= {styles.image}>
-      
-<View style={{flex: 1,marginTop: 100}}>
-
-         <Image source={require('./assets/images/Name.png')}
-              style ={{width: 20, height: 25,marginTop: 22,marginLeft: -250}}/>
-</View>
-</View>
-<TextInput
-           placeholder="Lastname"
-           placeholderTextColor="#707070"
-             style={styles.textName}
-           autoCapitalize='none'
-           />
-
-</View>
-
-<TextInput
-           placeholder="Date"
-           placeholderTextColor="#707070"
-           style = {[styles.TextInput,TextInputStyle]}
-           autoCapitalize='none'
-           />
-
-         <View style= {styles.image}>
-         <Image source={require('./assets/images/Date.png')}
-              style ={{width: 24, height: 20 ,marginTop: 8,marginRight: 375}}/>
-</View>
-<View style={styles.Input}>    
-<TextInput
-           placeholder="Email"
-           placeholderTextColor="#707070"
-           style = {[styles.TextInput,TextInputStyle]}
-           autoCapitalize='none'
-           />
-
-         <View style= {styles.image}>
-         <Image source={require('./assets/images/email.png')}
-              style ={{width: 34, height: 21 ,marginLeft:-5, marginTop: 3}}/>
+            <View style = {styles.TextInput_true}>  
+            <Text style = {styles.textDate}>วันเกิด</Text> 
+                <Text>{moment().format('YYYY-MM-DD')}</Text> 
+            </View>
+            
+                <Modal
+                  transparent={true}
+                  animationType='slide'
+                  visible={this.state.setDate}
+                  supportedOrientations={['portrait']}
+                  onRequestClose={() => setDate(false)}>
+                <View style={{flex:1}}>
+                  <TouchableHighlight onPress={() => setDate(false)} visible={this.state.setDate}
+                    style={{flex:1,flexDirection: 'row',alignItems:'flex-end',}}>
+                      <TouchableHighlight onPress={() => console.log('datepicker clicked')} 
+                      underlayColor={'#FFFFFF'} 
+                      style={{flex:1,borderTopColor: '#E9E9E9',borderTopWidth: 1}}>
+                        <View style={{backgroundColor:'#FFFFFF',height: 256, overflow: 'hidden'}}>
+                            <View style={{marginTop: 20}}>
+                              <DateTimePicker
+                                timeZoneOffsetMinutes={0}
+                                value={new Date(this.state.date)}
+                                mode='date'
+                                minimumDate={new Date(moment().subtract(120, 'years').format('YYYY-MM-DD'))}
+                                //maximumDate={selectedDate()}
+                              />
+                            </View>
+                        </View>
+                      </TouchableHighlight>
+                  </TouchableHighlight>
+                </View>
+               </Modal>
+   </TouchableOpacity>
 </View>
 
-<TextInput
-           placeholder="Username"
-           placeholderTextColor="#707070"
-           style = {[styles.TextInput,TextInputStyle]}
-           autoCapitalize='none'
-           />
+<View style={{flex:1}}>
+{ !this.state.email ?
+          <View>
+           <View>
+            <Image source={require('./assets/images/email.png')}
+              style ={{width: 30, height: 23,marginTop: -6,marginBottom: -30}}/>
+          </View>
 
-         <View style= {styles.image}>
-         <Image source={require('./assets/images/People.png')}
-              style ={{width: 19.61, height: 23 ,marginLeft:2}}/>
-</View>
+          
+            <TextInput
+              placeholder="อีเมล"
+              placeholderTextColor="#707070"
+              defaultValue={this.state.email}
+              onChangeText={email=>this.setState({email})} 
+              style = {styles.TextInput_true}
+              autoCapitalize='none'
+              value = {this.state.InputEmail}
+              />
+            
+            </View>
+              :
+              <View>
+            <View>
+            <Image source={require('./assets/images/email-pink.png')}
+              style ={{width: 30, height: 23,marginTop: -6,marginBottom: -30}}/>
+            </View>
 
- <TextInput
-           placeholder="Password"
-             placeholderTextColor="#707070"
-           secureTextEntry={true}
-           style = {[styles.TextInput,TextInputStyle]}
-           autoCapitalize='none'
-           />
+            
+            <TextInput
+              placeholder="อีเมล"
+              placeholderTextColor="#707070"
+              defaultValue={this.state.email}
+              onChangeText={email=>this.setState({email})} 
+              style = {styles.TextInput_fault}
+              autoCapitalize='none'
+              value = {this.state.InputEmail}
+              />
+              
+              </View>
+  }
+</View> 
 
-              <View style= {styles.image}>
-         <Image source={require('./assets/images/Lock.png')}
-              style ={{width: 19.61, height: 23 ,marginLeft:2}}/>
-</View>
-           
- </View>  
+<View style={{flex:1}}>
+{ !this.state.username ?
+          <View>
+           <View>
+            <Image source={require('./assets/images/People.png')}
+              style ={{width: 19.61, height: 23,marginTop: -6,marginBottom: -30}}/>
+          </View>
+
+          
+            <TextInput
+              placeholder="ชื่อผู้ใช้งาน"
+              placeholderTextColor="#707070"
+              defaultValue={this.state.username}
+              onChangeText={username=>this.setState({username})} 
+              style = {styles.TextInput_true}
+              autoCapitalize='none'
+              value = {this.state.InputEmail}
+              />
+            
+            </View>
+              :
+              <View>
+            <View>
+            <Image source={require('./assets/images/People-pink.png')}
+              style ={{width: 19.61, height: 23,marginTop: -6,marginBottom: -30}}/>
+            </View>
+
+            
+            <TextInput
+              placeholder="ชื่อผู้ใช้งาน"
+              placeholderTextColor="#707070"
+              defaultValue={this.state.username}
+              onChangeText={username=>this.setState({username})} 
+              style = {styles.TextInput_fault}
+              autoCapitalize='none'
+              value = {this.state.InputEmail}
+              />
+              
+              </View>
+  }
+</View> 
+
+<View style={{flex:1}}>
+{ !this.state.password ?
+          <View>
+           <View>
+            <Image source={require('./assets/images/Lock.png')}
+              style ={{width: 19.61, height: 23,marginTop: -6,marginBottom: -30}}/>
+          </View>
+
+          
+          <TextInput
+         placeholder="รหัสผ่าน"
+          placeholderTextColor="#707070"
+          defaultValue={this.state.password}
+          onChangeText={password=>this.setState({password})}
+         secureTextEntry={true}
+         style = {styles.TextInput_true}
+          autoCapitalize='none'
+         />
+            
+            </View>
+              :
+              <View>
+            <View>
+            <Image source={require('./assets/images/Lock-pink.png')}
+              style ={{width: 19.61, height: 23,marginTop: -6,marginBottom: -30}}/>
+            </View>
+            
+        <TextInput
+         placeholder="รหัสผ่าน"
+          placeholderTextColor="#707070"
+          defaultValue={this.state.password}
+          onChangeText={password=>this.setState({password})}
+         secureTextEntry={true}
+         style = {styles.TextInput_fault}
+          autoCapitalize='none'
+         />
+              
+              </View>
+  }
+</View> 
+
+
 
     <View style={{ flexDirection: 'row',alignItems: 'center',justifyContent: 'space-between',marginBottom: 20}}>
       
@@ -114,21 +294,21 @@ style={{width:390, height: 240, marginTop: -94}}
     <View style = {styles.button}>
    <TouchableOpacity onPress={() => this.props.navigation.navigate('HomeApp')}>
     <View style = {styles.buttonRegister}>  
-           <Text style = {styles.textRegister}>Sign up</Text>  
+           <Text style = {styles.textRegister}>สร้างบัญชีผู้ใช้งาน</Text>  
        </View>  
    </TouchableOpacity >
  
   <View style={{flexDirection: 'row', alignItems: 'center'}}>
  <View style={{width: 170, height: 1, backgroundColor: '#EA8681',marginTop: 12}} />
    <View>
-     <Text style = {styles.textOr}> or </Text>
+     <Text style = {styles.textOr}> หรือ </Text>
    </View>
    <View style={{width: 170, height: 1 ,backgroundColor: '#EA8681',marginTop: 12}} />   
 </View>
  
  <TouchableOpacity    onPress={() => this.props.navigation.navigate('Login')}>
    <View style = {styles.buttonLogin}>  
-           <Text style = {styles.textLogin}>Login</Text>  
+           <Text style = {styles.textLogin}>เข้าสู่ระบบ</Text>  
        </View>
    </TouchableOpacity>
    </View>
@@ -232,25 +412,92 @@ const styles = StyleSheet.create({
       fontSize: 20,
       borderBottomWidth: 1,
       borderBottomColor: '#707070',
-      
-      
-      
-      
+  
     },
 
     Input: {
       marginBottom: 20,
     },
 
-    image: {
-      alignItems: 'flex-start',
-      marginTop: -77 ,
+
+    TextInputName_true: {
+      height: 40, 
+      width: 170,
       paddingLeft: 40,
-      
+      fontSize: 20,
+      borderBottomWidth: 1,
+      borderBottomColor: '#707070',
+      color:'#707070',
+      fontFamily: 'Philosopher',
+      margin:10,
+      marginTop: 0,
       
     },
 
-     textName: {
+      TextInputName_fault: {
+      height: 40, 
+      width: 170,
+      paddingLeft: 40,
+      fontSize: 20,
+      borderBottomWidth: 1,
+      borderBottomColor: '#E79995',
+      color:'#E79995',
+      fontFamily: 'Philosopher',
+      margin:10,
+      marginTop: 0,
+      
+    },
+
+      TextInputLastname_true: {
+      height: 40, 
+      width: 170,
+      paddingLeft: 40,
+      fontSize: 20,
+      borderBottomWidth: 1,
+      borderBottomColor: '#707070',
+      color:'#707070',
+      fontFamily: 'Philosopher',
+      marginTop: -10,
+    },
+
+      TextInputLastname_fault: {
+      height: 40, 
+      width: 170,
+      paddingLeft: 40,
+      fontSize: 20,
+      borderBottomWidth: 1,
+      borderBottomColor: '#E79995',
+      color:'#E79995',
+      fontFamily: 'Philosopher',
+      marginTop: -10
+    },
+
+      TextInput_true: {
+      height: 40, 
+      width: 360,
+      paddingLeft: 40,
+      fontSize: 20,
+      borderBottomWidth: 1,
+      borderBottomColor: '#707070',
+      color:'#707070',
+      fontFamily: 'Philosopher',
+      marginTop: -10
+    },
+   
+     TextInput_fault: {
+      height: 40,
+      width: 360,
+      paddingLeft: 40,
+      fontSize: 20,
+      borderBottomWidth: 1,
+      borderBottomColor: '#E79995',
+      color:'#E79995',
+      fontFamily: 'Philosopher',
+      marginTop: -10,
+      
+    },
+   
+      textName: {
       margin: 40,
       height:20,
       width: 171,
@@ -264,6 +511,8 @@ const styles = StyleSheet.create({
       
       
     },
+
+    
    
 
    });

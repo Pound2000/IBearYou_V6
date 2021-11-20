@@ -1,18 +1,19 @@
+
 import React, {Component,useState} from 'react';
 import { StyleSheet, View, Text, Image, SafeAreaView, Button
        , TouchableHighlight,TouchableOpacity, Dementions, TextInput,Separator,KeyboardAvoidingView
        , AsyncStorage} 
        from 'react-native';
 import CustomHeader from './CustomHeader';
-
-
-
+import axios from 'axios';  
+import {sha256} from 'react-native-sha256'
+import {API_URL} from './config'
 
 class LoginScreen extends Component {
 
    constructor(props) {
      super(props);
-     this.state = { username : '',
+     this.state = { user_name : '',
                     password : ''
      };
    }
@@ -22,11 +23,35 @@ class LoginScreen extends Component {
           //  console.log(this.state.first_name)
         }
    logIn=()=>{
-   console.log("this.state.username : ",this.state.username," this.state.password : ",this.state.password)
-   console.dir(Card)
+   console.log("this.state.user_name : ",this.state.user_name," this.state.password : ",this.state.password)
+   this.props.navigation.navigate('HomeApp') 
  
  }
 
+handleSubmit = async(event) => {
+    //event.preventDefault();
+     console.log("handleSubmit")
+     console.log("this.state.user_name  : ", this.state.user_name)
+      
+    const userLogin ={} 
+    userLogin.user_name=this.state.user_name 
+    userLogin.password = String(this.state.password).trim()
+    console.log("urlendpoint : ",  API_URL)
+    
+    axios.post(API_URL+'/api/login', userLogin)
+      .then(res => { 
+        console.log(res.data);
+        if(res.data.message==="Success"){
+          console.log("Success")
+          console.log("user_data: ",res.data.data)
+         this.props.navigation.navigate('HomeApp') 
+        }
+        else  if(res.data.message==="Fail") {
+         // console.log("DuplicateEmailOrUserName")
+        }
+      })
+  }
+ 
   render() {
 return (
  
@@ -58,7 +83,7 @@ return (
 
 <View>
 { 
-  !this.state.username ? 
+  !this.state.user_name ? 
   <View style={{flex:1,marginTop: 260,marginBottom:-40}}>
 
         <View>
@@ -70,8 +95,8 @@ return (
         <TextInput  
          placeholder="Username"
          placeholderTextColor="#707070"
-         defaultValue={this.state.username}
-         onChangeText={username=>this.setState({username})}
+         defaultValue={this.state.user_name}
+         onChangeText={user_name=>this.setState({user_name})}
          style = {styles.TextInputUsername_fault}
          autoCapitalize='none'
         />
@@ -90,8 +115,8 @@ return (
         <TextInput  
          placeholder="Username"
          placeholderTextColor="#E79995"
-         defaultValue={this.state.username}
-         onChangeText={username=>this.setState({username})}
+         defaultValue={this.state.user_name}
+         onChangeText={user_name=>this.setState({user_name})}
          style = {styles.TextInputUsername_true}
          autoCapitalize='none'
         />
@@ -148,7 +173,7 @@ return (
   
 
 <View style = {styles.button}>
-   <TouchableOpacity onPress={() => this.logIn()}>
+   <TouchableOpacity onPress={() => this.handleSubmit()}>
        <View style = {styles.buttonLogin}>  
            <Text style = {styles.textLogin}>Login</Text>  
        </View>

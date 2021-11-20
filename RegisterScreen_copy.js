@@ -4,36 +4,36 @@ import { StyleSheet, View, Text, Image, SafeAreaView, Button
        from 'react-native';
 import CustomHeader from './CustomHeader';
 import DatePicker from 'react-native-date-picker'
-import axios from 'axios';
-
-
+import axios from 'axios'; 
+import {API_URL} from './config' 
+import {sha256} from 'react-native-sha256' 
 class RegisterScreen_copy extends Component {
   constructor(props) {
     super(props);
-     this.state = {       firstname : '',
-                          lastname : '',
+     this.state = {       first_name : '',
+                          last_name : '',
                           date : '',
                           email : '',
-                          username : '',
+                          user_name : '',
                           password : ''
      };
    }
 
      InputFirstname = () => {
      this.setState({
-       firstname: !this.state.firstname
+       first_name: !this.state.first_name
      })
       console.log ('selected seccess!')
   }
 
-       InputLastname = () => {
+    InputLastname = () => {
      this.setState({
-       lastname: !this.state.lastname
+       last_name: !this.state.last_name
      })
       console.log ('selected seccess!')
   }
 
-         InputDate= () => {
+    InputDate= () => {
      this.setState({
        date: !this.state.date
      })
@@ -49,7 +49,7 @@ class RegisterScreen_copy extends Component {
 
   InputUsername = () => {
      this.setState({
-       username: !this.state.username
+       user_name: !this.state.user_name
      })
       console.log ('selected seccess!')
   }
@@ -61,62 +61,58 @@ InputPassword = () => {
       console.log ('selected seccess!')
   }
 
-   handleSubmit = (event) => {
-    event.preventDefault();
-
-    this.setState ({
-      firstname : this.state.firstname,
-      lastname : this.state.lastname,
+   handleSubmit = async(event) => {
+    //event.preventDefault();
+     console.log("handleSubmit")
+     console.log("this.state.first_name  : ", this.state.first_name)
+      this.setState ({
+      first_name : this.state.first_name,
+      last_name : this.state.last_name,
       date : this.state.date,
       email : this.state.email,
-      username : this.state.username,
+      user_name : this.state.user_name,
       password : this.state.password,
     
-    });
+    }); 
+    /*const pass256 = crypto
+                    .createHmac('sha256',process.env.SHA256_SALT)
+                    .update(String(this.state.password).trim())
+                    .digest('hex') */
+    /*  const pass256 =()=>{
+        return new Promise((resolve,reject)=>{
+          sha256(this.state.password+process.env.SHA256_SALT).then(hash=>{
+            console.log('hash : ',hash)
+            resolve(hash)
+          })
+        })
+      }*/
+     let pass256 =""
+    /* await sha256('test').then(hash=>{
+       pass256= hash
+       console.log('hash : ',hash)
+     }) */
+    const userData ={}
+    userData.first_name =this.state.first_name
+    userData.last_name =this.state.last_name
+    userData.user_name=this.state.user_name
+    userData.email =this.state.email
+    userData.birthday="2000-04-16"
+    userData.password = String(this.state.password).trim() 
 
-    axios.post('http://localhost:3000/api/register', this.setState)
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
+    axios.post(API_URL+'/api/register', userData)
+      .then(res => { 
+       // console.log(res.data);
+        if(res.data.message==="Success"){
+          console.log("Success")
+         // this.props.navigation.navigate('HomeApp') 
+        }
+        else  if(res.data.message==="DuplicateEmailOrUserName") {
+         // console.log("DuplicateEmailOrUserName")
+        }
       })
   }
 
-  handleSubmit_test = (e) => {
-     e.preventDefault();
-     console.log('Event: Form Submit');
-  };
-
-
-onSubmit = (e) => {
-        e.preventDefault()
-
-        const userObject = {
-            firstname: this.state.firstname,
-            lastname: this.state.lastname,
-            date: this.state.date,
-            email: this.state.email,
-            username: this.state.username,
-            password: this.state.password
-        };
-
-        axios.post('http://localhost:3000/api/register', userObject)
-            .then((res) => {
-                console.log(res.data)
-            }).catch((error) => {
-                console.log(error)
-            });
-
-        this.setState({ firstname : '',lastname : '',date : '',email : '',username : '',password : '' })
-    }
-
-  selectedFeel = () => {
-     this.setState({
-       username: !this.state.username,
-       password: !this.state.password,
-     })
-      console.log ('selected seccess!')
-  }
-
+  
 
   render() {
   return (
@@ -131,8 +127,8 @@ onSubmit = (e) => {
          <TextInput
           placeholder="Firstname"
           placeholderTextColor="#707070"
-          defaultValue={this.state.firstname}
-          onChangeText={firstname=>this.setState({firstname})} 
+          defaultValue={this.state.first_name}
+          onChangeText={first_name=>this.setState({first_name})} 
           style = {styles.TextInputUsername}
           autoCapitalize='none'
           value = {this.state.InputFirstname}
@@ -141,8 +137,8 @@ onSubmit = (e) => {
           <TextInput
           placeholder="Lastname"
           placeholderTextColor="#707070"
-          defaultValue={this.state.lastname}
-          onChangeText={lastname=>this.setState({lastname})} 
+          defaultValue={this.state.last_name}
+          onChangeText={last_name=>this.setState({last_name})} 
           style = {styles.TextInputUsername}
           autoCapitalize='none'
           value = {this.state.InputLastname}
@@ -174,8 +170,8 @@ onSubmit = (e) => {
           <TextInput
           placeholder="Username"
           placeholderTextColor="#707070"
-          defaultValue={this.state.username}
-          onChangeText={username=>this.setState({username})} 
+          defaultValue={this.state.user_name}
+          onChangeText={user_name=>this.setState({user_name})} 
           style = {styles.TextInputUsername}
           autoCapitalize='none'
           value = {this.state.InputUsername}
@@ -335,18 +331,14 @@ const styles = StyleSheet.create({
     },
 
      textName: {
-      margin: 40,
-      height:20,
-      width: 171,
-      padding: 18,
-      paddingLeft: 42,
+      height: 40, 
+      width: 360,
+      paddingLeft: 40,
       fontSize: 20,
       borderBottomWidth: 1,
       borderBottomColor: '#707070',
-      marginLeft: -65,
-      
-      
-      
+      color:'#E79995',
+      fontFamily: 'Philosopher',
     },
     
 

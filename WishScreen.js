@@ -3,10 +3,10 @@ import { StyleSheet, View, Text, Image, SafeAreaView, Button
        , TouchableHighlight,TouchableOpacity, Dementions
        , TextInput}
        from 'react-native';
-import Bg1 from './components/Bg1';
-import Bg2 from './components/Bg2';
-
+import axios from 'axios';
 import CustomHeader from './CustomHeader';
+import {API_URL} from './config'
+import moment from 'moment';
 
 class WishScreen extends Component {
   constructor(props) {
@@ -14,6 +14,31 @@ class WishScreen extends Component {
     this.state = {
     };
   }
+
+loadWishScreen=async()=>{
+   console.log("loadWishScreen");
+    const userData ={} 
+    userData.user_id="27"
+    const data = JSON.stringify({
+  "user_id": "27","first_name":"first_name","last_name":"last_name"
+});
+    const endpoint = API_URL+'/api/list-allwish';
+     console.log('endpoint : ',endpoint)
+    const res = await axios.get(endpoint,{params:data}) 
+       if(res.data.message==="Success"){
+          console.log("Success")
+          console.log("user_data: ",res.data.data)
+         //this.props.navigation.navigate('HomeApp') 
+        }
+        else  if(res.data.message==="Fail") {
+        } 
+
+}
+ componentDidMount(){
+   this.loadWishScreen()
+    
+ }
+
 
   render() {
     return (
@@ -50,13 +75,9 @@ class WishScreen extends Component {
            <Text style = {styles.textType}>ความคาดหวัง</Text>  
   </View>
   
+<Wish_Box date="18/11/2021" text="story"/>
 
-<View style={{flex: 1}}>
-      <Text style={styles.textDate}>18 กรกฎาคม 2564</Text>
-      <View style={styles.boxContent}>
-        <TextInput style ={styles.textContent} />
-      </View>
-</View>
+
       </View>
 </View>
 
@@ -219,5 +240,14 @@ const styles = StyleSheet.create({
 
 
 });
+
+function Wish_Box (props){
+  return <View style={{flex: 1}}>
+      <Text style={styles.textDate}>{props.date}</Text>
+      <View style={styles.boxContent}>
+        <Text style ={styles.textContent}>{props.text}</Text>
+      </View>
+</View>
+}
 
 export default WishScreen;

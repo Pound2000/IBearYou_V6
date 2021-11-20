@@ -3,17 +3,68 @@ import { StyleSheet, View, Text, Image, SafeAreaView, Button
        , TouchableHighlight,TouchableOpacity, Dementions
        , TextInput}
        from 'react-native';
-import Bg1 from './components/Bg1';
-import Bg2 from './components/Bg2';
-
+import axios from 'axios';
 import CustomHeader from './CustomHeader';
+import {API_URL} from './config'
+import moment from 'moment';
+
 
 class BadScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      
     };
   }
+loadBadScreen=async()=>{
+   console.log("loadBadScreen");
+    const userData ={} 
+    userData.user_id="27"
+    const data = JSON.stringify({
+  "user_id": "27","first_name":"first_name","last_name":"last_name"
+});
+    const endpoint = API_URL+'/api/list-allbad';
+     console.log('endpoint : ',endpoint)
+    const res = await axios.get(endpoint,{params:data}) 
+       if(res.data.message==="Success"){
+          console.log("Success")
+          console.log("user_data: ",res.data.data)
+         //this.props.navigation.navigate('HomeApp') 
+        }
+        else  if(res.data.message==="Fail") {
+        } 
+
+}
+ componentDidMount(){
+   this.loadBadScreen()
+    
+ }
+
+ loadHeal_Sentence=async()=>{
+   console.log("loadBadScreen");
+    const userData ={} 
+    userData.user_id="27"
+    const data = JSON.stringify({
+  "user_id": "27","first_name":"first_name","last_name":"last_name"
+});
+    const endpoint = API_URL+'/api/list-allbad';
+     console.log('endpoint : ',endpoint)
+    const res = await axios.get(endpoint,{params:data}) 
+       if(res.data.message==="Success"){
+          console.log("Success")
+          console.log("user_data: ",res.data.data)
+         //this.props.navigation.navigate('HomeApp') 
+        }
+        else  if(res.data.message==="Fail") {
+        } 
+
+}
+ componentDidMount(){
+   this.loadHeal_Sentence()
+    
+ }
+
+
 
   render() {
     return (
@@ -52,13 +103,12 @@ class BadScreen extends Component {
   
 
 <View style={{flex: 1}}>
-      <Text style={styles.textDate}>18 กรกฎาคม 2564</Text>
-      <View style={styles.boxContent}>
-        <TextInput style ={styles.textContent} />
-      </View>
+     <Component1 date="18/11/2021" text="story"/>
 </View>
       </View>
 </View>
+
+
 
 <View style = {{flex: 1}}>
    <View style={{flex: 1, alignItems: 'center',}}>  
@@ -139,7 +189,9 @@ const styles = StyleSheet.create({
       color:'#000000',
       fontFamily: 'Quark',
       fontWeight: 'bold',
-      marginBottom: 5
+      padding: 10,
+      textAlign: 'center',
+      flexWrap: 'wrap',
     },
 
     boxContent: {
@@ -219,5 +271,17 @@ const styles = StyleSheet.create({
 
 
 });
+
+ function Component1 (props){
+  return <View style={{flex: 1}}>
+      <Text style={styles.textDate}>{props.date}</Text>
+      <View style={styles.boxContent}>
+        <Text style ={styles.textContent}>{props.text}</Text>
+      </View>
+</View>
+}
+function Test(props){
+  return <H1> {props.title}</H1>
+}
 
 export default BadScreen ;

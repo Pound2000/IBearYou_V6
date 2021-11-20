@@ -20,12 +20,13 @@ class HomeScreen extends Component {
   }
 
 componentDidMount(){
-  console.warn('componentDidMount')
+  console.log("componentDidmount HomeScreen");
 }
 
 componentDidUpdate(){
   console.warn('componentDidUpdate')
 }
+
 
 
   render() {
