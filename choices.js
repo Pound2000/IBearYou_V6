@@ -2,21 +2,50 @@ import React, {Component} from 'react';
 import { StyleSheet, View, Text, Image, SafeAreaView, Button
       , TouchableHighlight,TouchableOpacity, Dementions,TextInput}
       from 'react-native';
-import Bg1 from './components/Bg1';
-import Bg2 from './components/Bg2';
-import CustomHeader from './CustomHeader';
 import { connect } from 'react-redux';
 import {fetchQuestions,setCurrentQuestion} from './actions/Questions';
 import {setQuestionId,incrementAction} from './actions/Questions';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
- 
+
+import axios from 'axios';
+import CustomHeader from './CustomHeader';
+import {API_URL} from './config'
+import moment from 'moment'; 
  
  
 class Choices extends Component {
  constructor(props, context) {
        super(props, context);
    }
- 
+
+  componentDidMount(){
+  console.log("componentDidmount ChoiceScreen this.props.userdata : ",this.props.userdata);
+}
+/*
+   loadHeal_Sentence=async()=>{
+   console.log("loadHeal_Sentence");
+    const userData ={} 
+    userData.user_id="27"
+    const data = JSON.stringify({
+  "user_id": "27","first_name":"first_name","last_name":"last_name"
+});
+    const endpoint = API_URL+'/api/list-heal_sentence';
+     console.log('endpoint : ',endpoint)
+    const res = await axios.get(endpoint,{params:data}) 
+       if(res.data.message==="Success"){
+          console.log("Success")
+          console.log("user_data: ",res.data.data)
+         //this.props.navigation.navigate('HomeApp') 
+        }
+        else  if(res.data.message==="Fail") {
+        } 
+
+}
+ componentDidMount(){
+   this.loadHeal_Sentence()
+    
+ }
+ */
  nextQuestion=async()=>{
    const currentIndex = this.props.questions.findIndex(e=>e.questionId === this.props.questionId)
    if(currentIndex>=this.props.questions.length-1) return;
@@ -24,6 +53,13 @@ class Choices extends Component {
    await this.props.dispatch(setCurrentQuestion(this.props.questions[nextIndex])) //Question.currentQuestion
    await this.props.dispatch(setQuestionId(this.props.questions[nextIndex].questionId)); 
  
+ }
+
+ submitQuestion=async()=>{
+   const arr = this.props.questions.map((a,i)=>{
+     return {"questionId":a.questionId,"answer":a.answer}
+   })
+   console.log("this.props.questions_answer : ",arr.length)
  }
  
   previousQuestion=async()=>{
@@ -86,8 +122,8 @@ class Choices extends Component {
        /> 
    }
  render() {
- 
-let {questions,questionId,currentQuestion} = this.props
+
+let {questions,questionId,currentQuestion,userdata} = this.props
  
 /*const choice_props = (typeof(currentQuestion.choices)!=='undefined' &&currentQuestion.choices!==null) ? currentQuestion.choices.map((e)=>{
   return {...e,label:e.desc,value:parseInt(e.seq)}
@@ -211,6 +247,14 @@ const choice_props =  currentQuestion.questionType==="1"? currentQuestion.choice
 }
  
 </View>
+
+<View style={{flex:1}}>
+      <TouchableOpacity style={styles.button_submit} activeOpacity ={0.75}
+       onPress = {() => this.submitQuestion()}>
+      <Text style={styles.textButton}>ส่งคำตอบ</Text>
+    </TouchableOpacity>
+</View>
+
  
 <View style={{flex: 1,flexDirection: 'row' , justifyContent: 'space-between',alignItems: 'flex-end',marginBottom: 100}}>
  <TouchableOpacity style={styles.button} activeOpacity ={0.75}
@@ -218,13 +262,16 @@ const choice_props =  currentQuestion.questionType==="1"? currentQuestion.choice
   >
       <Text style={styles.textButton}>ย้อนกลับ</Text>
  </TouchableOpacity>
+
     <TouchableOpacity style={styles.button} activeOpacity ={0.75}
        onPress = {() => this.nextQuestion()}
     >
       <Text style={styles.textButton}>ถัดไป</Text>
     </TouchableOpacity>
+
 </View>
  
+
    </SafeAreaView>
  
  
@@ -274,6 +321,26 @@ button:{
       margin: 60,
       marginBottom: 20,
      alignItems: 'center',
+     
+      
+},
+
+button_submit:{
+      borderRadius: 5,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#E79995',
+      height: 41,
+      width: 102,
+      shadowColor: '#000000',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity:  0.4,
+      shadowRadius: 3,
+      elevation: 2,
+      margin: 60,
+      marginBottom: 20,
+     alignItems: 'center',
+     
       
 },
  
@@ -456,7 +523,8 @@ const mapStateToProps=(state,props)=>{
  
    questions:state.Questions.questions,
    questionId:state.Questions.questionId,
-   currentQuestion:state.Questions.currentQuestion
+   currentQuestion:state.Questions.currentQuestion,
+   userdata:state.Questions.userdata
  }
 }
 export default connect (mapStateToProps) (Choices);

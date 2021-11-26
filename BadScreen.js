@@ -7,47 +7,45 @@ import axios from 'axios';
 import CustomHeader from './CustomHeader';
 import {API_URL} from './config'
 import moment from 'moment';
-
+import {connect} from 'react-redux';
 
 class BadScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = { badStoryData: []
       
     };
   }
-loadBadScreen=async()=>{
-   console.log("loadBadScreen");
-    const userData ={} 
-    userData.user_id="27"
-    const data = JSON.stringify({
-  "user_id": "27","first_name":"first_name","last_name":"last_name"
-});
-    const endpoint = API_URL+'/api/list-allbad';
-     console.log('endpoint : ',endpoint)
+
+
+async componentDidMount(){ 
+  //this.loadHeal_Sentence();
+  await this.loadBadScreen();
+}
+
+loadBadScreen=async()=>{ 
+    const data =  {"user_id": this.props.userdata.user_id};
+    const endpoint = `${API_URL}/api/list-allbad`; 
     const res = await axios.get(endpoint,{params:data}) 
        if(res.data.message==="Success"){
           console.log("Success")
           console.log("user_data: ",res.data.data)
+          this.setState({"badStoryData":res.data.data})
+          console.log("this.state.badStoryData ",this.state.badStoryData)
          //this.props.navigation.navigate('HomeApp') 
         }
         else  if(res.data.message==="Fail") {
         } 
 
 }
- componentDidMount(){
-   this.loadBadScreen()
-    
- }
+
 
  loadHeal_Sentence=async()=>{
-   console.log("loadBadScreen");
+   console.log("loadHeal_Sentence");
     const userData ={} 
     userData.user_id="27"
-    const data = JSON.stringify({
-  "user_id": "27","first_name":"first_name","last_name":"last_name"
-});
-    const endpoint = API_URL+'/api/list-allbad';
+    const data =  {"user_id": this.props.userdata.user_id};
+    const endpoint = `${API_URL}/api/list-heal_sentence`;
      console.log('endpoint : ',endpoint)
     const res = await axios.get(endpoint,{params:data}) 
        if(res.data.message==="Success"){
@@ -59,14 +57,12 @@ loadBadScreen=async()=>{
         } 
 
 }
- componentDidMount(){
-   this.loadHeal_Sentence()
-    
- }
+
 
 
 
   render() {
+    const {userdata,arr}= this.props
     return (
     <SafeAreaView style={{ flex: 1 ,backgroundColor: '#EAD6A4' }}>
 
@@ -103,11 +99,10 @@ loadBadScreen=async()=>{
   
 
 <View style={{flex: 1}}>
-     <Component1 date="18/11/2021" text="story"/>
+     {this.badList()}
 </View>
       </View>
 </View>
-
 
 
 <View style = {{flex: 1}}>
@@ -148,6 +143,23 @@ loadBadScreen=async()=>{
     </SafeAreaView>
     );
   }
+
+  badList(){
+
+   return this.state.badStoryData.map((data) => {
+      return (
+      
+      <View style={{flex: 1}}>
+      <Text style={styles.textDate}>{data.date}</Text>
+      <View style={styles.boxContent}>
+        <Text style ={styles.textContent}>{data.bad}</Text>
+      </View>
+    </View>
+      )
+    })
+
+}
+  
 }
 
 const styles = StyleSheet.create({
@@ -280,8 +292,12 @@ const styles = StyleSheet.create({
       </View>
 </View>
 }
-function Test(props){
-  return <H1> {props.title}</H1>
+
+const mapStateToProps=(state,props)=>{
+  return{
+ 
+   userdata:state.Questions.userdata, 
+ }
 }
 
-export default BadScreen ;
+export default connect (mapStateToProps)(BadScreen) ;

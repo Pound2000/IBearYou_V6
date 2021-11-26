@@ -3,8 +3,12 @@ import { StyleSheet, View, Text, Image, SafeAreaView, Button
        , TouchableHighlight,TouchableOpacity, Dementions
        , TextInput}
        from 'react-native';
-
+import moment from 'moment';
+import axios from 'axios';
 import CustomHeader from './CustomHeader';
+import {API_URL} from './config'
+import {connect} from 'react-redux';
+
 
 class DiaryHistoryScreen extends Component {
   constructor(props) {
@@ -13,7 +17,33 @@ class DiaryHistoryScreen extends Component {
     };
   }
 
+ componentDidMount(){
+  console.log("componentDidmount BadScreen this.props.userdata : ",this.props.userdata);
+  this.loadHistory_Diary();
+}
+
+loadHistory_Diary=async()=>{
+   console.log("historyDiaryScreen");
+    const userData ={} 
+    userData.user_id="27"
+    const data =  {"user_id": this.props.userdata.user_id};
+    const endpoint = `${API_URL}/api/list-diary`;
+     console.log('endpoint : ',endpoint)
+    const res = await axios.get(endpoint,{params:data}) 
+       if(res.data.message==="Success"){
+          console.log("Success")
+          console.log("user_data: ",res.data.data)
+         //this.props.navigation.navigate('HomeApp') 
+        }
+        else  if(res.data.message==="Fail") {
+        } 
+
+}
+
+
+
   render() {
+    const {userdata}= this.props
     return (
 
  <SafeAreaView style={{ flex: 1 ,backgroundColor: '#EAD6A4'}}>
@@ -71,7 +101,7 @@ class DiaryHistoryScreen extends Component {
 
 <View style={{marginTop: -195}}>
  <View>
-<Text style={styles.textDate}>10 กันยายน 2564</Text>
+<Text style={styles.textDate}>11 กันยายน 2564</Text>
  </View>
 <View style={styles.buttonEmoji}>
 <TouchableOpacity activeOpacity={0.75}>
@@ -328,4 +358,11 @@ button:{
 
 });
 
-export default DiaryHistoryScreen;
+const mapStateToProps=(state,props)=>{
+  return{
+ 
+   userdata:state.Questions.userdata, 
+ }
+}
+
+export default connect(mapStateToProps)(DiaryHistoryScreen);

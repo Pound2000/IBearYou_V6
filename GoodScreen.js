@@ -5,46 +5,76 @@ import { StyleSheet, View, Text, Image, SafeAreaView, Button
        from 'react-native';
 import axios from 'axios';
 import CustomHeader from './CustomHeader';
-import {API_URL} from './config'
+import {API_URL} from './config';
 import moment from 'moment';
+import {connect} from 'react-redux';
+
+import {fetchGoodStory} from './actions/Diary';
+import {fetchHeal_Sentence} from './actions/Heal_Sentence';
 
 class GoodScreen extends Component {
-  constructor(props) {
-    super(props);
- 
-              this.state = {
+    constructor(props) {
+       super(props);
+       this.state = {goodStoryData: [],
+                     heal_sentenceData:[],
+       }
+   }
 
-     };
+componentDidMount(){
+  console.log("componentDidmount GoodScreen this.props.userdata : ",this.props.userdata);
 
-  }
+
+  this.loadGoodScreen();
+  console.log("componentDidMount_loadGoodScreen: ")
+
+    
+  this.loadHeal_Sentence();
+
+}
 
 loadGoodScreen=async()=>{
-   console.log("loadGoodScreen");
-    const userData ={} 
-    userData.user_id="27"
-    const data = JSON.stringify({
-  "user_id": "27","first_name":"first_name","last_name":"last_name"
-});
-    const endpoint = API_URL+'/api/list-allgood';
+   console.log("loadGoodScreen"); 
+ const data =  {"user_id": this.props.userdata.user_id};
+    const endpoint = `${API_URL}/api/list-allgood`;
      console.log('endpoint : ',endpoint)
     const res = await axios.get(endpoint,{params:data}) 
        if(res.data.message==="Success"){
           console.log("Success")
           console.log("user_data: ",res.data.data)
+          this.setState({"goodStoryData":res.data.data})
+          console.log("this.state.goodStoryData ",this.state.goodStoryData)
+          //this.fetchGoodStory(res.data.data)
+        }
+        else  if(res.data.message==="Fail") {
+        } 
+
+}
+
+ loadHeal_Sentence=async()=>{
+   console.log("loadHeal_Sentence");
+    const userData ={} 
+    const data =  {"user_id": this.props.userdata.user_id};
+    const endpoint = `${API_URL}/api/list-heal_sentence`;
+     console.log('endpoint : ',endpoint)
+    const res = await axios.get(endpoint,{params:data}) 
+       if(res.data.message==="Success"){
+          console.log("Success")
+          console.log("user_data: ",res.data.data)
+          this.setState({"heal_sentenceData":res.data.data})
+          console.log("this.state.heal_sentenceData ",this.state.heal_sentenceData) 
          //this.props.navigation.navigate('HomeApp') 
         }
         else  if(res.data.message==="Fail") {
         } 
 
 }
- componentDidMount(){
-   this.loadGoodScreen()
-    
- }
+
+
 
 
 
   render() {
+    const {userdata,goodstory}= this.props
     return (
     <SafeAreaView style={{ flex: 1 ,backgroundColor: '#EAD6A4' }}>
 
@@ -54,14 +84,14 @@ loadGoodScreen=async()=>{
     style={{width:552.17 ,height: 323.61,marginTop: -140}} /> 
 
     <View style={styles.date}>
-    <Text style={styles.day}>อา.</Text>
-    <Text style={styles.number}>18</Text>
-    <Text style={styles.month}>ก.ค</Text>
+    <Text style={styles.day}>{moment().format('dddd')}</Text>
+    <Text style={styles.number}>{moment().format('DD')}</Text>
+    <Text style={styles.month}>{moment().format('MMMM')}</Text>
     </View> 
 
     <View style={{marginLeft: 100,marginTop: -85}}>
       <Text style={styles.topic}>ประโยคพิเศษประจำวันจากน้องหมี</Text>
-      <Text style={styles.sentence}>"มะม่วงยังสุก เราจะทุกข์ทำไม"</Text>
+      {this.heal_sentence_List()}
     </View>
 
  </View>
@@ -79,8 +109,8 @@ loadGoodScreen=async()=>{
            <Text style = {styles.textType}>เรี่องราวที่ดี</Text>  
   </View>
   
-
-<Good_Box date="18/11/2021" text="story"/>
+ 
+{this.goodList()}
       
 </View>
   
@@ -127,7 +157,37 @@ loadGoodScreen=async()=>{
     </SafeAreaView>
     );
   }
+  goodList(){
+
+   return this.state.goodStoryData.map((data) => {
+     if(String(data.good).trim()!=="")
+      return (
+      <View style={{flex: 1}}>
+      <View>
+      <Text style={styles.textDate}>{data.date}</Text>
+      </View>
+      <View style={styles.boxContent}>
+        <Text style ={styles.textContent}>{data.good}</Text>
+      </View>
+</View>
+      )
+    })
+
 }
+
+  heal_sentence_List(){
+
+   return this.state.heal_sentenceData.map((data) => {
+      return (
+      <View style={{flex: 1}}>
+     <Text style={styles.sentence}>{data.heal_sentence}</Text>
+      </View>
+      )
+    })
+
+}
+
+} //end of component
 
 
 const styles = StyleSheet.create({
@@ -169,7 +229,9 @@ const styles = StyleSheet.create({
       color:'#000000',
       fontFamily: 'Quark',
       fontWeight: 'bold',
-      marginBottom: 5
+      padding: 10,
+      textAlign: 'center',
+      flexWrap: 'wrap',
     },
 
     boxContent: {
@@ -183,6 +245,7 @@ const styles = StyleSheet.create({
       shadowRadius:0,
       elevation: 2,
       marginBottom: 30,
+      
     },
 
     date: {
@@ -253,13 +316,22 @@ const styles = StyleSheet.create({
 function Good_Box (props){
   return <View style={{flex: 1}}>
       <View>
-      <Text style={styles.textDate}>{props.date}</Text>
+      <Text style={styles.textDate}>{props.userdata.email}</Text>
       </View>
       <View style={styles.boxContent}>
-        <Text style ={styles.textContent}>{props.text}</Text>
+        <Text style ={styles.textContent}>text</Text>
       </View>
 </View>
 }
 
+ 
 
-export default GoodScreen;
+const mapStateToProps=(state,props)=>{
+  return{
+ 
+   userdata:state.Questions.userdata,
+   goodstory:state.Questions.goodstory,  
+ }
+}
+
+export default connect (mapStateToProps)(GoodScreen);

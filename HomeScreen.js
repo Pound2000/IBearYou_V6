@@ -3,33 +3,25 @@ import { StyleSheet, View, Text, Image, SafeAreaView, Button
        , TouchableHighlight,TouchableOpacity, Dementions
        ,TextInput,KeyboardAvoidingView, Linking}
        from 'react-native';
+import {connect} from 'react-redux'
 import CustomHeader from './CustomHeader';
 
 
 
 class HomeScreen extends Component {
-  constructor() {
-    super();
-    {
-      super()
-      this.state={
-        data: ''
-      }
-      console.warn('constructor')
-    };
-  }
+    constructor(props) {
+       super(props);
+   }
 
 componentDidMount(){
-  console.log("componentDidmount HomeScreen");
+  console.log("componentDidmount HomeScreen this.props.userdata : ",this.props.userdata);
 }
 
-componentDidUpdate(){
-  console.warn('componentDidUpdate')
-}
 
 
 
   render() {
+      const {userdata}= this.props
     return (
 
   
@@ -269,5 +261,12 @@ const styles = StyleSheet.create({
 
 });
 
+const mapStateToProps=(state,props)=>{
+  return{
+ 
+   userdata:state.Questions.userdata, 
+ }
+}
 
-export default HomeScreen;
+export default connect (mapStateToProps)(HomeScreen);
+

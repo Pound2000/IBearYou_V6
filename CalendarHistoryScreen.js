@@ -4,7 +4,11 @@ import { StyleSheet, View, Text, Image, SafeAreaView, Button
        , TextInput}
        from 'react-native';
 
+import axios from 'axios';
 import CustomHeader from './CustomHeader';
+import {API_URL} from './config'
+import moment from 'moment';
+import {connect} from 'react-redux';
 
 class CalendarHistoryScreen extends Component {
   constructor(props) {
@@ -13,7 +17,38 @@ class CalendarHistoryScreen extends Component {
     };
   }
 
+   componentDidMount(){
+  console.log("componentDidmount CalendarHistoryScreen this.props.userdata : ",this.props.userdata);
+  this.loadHeal_Sentence();
+}
+
+
+
+
+
+  loadHeal_Sentence=async()=>{
+   console.log("loadHeal_Sentence");
+    const userData ={} 
+    userData.user_id="27"
+    const data =  {"user_id": this.props.userdata.user_id};
+    const endpoint = API_URL+'/api/list-heal_sentence';
+     console.log('endpoint : ',endpoint)
+    const res = await axios.get(endpoint,{params:data}) 
+       if(res.data.message==="Success"){
+          console.log("Success")
+          console.log("user_data: ",res.data.data)
+         //this.props.navigation.navigate('HomeApp') 
+        }
+        else  if(res.data.message==="Fail") {
+        } 
+
+}
+
+
+
+
   render() {
+    const {userdata}= this.props
     return (
 <SafeAreaView style={{ flex: 1,backgroundColor: '#EAD6A4' }}>
      <CustomHeader title='CalendarHistory'  navigation={this.props.navigation}/>
@@ -247,4 +282,12 @@ button:{
 
 });
 
-export default CalendarHistoryScreen;
+const mapStateToProps=(state,props)=>{
+  return{
+ 
+   userdata:state.Questions.userdata, 
+ }
+}
+
+
+export default connect(mapStateToProps)(CalendarHistoryScreen);

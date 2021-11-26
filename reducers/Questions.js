@@ -1,9 +1,15 @@
 const initialState = {
+	userdata:{},
 	questions: [],
 	questionId:'',
 	currentQuestion:{},
 	fetching: false,
 	fetched: false,
+	goodstory:[],
+	healsentence:[],
+	currentFeelID :'',
+
+
 };
 
 export default function reducers(state=initialState, action) {
@@ -15,7 +21,15 @@ export default function reducers(state=initialState, action) {
 		case 'FETCH_SECOND_REJECTED': 
 			return { ...state, fetching: false, error: action.payload };
 		case 'FETCH_QUESTIONS': 
-		
+					return { ...state, fetching: false, error: action.payload };
+		case 'FETCH_GOOD_STORY': 
+					return { ...state, fetching: false, error: action.payload };
+		case 'FETCH_BAD_STORY': 
+					return { ...state, fetching: false, error: action.payload };
+		case 'FETCH_WISH_STORY': 
+					return { ...state, fetching: false, error: action.payload };
+		case 'FETCH_HEAL_SENTENCE': 
+					return { ...state, fetching: false, error: action.payload };
 		
 			return {
 				 ...state,   
@@ -26,11 +40,27 @@ export default function reducers(state=initialState, action) {
 				 ...state,   
 				questionId: action.payload
 			}
+		case 'SET_CURRENT_FEEL_ID': 
+			return {
+				 ...state,   
+				currentFeelID: action.payload
+			}
 		case 'SET_CURRENT_QUESTION': 
 			return {
 				...state,   
 				currentQuestion: action.payload
 			}
+		case 'SET_CURRENT_DIARY_ID' :
+			return {
+				...state,
+				currentDiaryID:action.payload
+			}
+		case 'SET_USER_DATA' :
+			return {
+				...state,
+				userdata:action.payload
+			}
+
 	
 		default:
 			return state

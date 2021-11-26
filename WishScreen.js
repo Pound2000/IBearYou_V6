@@ -7,40 +7,64 @@ import axios from 'axios';
 import CustomHeader from './CustomHeader';
 import {API_URL} from './config'
 import moment from 'moment';
+import {connect} from 'react-redux';
 
 class WishScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = { wishStoryData: [],
+                   heal_sentenceData: [],
     };
   }
 
+
+ componentDidMount(){
+  console.log("componentDidmount WishScreen this.props.userdata : ",this.props.userdata);
+  this.loadWishScreen();
+  this.loadHeal_Sentence();
+}
+
 loadWishScreen=async()=>{
-   console.log("loadWishScreen");
-    const userData ={} 
-    userData.user_id="27"
-    const data = JSON.stringify({
-  "user_id": "27","first_name":"first_name","last_name":"last_name"
-});
-    const endpoint = API_URL+'/api/list-allwish';
+  console.log("loadWishScreen");
+   const data =  {"user_id": this.props.userdata.user_id};
+   const endpoint = `${API_URL}/api/list-allwish`;
+    console.log('endpoint : ',endpoint)
+   const res = await axios.get(endpoint,{params:data})
+      if(res.data.message==="Success"){
+         console.log("Success")
+         console.log("user_data: ",res.data.data)
+         this.setState({"wishStoryData":res.data.data})
+         console.log("this.state.wishStoryData ",this.state.wishdStoryData)
+        //this.props.navigation.navigate('HomeApp')
+       }
+       else  if(res.data.message==="Fail") {
+       }
+ 
+}
+
+loadHeal_Sentence=async()=>{
+   console.log("loadHeal_Sentence");
+    const data =  {"user_id": this.props.userdata.user_id};
+    const endpoint = `${API_URL}/api/list-heal_sentence`;
      console.log('endpoint : ',endpoint)
     const res = await axios.get(endpoint,{params:data}) 
        if(res.data.message==="Success"){
           console.log("Success")
           console.log("user_data: ",res.data.data)
+          this.setState({"heal_sentenceData":res.data.data})
+          console.log("this.state.heal_sentenceData ",this.state.heal_sentenceData) 
          //this.props.navigation.navigate('HomeApp') 
         }
         else  if(res.data.message==="Fail") {
         } 
 
 }
- componentDidMount(){
-   this.loadWishScreen()
-    
- }
+
+
 
 
   render() {
+    const {userdata}= this.props
     return (
     <SafeAreaView style={{ flex: 1 ,backgroundColor: '#EAD6A4'  }}>
 
@@ -74,8 +98,11 @@ loadWishScreen=async()=>{
   <View style = {styles.Wish}>  
            <Text style = {styles.textType}>ความคาดหวัง</Text>  
   </View>
-  
-<Wish_Box date="18/11/2021" text="story"/>
+
+
+  {this.wishList()}
+ 
+
 
 
       </View>
@@ -119,6 +146,26 @@ loadWishScreen=async()=>{
     </SafeAreaView>
     );
   }
+
+  wishList(){
+
+   return this.state.wishStoryData.map((data) => {
+      return (
+      
+      <View style={{flex: 1}}>
+      <View>
+      <Text style={styles.textDate}>{data.date}</Text>
+      </View>
+      <View style={styles.boxContent}>
+        <Text style ={styles.textContent}>{data.wish}</Text>
+      </View>
+      </View>
+      
+      )
+    })
+
+}
+
 }
 
 const styles = StyleSheet.create({
@@ -241,13 +288,13 @@ const styles = StyleSheet.create({
 
 });
 
-function Wish_Box (props){
-  return <View style={{flex: 1}}>
-      <Text style={styles.textDate}>{props.date}</Text>
-      <View style={styles.boxContent}>
-        <Text style ={styles.textContent}>{props.text}</Text>
-      </View>
-</View>
+
+
+const mapStateToProps=(state,props)=>{
+  return{
+ 
+   userdata:state.Questions.userdata, 
+ }
 }
 
-export default WishScreen;
+export default connect(mapStateToProps)(WishScreen);

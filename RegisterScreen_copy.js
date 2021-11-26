@@ -2,11 +2,15 @@ import React, {Component} from 'react';
 import { StyleSheet, View, Text, Image, SafeAreaView, Button
        , TouchableHighlight,TouchableOpacity, Dementions, TextInput,Separator}
        from 'react-native';
+import DatePicker from 'react-native-date-picker';
+import {sha256} from 'react-native-sha256' ;
+
+import moment from 'moment';
+import axios from 'axios';
 import CustomHeader from './CustomHeader';
-import DatePicker from 'react-native-date-picker'
-import axios from 'axios'; 
-import {API_URL} from './config' 
-import {sha256} from 'react-native-sha256' 
+import {API_URL} from './config'
+import {connect} from 'react-redux';
+
 class RegisterScreen_copy extends Component {
   constructor(props) {
     super(props);
@@ -18,6 +22,12 @@ class RegisterScreen_copy extends Component {
                           password : ''
      };
    }
+
+  componentDidMount(){
+  console.log("componentDidmount GoodScreen this.props.userdata : ",this.props.userdata);
+}
+
+
 
      InputFirstname = () => {
      this.setState({
@@ -112,9 +122,11 @@ InputPassword = () => {
       })
   }
 
-  
+ 
+
 
   render() {
+    const {userdata}= this.props
   return (
       <SafeAreaView style={[styles.container, containerStyle]}>
      
@@ -355,6 +367,11 @@ const styles = StyleSheet.create({
    });
 
    
+const mapStateToProps=(state,props)=>{
+  return{
+ 
+   userdata:state.Questions.userdata, 
+ }
+}
 
-
-export default RegisterScreen_copy;
+export default connect(mapStateToProps)(RegisterScreen_copy);

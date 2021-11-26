@@ -2,25 +2,56 @@ import React, {Component} from 'react';
 import { StyleSheet, View, Text, Image, SafeAreaView, Button
        , TouchableHighlight,TouchableOpacity, Dementions}
        from 'react-native';
-import Bg1 from './components/Bg1';
-import Bg2 from './components/Bg2';
-import Bg_Rainy from './components/Bg_Rainy';
-
+import moment from 'moment';
+import axios from 'axios';
 import CustomHeader from './CustomHeader';
-
+import {API_URL} from './config'
+import {connect} from 'react-redux';
+import {setCurrentFeelID} from './actions/Diary'
 
 class MoodScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      feel : true,
-      next : true,
+                    feel : true,
+                    next : true,
+                    listFeelData : [],
     };
-    this.veryGood = this.verygood;
-    this.good = this.good;
   }
 
-  selectedFeel = () => {
+ componentDidMount(){
+  console.log("componentDidmount MoodScreen this.props.userdata : ",this.props.userdata);
+  this.loadMoodScreen();
+}
+ setCurrentFeelID = async(feelID)=>{
+   await this.props.dispatch(setCurrentFeelID(feelID))
+ }
+ loadMoodScreen=async()=>{
+   
+   console.log("MoodScreen");
+    const userData ={} 
+    const data =  {"user_id": this.props.userdata.user_id};;
+    const endpoint = `${API_URL}/api/list-allfeel`;
+     console.log('endpoint : ',endpoint)
+    const res = await axios.get(endpoint,{params:data}) 
+       if(res.data.message==="Success"){
+          console.log("Success")
+          console.log("user_data: ",res.data.data)
+          this.setState({"listFeelData":res.data.data})
+          console.log("this.state.listFeelData ",this.state.listFeelData)
+         //this.props.navigation.navigate('HomeApp') 
+        }
+        else  if(res.data.message==="Fail") {
+        } 
+
+}
+ 
+
+
+
+  selectedFeel = (feelID) => {
+    console.log("feelID ",feelID)
+   this.setCurrentFeelID(feelID)
      this.setState({
        feel: !this.state.feel,
        next: !this.state.next,
@@ -30,12 +61,12 @@ class MoodScreen extends Component {
 
 
 
- 
-
   render() {
+    
+    const {userdata}= this.props
+
     const veryGood = this.state.veryGood ;
     const good = this.state.good ;
-
 
  return (
 <SafeAreaView style={{ flex: 1 ,backgroundColor: '#EAD6A4'}}>
@@ -61,37 +92,7 @@ class MoodScreen extends Component {
 
   </View>
 
-<View style={{flex: 1,marginBottom: 110}}>
-
-   {this.state.feel
-      ?   
-      <TouchableOpacity style={styles.buttonVeryGood} activeOpacity={1}
-       onPress ={() => this.selectedFeel()}>
-       <View>
-       <Text style={styles.textMood}>รู้สึกอารมณ์ดีมาก</Text>
-        <Image source={require('./assets/images/bear-verygood.png')}
-       style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}}
-       />
-       </View>
-       </TouchableOpacity>
-       :
-       <View>
-       <View style={styles.clickVeryGood}></View>
-       <TouchableOpacity style={styles.buttonVeryGood} activeOpacity={1}
-       onPress ={() => this.selectedFeel()}>
-       <Text style={styles.textMood}>รู้สึกอารมณ์ดีมาก</Text>
-        <Image source={require('./assets/images/bear-verygood.png')}
-       style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}}
-       />
-       </TouchableOpacity>
-       </View>
-  }  
-    
-
-
-
-      
-</View>
+    {this.all_feel_List()}
 
 <View>
 <Image source={require('./assets/images/bear-rain.png')}
@@ -127,6 +128,45 @@ class MoodScreen extends Component {
      </SafeAreaView>
   );
   }
+
+  all_feel_List(){
+
+   return this.state.listFeelData.map((data) => {
+      return (
+    <View style={{flex: 1,marginBottom: -50}}>
+ 
+    {this.state.feel
+     ?  
+     <TouchableOpacity style={styles.buttonVeryGood} activeOpacity={1}
+      onPress ={() => this.selectedFeel(data.feel_id)}>
+      <View>
+      <Text style={styles.textMood}>{data.feel_name}</Text>
+       <Image source={require('./assets/images/bear-verygood.png')}
+      style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}}
+      />
+      </View>
+      </TouchableOpacity>
+      :
+      <View>
+      <View style={styles.clickVeryGood}></View>
+      <TouchableOpacity style={styles.buttonVeryGood} activeOpacity={1}
+      onPress ={() => this.selectedFeel(data.feel_id)}>
+      <Text style={styles.textMood}>{data.feel_name}</Text>
+       <Image source={require('./assets/images/bear-verygood.png')}
+      style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}}
+      />
+      </TouchableOpacity>
+      </View>
+ } 
+    
+</View>
+
+      )
+    })
+
+}
+
+
 }
 
 
@@ -353,4 +393,33 @@ textNext: {
 
     });
 
-export default MoodScreen;
+function Feel_Box_True (props){
+  return <View style={{flex: 1}}>
+      <View>
+      <Text style={styles.textDate}>{props.date}</Text>
+      </View>
+      <View style={styles.boxContent}>
+        <Text style ={styles.textContent}>{props.text}</Text>
+      </View>
+</View>
+}
+
+function Feel_Box_False (props){
+  return <View style={{flex: 1}}>
+      <View>
+      <Text style={styles.textDate}>{props.date}</Text>
+      </View>
+      <View style={styles.boxContent}>
+        <Text style ={styles.textContent}>{props.text}</Text>
+      </View>
+</View>
+}
+
+const mapStateToProps=(state,props)=>{
+  return{
+ 
+   userdata:state.Questions.userdata, 
+ }
+}
+
+export default connect(mapStateToProps)(MoodScreen);

@@ -21,7 +21,6 @@ import StartCheckupScreen from './StartCheckupScreen';
 import setAlarmScreen from './setAlarmScreen';
 import AlarmScreen from './AlarmScreen';
 import ProfileScreen from './ProfileScreen';
-import SettingScreen from './SettingScreen';
 import WelcomeScreen from './WelcomeScreen';
 import LoginScreen from './LoginScreen';
 import RegisterScreen from './RegisterScreen'; 
@@ -110,7 +109,6 @@ function ProfileStack() {
   return (
     <StackProfile.Navigator initialRouteName='Profile'>
       <StackProfile.Screen name='Profile' component={ProfileScreen} options={navOptionHandler}/>
-      <StackProfile.Screen name='Setting' component={SettingScreen} options={navOptionHandler}/>
      </StackProfile.Navigator>
 
   )
@@ -144,13 +142,13 @@ function TabNavigator() {
             }
             else if (route.name === 'Bear') {
               iconName = focused 
-               ? require('./assets/images/voice-black.png')
-               : require('./assets/images/voice-pink.png') ;
+               ? require('./assets/images/Alarm-black.png')
+               : require('./assets/images/Alarm-pink.png') ;
             }
              else if (route.name === 'Profile') {
               iconName = focused 
-               ? require('./assets/images/profile.png')
-               : require('./assets/images/profile.png') ;
+               ? require('./assets/images/Signout-black.png')
+               : require('./assets/images/Signout-pink.png') ;
             }
             
             return <Image source={iconName} style={{width:28 , height: 28}} 

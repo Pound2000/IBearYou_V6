@@ -1,5 +1,5 @@
 
-import React, {Component,useState} from 'react';
+import React, {Component} from 'react';
 import { StyleSheet, View, Text, Image, SafeAreaView, Button
        , TouchableHighlight,TouchableOpacity, Dementions, TextInput,Separator,KeyboardAvoidingView
        , AsyncStorage} 
@@ -8,6 +8,8 @@ import CustomHeader from './CustomHeader';
 import axios from 'axios';  
 import {sha256} from 'react-native-sha256'
 import {API_URL} from './config'
+import {connect} from 'react-redux'
+import {setUserData} from './actions/User';
 
 class LoginScreen extends Component {
 
@@ -38,12 +40,13 @@ handleSubmit = async(event) => {
     userLogin.password = String(this.state.password).trim()
     console.log("urlendpoint : ",  API_URL)
     
-    axios.post(API_URL+'/api/login', userLogin)
+    axios.post(`${API_URL}/api/login`, userLogin)
       .then(res => { 
         console.log(res.data);
         if(res.data.message==="Success"){
           console.log("Success")
           console.log("user_data: ",res.data.data)
+          this.setUserData(res.data.data)
          this.props.navigation.navigate('HomeApp') 
         }
         else  if(res.data.message==="Fail") {
@@ -51,8 +54,14 @@ handleSubmit = async(event) => {
         }
       })
   }
+  
+
+ setUserData=async(userdata)=>{  
+     await this.props.dispatch(setUserData(userdata)); 
  
+ }
   render() {
+    const {userdata}= this.props
 return (
  
         <SafeAreaView style={[styles.container, containerStyle]}>
@@ -380,4 +389,10 @@ const styles = StyleSheet.create({
 
 });
 
-export default LoginScreen;
+const mapStateToProps=(state,props)=>{
+  return{
+ 
+   userdata:state.Questions.userdata, 
+ }
+}
+export default connect(mapStateToProps)(LoginScreen);

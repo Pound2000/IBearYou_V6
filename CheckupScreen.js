@@ -9,9 +9,13 @@ import SwitchSelector from "react-native-switch-selector";
 import CustomHeader from './CustomHeader';
 //const fs = require('fs');
 import Questions from './Json/Questions'
-import { connect } from 'react-redux';
 import {fetchQuestions,setCurrentQuestion} from './actions/Questions';
 import {setQuestionId,incrementAction} from './actions/Questions';
+
+import moment from 'moment';
+import axios from 'axios';
+import {API_URL} from './config'
+import {connect} from 'react-redux';
 /*
 const readQuestion=async()=>{
       try {
@@ -81,14 +85,11 @@ class CheckupScreen extends Component {
    console.log("componentDidmount CheckupScreen");
  }
  async setfirstquestion(){
-   	 
-   
-   
+   	   
    //console.log(this.props.action)
    //console.log(Questions)
   // await this.props.dispatch(setQuestionId("40002"));
    //this.props.navigation.navigate('choices')
-
  }
    setSwitch = async()=> {
 
@@ -130,10 +131,15 @@ class CheckupScreen extends Component {
    //console.log("this.props.currentQuestion :",this.props.currentQuestion)
    this.props.navigation.navigate('Choices') 
   }
-    
+
+// userdata
+   componentDidMount(){
+  console.log("componentDidmount CheckupScreen this.props.userdata : ",this.props.userdata);
+}
+  
 
   render() {
-    const {questions,questionId,currentQuestion} = this.props
+     const {userdata}= this.props
   return (
      <SafeAreaView style={[styles.container, containerStyle]}> 
  
@@ -359,7 +365,9 @@ const mapStateToProps=(state,props)=>{
   return{
     questions:state.Questions.questions,
     questionId:state.Questions.questionId,
-    currentQuestion:state.Questions.currentQuestion
+    currentQuestion:state.Questions.currentQuestion,
+    userdata:state.Questions.userdata
   }
 }
+
 export default connect(mapStateToProps)(CheckupScreen);

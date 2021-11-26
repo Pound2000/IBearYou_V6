@@ -4,8 +4,10 @@ import { StyleSheet, View, Text, Image, SafeAreaView, Button
       , TextInput}
       from 'react-native';
 import moment from 'moment';
- 
+import axios from 'axios';
 import CustomHeader from './CustomHeader';
+import {API_URL} from './config'
+import {connect} from 'react-redux';
  
 class DiaryScreen extends Component {
  
@@ -14,14 +16,81 @@ class DiaryScreen extends Component {
     this.state = { good : '',
                    bad : '',
                    wish : '',
+                   title : '',
     };
    
   }
  
+  componentDidMount(){
+  console.log("componentDidmount DiaryScreen this.props.userdata : ",this.props.userdata);
+}
+
+
+ handleSubmit = async(event) => {
+    //event.preventDefault();
+     console.log("handleSubmit")
+     console.log("this.props.currentFeelID", this.props.currentFeelID)
+     console.log("this.state.first_name  : ", this.state.first_name)
+      this.setState ({
+      title : this.state.title,
+      good : this.state.good,
+      bad : this.state.bad,
+      wish : this.state.wish,
+    }); 
+    const createDiary = {}
+    createDiary.user_id= this.props.userdata.user_id
+    createDiary.title =this.state.title
+    createDiary.good =this.state.good
+    createDiary.bad =this.state.bad
+    createDiary.wish =this.state.wish
+    createDiary.feel_id = this.props.currentFeelID
+
+    axios.post(API_URL+'/api/create_diary', createDiary)
+      .then(res => { 
+          console.log(res.data);
+        if(res.data.message==="Success"){
+          console.log("Success")
+         this.props.navigation.navigate('CalendarHistory') 
+        }
+        else  if(res.data.message==="create fail") {
+          console.log("create fail")
+        }
+      })
+  }
+
+
+
+  InputTitle = () => {
+     this.setState({
+       title : !this.state.title
+     })
+      console.log ('selected seccess!')
+  }
+
+    InputGood = () => {
+     this.setState({
+       good: !this.state.good
+     })
+      console.log ('selected seccess!')
+  }
+
+    InputBad= () => {
+     this.setState({
+       bad: !this.state.bad
+     })
+      console.log ('selected seccess!')
+  }
+
+   InputWish= () => {
+     this.setState({
+       wish: !this.state.wish
+     })
+      console.log ('selected seccess!')
+  }
+
  
  render() {
-   
-
+    const {userdata,currentFeelID}= this.props
 return (
     <SafeAreaView style={{ flex: 1 ,backgroundColor: '#EAD6A4'}}>
      
@@ -77,17 +146,22 @@ return (
  <View>
 <Text style={styles.textDate}>{moment().format('YYYY-MM-DD')}</Text>
  </View>
-<View style={styles.buttonEmoji}>
-<TouchableOpacity activeOpacity={0.75}>
-     <Text style={styles.textEmoji}>ชื่อเรื่องราวของเธอ</Text>
+<View>
       <Image source={require('./assets/images/pencil.png')}
    style={{width: 10.32,height:10.32,marginTop: -15,marginLeft:310}}
    resizeMode='contain'
-  
     />
-  </TouchableOpacity>
   </View>
 </View>
+
+ <TextInput placeholder="ชื่อเรื่องราวของเธอ"
+            placeholderTextColor="#707070"
+            defaultValue={this.state.title}
+            onChangeText={title=> this.setState({title}) }
+            style={styles.textTitle}
+            autoCapitalize='none'
+            value = {this.state.InputTitle}
+ />
 
 
 <View style={{flex: 1,marginTop: 10}}>
@@ -97,8 +171,10 @@ return (
    <TextInput placeholder="เขียนบันทึกเรื่องราวที่ดี"
             placeholderTextColor="#707070"
             autoCapitalize='none'
-            onchangeText={ (good) => this.setState({good}) }
+            defaultValue={this.state.good}
+            onChangeText={good=> this.setState({good}) }
             style={styles.textContent}
+            value = {this.state.InputGood}
  />
  </View>
 
@@ -108,8 +184,12 @@ return (
    <TextInput placeholder="เขียนบันทึกเรื่องราวที่ไม่ดี"
             placeholderTextColor="#707070"
             autoCapitalize='none'
-            onchangeText={ (bad) => this.setState({bad}) }
+            defaultValue={this.state.bad}
+            onChangeText={bad=> this.setState({bad}) }
             style={styles.textContent}
+            value = {this.state.InputBad}
+
+
  />
   </View>
 
@@ -119,8 +199,10 @@ return (
    <TextInput placeholder="เขียนบันทึกความคาดหวัง"
             placeholderTextColor="#707070"
             autoCapitalize='none'
-            onchangeText={ (wish) => this.setState({wish}) }
+            defaultValue={this.state.wish}
+            onChangeText={wish=> this.setState({wish}) }
             style={styles.textContent}
+            value = {this.state.InputWish}
  />
 </View>
 
@@ -144,7 +226,7 @@ return (
   </TouchableOpacity>
  
      <TouchableOpacity style={styles.button} activeOpacity ={0.75}
-       onPress ={() => this.props.navigation.navigate('CalendarHistory')}
+       onPress={() =>  this.handleSubmit()}
      >
        <Text style={styles.textButton}>บันทึก</Text>
      </TouchableOpacity>
@@ -170,7 +252,7 @@ textDate: {
       marginLeft: -190
 },
 
-textEmoji: {
+textTitle: {
      color: '#000000',
      fontSize: 14,
      fontFamily: 'Quark',
@@ -286,4 +368,12 @@ button:{
 
 });
 
-export default DiaryScreen;
+const mapStateToProps=(state,props)=>{
+  return{
+ 
+   userdata:state.Questions.userdata, 
+   currentFeelID:state.Questions.currentFeelID,
+ }
+}
+
+export default connect(mapStateToProps)(DiaryScreen);

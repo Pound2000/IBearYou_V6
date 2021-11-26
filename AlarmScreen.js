@@ -6,7 +6,11 @@ import SwitchToggle from "react-native-switch-toggle";
 import ToggleSwitch from 'toggle-switch-react-native';
 
 
+import axios from 'axios';
 import CustomHeader from './CustomHeader';
+import {API_URL} from './config'
+import moment from 'moment';
+import {connect} from 'react-redux';
 
 
 class AlarmScreen extends Component {
@@ -18,6 +22,25 @@ class AlarmScreen extends Component {
     };
     this.edit = false;
   }
+
+loadHeal_Sentence=async()=>{
+   console.log("loadHeal_Sentence");
+    const userData ={} 
+    userData.user_id="27"
+    const data =  {"user_id": this.props.userdata.user_id};
+    const endpoint = `${API_URL}/api/list-heal_sentence`;
+     console.log('endpoint : ',endpoint)
+    const res = await axios.get(endpoint,{params:data}) 
+       if(res.data.message==="Success"){
+          console.log("Success")
+          console.log("user_data: ",res.data.data)
+         //this.props.navigation.navigate('HomeApp') 
+        }
+        else  if(res.data.message==="Fail") {
+        } 
+
+}
+
 
   switchToggle = () => {
      this.setState({
@@ -33,8 +56,13 @@ class AlarmScreen extends Component {
     console.log ('edit!')
   }
 
+  componentDidMount(){
+    console.log("componentDidmount AlarmScreen this.props.userdata : ",this.props.userdata);
+    this.loadHeal_Sentence();
+}
 
   render() {
+const {userdata}= this.props
 
 const editAlarm = this.state.edit
 
@@ -225,9 +253,13 @@ const styles = StyleSheet.create({
     flex: 1,
   }
 
-
-
-
 });
 
-export default AlarmScreen;
+const mapStateToProps=(state,props)=>{
+  return{
+ 
+   userdata:state.Questions.userdata, 
+ }
+}
+
+export default connect(mapStateToProps)(AlarmScreen);

@@ -3,17 +3,82 @@ import { StyleSheet, View, Text, Image, SafeAreaView, Button
        , TouchableHighlight,TouchableOpacity, Dementions
        , TextInput}
        from 'react-native';
-
+import moment from 'moment';
+import axios from 'axios';
 import CustomHeader from './CustomHeader';
+import {API_URL} from './config'
+import {connect} from 'react-redux';
 
 class EditDiaryScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = {title : '',
+                  good : '',
+                  bad : '',
+                  wish : '',
     };
   }
 
+ componentDidMount(){
+   this.loadHistory_Diary()
+    
+ }
+  
+loadHistory_Diary=async()=>{
+   console.log("EditDiaryScreen");
+    const userData ={} 
+    userData.user_id="27"
+    const data = JSON.stringify({
+  "user_id": "27","first_name":"first_name","last_name":"last_name"
+});
+    const endpoint = `${API_URL}/api/list-diary`;
+     console.log('endpoint : ',endpoint)
+    const res = await axios.get(endpoint,{params:data}) 
+       if(res.data.message==="Success"){
+          console.log("Success")
+          console.log("user_data: ",res.data.data)
+         //this.props.navigation.navigate('HomeApp') 
+        }
+        else  if(res.data.message==="Fail") {
+        } 
+
+}
+
+ 
+handleSubmit = async(event) => {
+    //event.preventDefault();
+     console.log("handleSubmit")
+     console.log("this.props.currentFeelID", this.props.currentFeelID)
+     console.log("this.state.first_name  : ", this.state.first_name)
+      this.setState ({
+      title : this.state.title,
+      good : this.state.good,
+      bad : this.state.bad,
+      wish : this.state.wish,
+    }); 
+    const createDiary = {}
+    createDiary.diary_id= this.props.userdata.user_id
+    createDiary.title =this.state.title
+    createDiary.good =this.state.good
+    createDiary.bad =this.state.bad
+    createDiary.wish =this.state.wish
+
+    axios.post(API_URL+'/api/edit_diary', createDiary)
+      .then(res => { 
+          console.log(res.data);
+        if(res.data.message==="Success"){
+          console.log("Success")
+         this.props.navigation.navigate('Calendar') 
+        }
+        else  if(res.data.message==="create fail") {
+          console.log("create fail")
+        }
+      })
+  }
+
+
   render() {
+    const {userdata}= this.props
     return (
 <SafeAreaView style={{ flex: 1,backgroundColor: '#EAD6A4' }}>
    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -66,11 +131,11 @@ class EditDiaryScreen extends Component {
 
 <View style={{marginTop: 5}}>
  <View>
-<Text style={styles.textDate}>10 กันยายน 2564</Text>
+<Text style={styles.textDate}>11 กันยายน 2564</Text>
  </View>
 <View style={styles.buttonEmoji}>
 <TouchableOpacity activeOpacity={0.75}>
-     <Text style={styles.textEmoji}>เลือกอิโมจิในวันนี้ของเธอ</Text>
+     <Text style={styles.textEmoji}>ชื่อเรื่องราวของเธอ</Text>
       <Image source={require('./assets/images/pencil.png')}
    style={{width: 10.32,height:10.32,marginTop: -15,marginLeft:310}}
    resizeMode='contain'
@@ -276,4 +341,7 @@ button:{
 
 
 });
+
+
+
 export default EditDiaryScreen;
