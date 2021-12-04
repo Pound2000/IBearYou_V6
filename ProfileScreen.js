@@ -23,7 +23,7 @@ class ProfileScreen extends Component {
       <Text>Profile!</Text>
            <TouchableOpacity
         style={{marginTop: 20}}
-         onPress={() => this.props.navigation.navigate('Login')}
+         onPress={() => this.props.navigation.navigate('Welcome')}
         >
         <Text>Sign out</Text>
       </TouchableOpacity>

@@ -9,8 +9,6 @@ import thunk from 'redux-thunk';
 import Choices from './Choices';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 
-import Register_copy from './RegisterScreen_copy';
-
 import CustomHeader from './CustomHeader';
 import HomeScreen from './HomeScreen';
 import CalendarScreen from './CalendarScreen';
@@ -193,6 +191,7 @@ export default function App() {
       <StackApp.Screen name='Welcome' component={WelcomeScreen} options={navOptionHandler}/>
       <StackApp.Screen name='Login' component={LoginScreen} options={navOptionHandler}/>
       <StackApp.Screen name='Register_copy' component={Register_copy} options={navOptionHandler}/>
+      <StackApp.Screen name='Register' component={RegisterScreen} options={navOptionHandler}/>
       <StackApp.Screen name='HomeApp' component={DrawerNavigator} options={navOptionHandler}/>
      </StackApp.Navigator>
     </NavigationContainer>

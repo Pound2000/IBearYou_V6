@@ -2,62 +2,155 @@ import React, {Component} from 'react';
 import { StyleSheet, View, Text, Image, SafeAreaView, Button, Modal
        , TouchableHighlight,TouchableOpacity, Dementions, TextInput,Separator}
        from 'react-native';
-import CustomHeader from './CustomHeader';
-import DateTimePicker from '@react-native-community/datetimepicker';
+
 import moment from 'moment';
+import axios from 'axios';
+import CustomHeader from './CustomHeader';
+import {API_URL} from './config'
+import {connect} from 'react-redux';
 
 
 class RegisterScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {       firstname : '',
-                          lastname : '',
-                          date : '',
+    this.state = {        first_name : '',
+                          last_name : '',
                           email : '',
-                          username : '',
+                          user_name : '',
                           password : ''
+                          
+
      };
   }
 
-  setDate= () => {
+    componentDidMount(){
+  console.log("componentDidmount GoodScreen this.props.userdata : ",this.props.userdata);
+}
+
+
+     InputFirstname = () => {
      this.setState({
-       show : !this.state.date
+       first_name: !this.state.first_name
      })
       console.log ('selected seccess!')
   }
 
-  selectedDate = () => {
-    setDate(selectedDate);
+    InputLastname = () => {
+     this.setState({
+       last_name: !this.state.last_name
+     })
+      console.log ('selected seccess!')
   }
 
+    InputDate= () => {
+     this.setState({
+       date: !this.state.date
+     })
+      console.log ('selected seccess!')
+  }
+
+   InputEmail= () => {
+     this.setState({
+       email: !this.state.email
+     })
+      console.log ('selected seccess!')
+  }
+
+  InputUsername = () => {
+     this.setState({
+       user_name: !this.state.user_name
+     })
+      console.log ('selected seccess!')
+  }
+
+InputPassword = () => {
+     this.setState({
+       password: !this.state.password
+     })
+      console.log ('selected seccess!')
+  }
+
+   handleSubmit = async(event) => {
+    //event.preventDefault();
+     console.log("handleSubmit")
+     console.log("this.state.first_name  : ", this.state.first_name)
+      this.setState ({
+      first_name : this.state.first_name,
+      last_name : this.state.last_name,
+      email : this.state.email,
+      user_name : this.state.user_name,
+      password : this.state.password,
+    
+    }); 
+    /*const pass256 = crypto
+                    .createHmac('sha256',process.env.SHA256_SALT)
+                    .update(String(this.state.password).trim())
+                    .digest('hex') */
+    /*  const pass256 =()=>{
+        return new Promise((resolve,reject)=>{
+          sha256(this.state.password+process.env.SHA256_SALT).then(hash=>{
+            console.log('hash : ',hash)
+            resolve(hash)
+          })
+        })
+      }*/
+     //let pass256 =""
+    /*await sha256("Test").then( hash => {
+    console.log(hash);
+})*/
+    const userData ={}
+    userData.first_name =this.state.first_name
+    userData.last_name =this.state.last_name
+    userData.user_name=this.state.user_name
+    userData.email =this.state.email
+    userData.password = String(this.state.password).trim() 
+
+    axios.post(API_URL+'/api/register', userData)
+      .then(res => { 
+       // console.log(res.data);
+        if(res.data.message==="Success"){
+          console.log("Success")
+          this.props.navigation.navigate('Login') 
+        }
+        else  if(res.data.message==="DuplicateEmailOrUserName or Email") {
+         console.log("DuplicateEmailOrUserName or Email")
+        }
+      })
+  }
+
+
   render() {
+      const {userdata}= this.props
   return (
       <SafeAreaView style={[styles.container, containerStyle]}>
      
 <View style={{flex: 1, alignItems : 'flex-start'}}>
- <CustomHeader title='Register_copy'  navigation={this.props.navigation}/>
+ <CustomHeader title='Register'  navigation={this.props.navigation}/>
  </View>
+
 
 <View style={{flex: 1, alignItems: 'center'}}>
 <Image source={require('./assets/images/snow-3.png')} 
-style={{width:390, height: 240, marginTop: -170}}
+style={{width:390, height: 240, marginTop: -55}}
 />
 </View>
 
-<View style={{flex:1,marginLeft: -20}}>
+
+<View style={{flex:1,marginLeft: -20,marginTop: 130}}>
       <View style={{ flexDirection: 'row',alignItems: 'center',justifyContent: 'space-between',marginBottom: 20}}>
-          { !this.state.firstname ?
+          { !this.state.first_name ?
           <View style={{marginLeft: 10}}>
           <View>
             <Image source={require('./assets/images/Name.png')}
               style ={{width: 20, height: 25,marginTop: 0,marginBottom: -30,marginLeft:10}}/>
           </View>
 
+
             <TextInput
-              placeholder="ชื่อจริง"
+              placeholder="Firstname"
               placeholderTextColor="#707070"
-              defaultValue={this.state.firstname}
-              onChangeText={firstname=>this.setState({firstname})} 
+              defaultValue={this.state.first_name}
+              onChangeText={first_name=>this.setState({first_name})} 
               style = {styles.TextInputName_true}
               autoCapitalize='none'
               value = {this.state.InputFirstname}
@@ -71,10 +164,10 @@ style={{width:390, height: 240, marginTop: -170}}
           </View>
 
             <TextInput
-              placeholder="ชื่อจริง"
+              placeholder="Firstname"
               placeholderTextColor="#707070"
-              defaultValue={this.state.firstname}
-              onChangeText={firstname=>this.setState({firstname})} 
+              defaultValue={this.state.first_name}
+              onChangeText={first_name=>this.setState({first_name})} 
               style = {styles.TextInputName_fault}
               autoCapitalize='none'
               value = {this.state.InputFirstname}
@@ -82,13 +175,13 @@ style={{width:390, height: 240, marginTop: -170}}
               </View>
   }
 
-  {  !this.state.lastname ?      
+  {  !this.state.last_name ?      
           <View style={{marginLeft: 10}}>
             <TextInput
-              placeholder="นามสกุล"
+              placeholder="Lastname"
               placeholderTextColor="#707070"
-              defaultValue={this.state.lastname}
-              onChangeText={lastname=>this.setState({lastname})} 
+              defaultValue={this.state.last_name}
+              onChangeText={last_name=>this.setState({last_name})} 
               style = {styles.TextInputLastname_true}
               autoCapitalize='none'
               value = {this.state.InputLastname}
@@ -97,10 +190,10 @@ style={{width:390, height: 240, marginTop: -170}}
            :
             <View style={{marginLeft: 10}}>
             <TextInput
-              placeholder="นามสกุล"
+              placeholder="Lastname"
               placeholderTextColor="#707070"
-              defaultValue={this.state.lastname}
-              onChangeText={lastname=>this.setState({lastname})} 
+              defaultValue={this.state.last_name}
+              onChangeText={last_name=>this.setState({last_name})} 
               style = {styles.TextInputLastname_fault}
               autoCapitalize='none'
               value = {this.state.InputLastname}
@@ -109,50 +202,6 @@ style={{width:390, height: 240, marginTop: -170}}
        
   }
          </View>
-</View>
-
-<View style={{flex:1}}>
-
-      <TouchableOpacity onPress={() => console.log('selected date')}>
-         
-         <View>
-            <Image source={require('./assets/images/Date.png')}
-              style ={{width: 30, height: 23,marginTop: -6,marginBottom: -30}}/>
-          </View>
-
-            <View style = {styles.TextInput_true}>  
-            <Text style = {styles.textDate}>วันเกิด</Text> 
-                <Text>{moment().format('YYYY-MM-DD')}</Text> 
-            </View>
-            
-                <Modal
-                  transparent={true}
-                  animationType='slide'
-                  visible={this.state.setDate}
-                  supportedOrientations={['portrait']}
-                  onRequestClose={() => setDate(false)}>
-                <View style={{flex:1}}>
-                  <TouchableHighlight onPress={() => setDate(false)} visible={this.state.setDate}
-                    style={{flex:1,flexDirection: 'row',alignItems:'flex-end',}}>
-                      <TouchableHighlight onPress={() => console.log('datepicker clicked')} 
-                      underlayColor={'#FFFFFF'} 
-                      style={{flex:1,borderTopColor: '#E9E9E9',borderTopWidth: 1}}>
-                        <View style={{backgroundColor:'#FFFFFF',height: 256, overflow: 'hidden'}}>
-                            <View style={{marginTop: 20}}>
-                              <DateTimePicker
-                                timeZoneOffsetMinutes={0}
-                                value={new Date(this.state.date)}
-                                mode='date'
-                                minimumDate={new Date(moment().subtract(120, 'years').format('YYYY-MM-DD'))}
-                                //maximumDate={selectedDate()}
-                              />
-                            </View>
-                        </View>
-                      </TouchableHighlight>
-                  </TouchableHighlight>
-                </View>
-               </Modal>
-   </TouchableOpacity>
 </View>
 
 <View style={{flex:1}}>
@@ -165,7 +214,7 @@ style={{width:390, height: 240, marginTop: -170}}
 
           
             <TextInput
-              placeholder="อีเมล"
+              placeholder="Email"
               placeholderTextColor="#707070"
               defaultValue={this.state.email}
               onChangeText={email=>this.setState({email})} 
@@ -184,7 +233,7 @@ style={{width:390, height: 240, marginTop: -170}}
 
             
             <TextInput
-              placeholder="อีเมล"
+              placeholder="Email"
               placeholderTextColor="#707070"
               defaultValue={this.state.email}
               onChangeText={email=>this.setState({email})} 
@@ -198,7 +247,7 @@ style={{width:390, height: 240, marginTop: -170}}
 </View> 
 
 <View style={{flex:1}}>
-{ !this.state.username ?
+{ !this.state.user_name ?
           <View>
            <View>
             <Image source={require('./assets/images/People.png')}
@@ -207,13 +256,13 @@ style={{width:390, height: 240, marginTop: -170}}
 
           
             <TextInput
-              placeholder="ชื่อผู้ใช้งาน"
+              placeholder="Username"
               placeholderTextColor="#707070"
-              defaultValue={this.state.username}
-              onChangeText={username=>this.setState({username})} 
+              defaultValue={this.state.user_name}
+              onChangeText={user_name=>this.setState({user_name})} 
               style = {styles.TextInput_true}
               autoCapitalize='none'
-              value = {this.state.InputEmail}
+              value = {this.state.InputUsername}
               />
             
             </View>
@@ -226,13 +275,13 @@ style={{width:390, height: 240, marginTop: -170}}
 
             
             <TextInput
-              placeholder="ชื่อผู้ใช้งาน"
+              placeholder="Username"
               placeholderTextColor="#707070"
-              defaultValue={this.state.username}
-              onChangeText={username=>this.setState({username})} 
+              defaultValue={this.state.user_name}
+              onChangeText={user_name=>this.setState({user_name})} 
               style = {styles.TextInput_fault}
               autoCapitalize='none'
-              value = {this.state.InputEmail}
+              value = {this.state.InputUsername}
               />
               
               </View>
@@ -249,13 +298,14 @@ style={{width:390, height: 240, marginTop: -170}}
 
           
           <TextInput
-         placeholder="รหัสผ่าน"
+          placeholder="Password"
           placeholderTextColor="#707070"
           defaultValue={this.state.password}
           onChangeText={password=>this.setState({password})}
-         secureTextEntry={true}
-         style = {styles.TextInput_true}
+          secureTextEntry={true}
+          style = {styles.TextInput_true}
           autoCapitalize='none'
+          value = {this.state.InputPassword}
          />
             
             </View>
@@ -267,48 +317,38 @@ style={{width:390, height: 240, marginTop: -170}}
             </View>
             
         <TextInput
-         placeholder="รหัสผ่าน"
+          placeholder="Password"
           placeholderTextColor="#707070"
           defaultValue={this.state.password}
           onChangeText={password=>this.setState({password})}
-         secureTextEntry={true}
-         style = {styles.TextInput_fault}
+          secureTextEntry={true}
+          style = {styles.TextInput_fault}
           autoCapitalize='none'
+          value = {this.state.InputPassword}
          />
               
               </View>
   }
 </View> 
 
-
-
-    <View style={{ flexDirection: 'row',alignItems: 'center',justifyContent: 'space-between',marginBottom: 20}}>
-      
-       <View style={ styles.bullet }>
-            <Text style={{marginRight: 5}}>{'\u2022'}</Text>
-        </View>
-      <Text style={{fontSize: 12}}>Contain at least 6 letter</Text>
-      <Text style={{fontSize: 12,marginLeft: 72}}>Contain at least 1 number</Text>
-    </View>
-
     <View style = {styles.button}>
-   <TouchableOpacity onPress={() => this.props.navigation.navigate('HomeApp')}>
+   <TouchableOpacity onPress={() => this.handleSubmit()}>
     <View style = {styles.buttonRegister}>  
-           <Text style = {styles.textRegister}>สร้างบัญชีผู้ใช้งาน</Text>  
+           <Text style = {styles.textRegister}>Sign up</Text>  
        </View>  
    </TouchableOpacity >
  
   <View style={{flexDirection: 'row', alignItems: 'center'}}>
  <View style={{width: 170, height: 1, backgroundColor: '#EA8681',marginTop: 12}} />
    <View>
-     <Text style = {styles.textOr}> หรือ </Text>
+     <Text style = {styles.textOr}> or </Text>
    </View>
    <View style={{width: 170, height: 1 ,backgroundColor: '#EA8681',marginTop: 12}} />   
 </View>
  
  <TouchableOpacity    onPress={() => this.props.navigation.navigate('Login')}>
    <View style = {styles.buttonLogin}>  
-           <Text style = {styles.textLogin}>เข้าสู่ระบบ</Text>  
+           <Text style = {styles.textLogin}>Login</Text>  
        </View>
    </TouchableOpacity>
    </View>

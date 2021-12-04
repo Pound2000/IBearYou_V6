@@ -7,7 +7,7 @@ import CustomHeader from './CustomHeader';
 import {API_URL} from './config'
 import moment from 'moment';
 import {connect} from 'react-redux';
-import {setCurrentDiaryID} from './actions/Diary'
+import {setCurrentDiaryID,setCurrentDate} from './actions/Diary'
 
 import {Calendar, LocaleConfig} from 'react-native-calendars';
   /*LocaleConfig.locales['th'] = {
@@ -23,14 +23,24 @@ class CalendarScreen extends Component {
     super(props);
     this.state = {
                     user_name: [],
+                    date: moment().format("YYYY-MM-DD"),
+                    selected_date: '',
     };
   }
 componentDidMount(){
   console.log("componentDidmount CalendarScreen this.props.userdata : ",this.props.userdata);
-  this.loadCalendarScreen();
+  //this.loadCalendarScreen();
   this.loadUsername();
   //this.loadSelect_Diary();
 }
+
+ setCurrentDiaryID = async(diaryID)=>{
+   await this.props.dispatch(setCurrentDiaryID(diaryID))
+ }
+
+  setCurrentDate = async(currentdate)=>{
+   await this.props.dispatch(setCurrentDate(currentdate))
+ }
 
 
 loadCalendarScreen=async()=>{
@@ -51,6 +61,7 @@ loadCalendarScreen=async()=>{
 }
 
 
+
 loadSelect_Diary=async()=>{
    console.log("loadSelect_Diary");
     const userData ={} 
@@ -61,8 +72,6 @@ loadSelect_Diary=async()=>{
        if(res.data.message==="Success"){
           console.log("Success")
           console.log("user_data: ",res.data.data)
-        //this.setState({"heal_sentenceData":res.data.data})
-        //console.log("this.state.heal_sentenceData ",this.state.heal_sentenceData) 
          //this.props.navigation.navigate('HomeApp') 
         }
         else  if(res.data.message==="Fail") {
@@ -72,16 +81,10 @@ loadSelect_Diary=async()=>{
 }
 
 
-
- setCurrentDiaryID = async(diaryID)=>{
-   await this.props.dispatch(setCurrentDiaryID(diaryID))
- }
-
-
  loadUsername=async()=>{
    console.log("list_username");
     const userData ={} 
-    const data =  {"user_id": this.props.userdata.user_id};;
+    const data =  {"user_id": this.props.userdata.user_id};
     const endpoint = `${API_URL}/api/list-user_name`;
      console.log('endpoint : ',endpoint)
     const res = await axios.get(endpoint,{params:data}) 
@@ -96,18 +99,13 @@ loadSelect_Diary=async()=>{
         } 
 
 }
- 
 
 
 
   render() {
     const {userdata}= this.props
 
-    const Feel_VeryGood = {key: 'Feel_VeryGood ', color: 'red', selectedDotColor: '#70BA97'};
-    const Feel_Good = {key: 'Feel_Good', color: 'blue', selectedDotColor: 'blue'};
-    const Feel_Indifferent = {key: 'Feel_Indifferent', color: 'green'};
-    const Feel_Bad = {key: 'Feel_Bad', color: 'blue', selectedDotColor: 'blue'};
-    const Feel_VeryBad = {key: 'Feel_VeryBad', color: 'green'};
+    
    return (
      <SafeAreaView style={{ flex: 1,backgroundColor: '#EAD6A4' }}>
      <CustomHeader title='Calendar' isHome={true} navigation={this.props.navigation}/>
@@ -132,6 +130,19 @@ loadSelect_Diary=async()=>{
   }
     }}
 
+ //onDayPress={(response) => console.log(response)}
+markedDates={{
+  [this.state.selected_date]: {
+    selected: true,
+    disableTouchEvent: true,
+    selectedColor: '#FFFFFF',
+    selectedTextColor: '#00000',
+  },
+
+  '2021-11-29': {selected: true,selectedColor: '#CB6863',selectedTextColor: '#FFFFFF'},
+}}
+onDayPress={(day) =>  this.setState({selected_date: day.dateString})}
+
 /*dayComponent={({date, state}) => {
     return (
       <View>
@@ -153,12 +164,13 @@ loadSelect_Diary=async()=>{
 
   }}
   */
-
+/*
     markingType={'multi-dot'}
   markedDates={{
     '2021-11-25': {dots: [Feel_VeryGood], selected: true, selectedColor: '#FFFFFF'},
     '2021-11-19': {disabled: true}
   }}
+  */
 
    /*markedDates={{
     '2021-10-20': {
@@ -187,6 +199,7 @@ loadSelect_Diary=async()=>{
 
   
   />
+
 
 
 

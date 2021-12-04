@@ -14,38 +14,161 @@ import moment from 'moment';
  
  
 class Choices extends Component {
- constructor(props, context) {
-       super(props, context);
-   }
+  constructor(props) {
+    super(props);
+    this.state = { choiceData: [],
+      
+    };
+  }
 
   componentDidMount(){
   console.log("componentDidmount ChoiceScreen this.props.userdata : ",this.props.userdata);
+  //this.loadHeal_Sentence();
+  //this.loadChoices();
+  //this.loadQuestionType();
+  //this.loadQuestions();
+  //this.loadQuestionnnaires();
+  //this.loadQuestionnnaire_Question();
+  this.loadAllCard();
 }
-/*
-   loadHeal_Sentence=async()=>{
-   console.log("loadHeal_Sentence");
-    const userData ={} 
-    userData.user_id="27"
-    const data = JSON.stringify({
-  "user_id": "27","first_name":"first_name","last_name":"last_name"
-});
-    const endpoint = API_URL+'/api/list-heal_sentence';
-     console.log('endpoint : ',endpoint)
+
+
+
+loadChoices=async()=>{ 
+     console.log("load choices");
+    const data =  {"user_id": this.props.userdata.user_id};
+    const endpoint = `${API_URL}/api/list-choices`; 
     const res = await axios.get(endpoint,{params:data}) 
        if(res.data.message==="Success"){
           console.log("Success")
           console.log("user_data: ",res.data.data)
+          this.setState({"choiceData":res.data.data})
+          console.log("this.state.choiceData ",this.state.choiceData)
          //this.props.navigation.navigate('HomeApp') 
         }
         else  if(res.data.message==="Fail") {
         } 
 
 }
- componentDidMount(){
-   this.loadHeal_Sentence()
-    
- }
- */
+
+loadQuestionType=async()=>{ 
+     console.log("load questiontype");
+    const data =  {"user_id": this.props.userdata.user_id};
+    const endpoint = `${API_URL}/api/list-question_type`; 
+    const res = await axios.get(endpoint,{params:data}) 
+       if(res.data.message==="Success"){
+          console.log("Success")
+          console.log("user_data: ",res.data.data)
+          //this.setState({"choiceData":res.data.data})
+          //console.log("this.state.choiceData ",this.state.choiceData)
+         //this.props.navigation.navigate('HomeApp') 
+        }
+        else  if(res.data.message==="Fail") {
+        } 
+
+}
+
+loadQuestions=async()=>{ 
+     console.log("load questions");
+    const data =  {"user_id": this.props.userdata.user_id};
+    const endpoint = `${API_URL}/api/list-question`; 
+    const res = await axios.get(endpoint,{params:data}) 
+       if(res.data.message==="Success"){
+          console.log("Success")
+          console.log("user_data: ",res.data.data)
+          //this.setState({"choiceData":res.data.data})
+          //console.log("this.state.choiceData ",this.state.choiceData)
+         //this.props.navigation.navigate('HomeApp') 
+        }
+        else  if(res.data.message==="Fail") {
+        } 
+
+}
+
+loadQuestionnnaires=async()=>{ 
+     console.log("load questionnires");
+    const data =  {"user_id": this.props.userdata.user_id};
+    const endpoint = `${API_URL}/api/list-questionnaires`; 
+    const res = await axios.get(endpoint,{params:data}) 
+       if(res.data.message==="Success"){
+          console.log("Success")
+          console.log("user_data: ",res.data.data)
+          //this.setState({"choiceData":res.data.data})
+          //console.log("this.state.choiceData ",this.state.choiceData)
+         //this.props.navigation.navigate('HomeApp') 
+        }
+        else  if(res.data.message==="Fail") {
+        } 
+
+}
+
+loadQuestionnnaire_Question=async()=>{ 
+     console.log("load questionnire question");
+    const data =  {"user_id": this.props.userdata.user_id};
+    const endpoint = `${API_URL}/api/list-questionnaire_question`; 
+    const res = await axios.get(endpoint,{params:data}) 
+       if(res.data.message==="Success"){
+          console.log("Success")
+          console.log("user_data: ",res.data.data)
+          //this.setState({"choiceData":res.data.data})
+          //console.log("this.state.choiceData ",this.state.choiceData)
+         //this.props.navigation.navigate('HomeApp') 
+        }
+        else  if(res.data.message==="Fail") {
+        } 
+
+}
+
+//เอาไว้คำนวณคะแนน
+loadAllCard=async()=>{ 
+     console.log("load all card");
+    const data =  {"user_id": this.props.userdata.user_id};
+    const endpoint = `${API_URL}/api/list-card`; 
+    const res = await axios.get(endpoint,{params:data}) 
+       if(res.data.message==="Success"){
+          console.log("Success")
+          console.log("user_data: ",res.data.data)
+          //this.setState({"choiceData":res.data.data})
+          //console.log("this.state.choiceData ",this.state.choiceData)
+         //this.props.navigation.navigate('HomeApp') 
+        }
+        else  if(res.data.message==="Fail") {
+        } 
+
+}
+
+// กดส่งคำตอบ
+handleSubmit = async(event) => {
+    //event.preventDefault();
+     console.log("handleSubmit")
+     console.log("this.state.first_name  : ", this.state.first_name)
+      this.setState ({
+      user_prompt : this.state.user_prompt,
+      final_score : this.state.final_score,
+      quesionnaire_id : "22",
+      card_id : "10",
+    }); 
+    const resultData = {}
+    resultData.user_id= this.props.userdata.user_id
+    resultData.title =this.state.title
+    resultData.good =this.state.good
+    resultData.bad =this.state.bad
+    resultData.wish =this.state.wish
+    resultData.feel_id = this.props.currentFeelID
+
+    axios.post(API_URL+'/api/result', resultData)
+      .then(res => { 
+          console.log(res.data);
+        if(res.data.message==="Success"){
+          console.log("Success")
+         this.props.navigation.navigate('CalendarHistory') 
+        }
+        else  if(res.data.message==="create fail") {
+          console.log("create fail")
+        }
+      })
+  }
+ 
  nextQuestion=async()=>{
    const currentIndex = this.props.questions.findIndex(e=>e.questionId === this.props.questionId)
    if(currentIndex>=this.props.questions.length-1) return;

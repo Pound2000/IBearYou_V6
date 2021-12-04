@@ -122,7 +122,7 @@ class WelcomeScreen extends Component {
 
            <TouchableOpacity
         style={{marginTop: 20}}
-         onPress={() => this.props.navigation.navigate('Register_copy')}
+         onPress={() => this.props.navigation.navigate('Register')}
         >
        <View style = {styles.buttonRegister}>  
            <Text style = {styles.textRegister}>Sign up</Text>  

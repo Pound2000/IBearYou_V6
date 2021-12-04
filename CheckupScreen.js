@@ -79,10 +79,13 @@ class CheckupScreen extends Component {
    this.state = {
      title:'',
      checkupSwitch:'',
+     checked:0,
    };
   }
  componentDidMount(){
    console.log("componentDidmount CheckupScreen");
+   console.log("componentDidmount CheckupScreen this.props.userdata : ",this.props.userdata);
+   
  }
  async setfirstquestion(){
    	   
@@ -131,11 +134,6 @@ class CheckupScreen extends Component {
    //console.log("this.props.currentQuestion :",this.props.currentQuestion)
    this.props.navigation.navigate('Choices') 
   }
-
-// userdata
-   componentDidMount(){
-  console.log("componentDidmount CheckupScreen this.props.userdata : ",this.props.userdata);
-}
   
 
   render() {
@@ -233,6 +231,9 @@ class CheckupScreen extends Component {
      </View>
    
 
+
+
+
       <View style = {styles.button}>
           <TouchableOpacity
         style={{marginTop: 20}} activeOpacity={0.75}
@@ -248,6 +249,45 @@ class CheckupScreen extends Component {
      </SafeAreaView>
   );
   }
+
+choice_List(){
+
+   return this.state.listSoundData.map((data,key) => {
+      return (
+   
+          
+         <View key={key}>
+            {this.state.checked == key ?
+     <View>
+          <View style={styles.choices_Box_Click}>
+                <TouchableOpacity activeOpacity={1}>
+                    <Image source={require('./assets/images/radioBt-2.png')}
+                           style={{width:23,height:23,marginTop: 10,marginLeft:280}} />      
+                </TouchableOpacity>
+                <Text style={styles.textChoices}>wwwww</Text>
+          </View>              
+   </View>
+                :
+        <View>
+          <View style={styles.choices_Box}>
+                <TouchableOpacity onPress={()=>{this.setState({checked: key})}} activeOpacity={1}>
+                    <Image source={require('./assets/images/radioBt-1.png')}
+                           style={{width:23,height:23,marginTop: 10,marginLeft:280}} />      
+                </TouchableOpacity>
+                <Text style={styles.textChoices}>wwwww</Text>
+          </View>   
+      </View>
+            }
+        </View>
+ 
+      
+      )
+    })
+
+  }
+
+
+
 }
 const containerStyle = {
        backgroundColor: '#4C6FAF',
@@ -357,7 +397,43 @@ const styles = StyleSheet.create({
      fontSize: 20,
      fontFamily: 'Quark',
      fontWeight: 'bold',
-   }
+   },
+
+   choices_Box_Click: {
+      alignItems: 'center',
+      width: 350,
+      height: 45,
+      backgroundColor: '#FFFFFF',
+      borderRadius: 10,
+      shadowColor: '#E79995',
+      shadowOffset: { width: 0, height: 5 },
+      shadowOpacity:  1,
+      shadowRadius:0,
+      elevation: 2,
+      marginTop: -45,
+      marginBottom: 70
+   },
+
+      choices_Box: {
+      alignItems: 'center',
+      width: 350,
+      height: 45,
+      backgroundColor: '#FFFFFF',
+      borderRadius: 10,
+      marginTop: -45,
+      marginBottom: 70
+   },
+
+    textChoices: {
+     color: '#000000',
+     fontSize: 18,
+     fontFamily: 'Quark',
+     marginTop: -33,
+     marginLeft:-250,
+     flexWrap: 'wrap',
+     padding: 10,
+   },
+   
  
 });
 const mapStateToProps=(state,props)=>{

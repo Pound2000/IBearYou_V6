@@ -19,7 +19,7 @@ class DiaryHistoryScreen extends Component {
 
  componentDidMount(){
   console.log("componentDidmount BadScreen this.props.userdata : ",this.props.userdata);
-  this.loadHistory_Diary();
+  //this.loadHistory_Diary();
 }
 
 loadHistory_Diary=async()=>{
@@ -46,9 +46,8 @@ loadHistory_Diary=async()=>{
     const {userdata}= this.props
     return (
 
- <SafeAreaView style={{ flex: 1 ,backgroundColor: '#EAD6A4'}}>
-     
-<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+<SafeAreaView style={{ flex: 1,backgroundColor: '#EAD6A4' }}>
+   <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 
 <View style={{flex: 1, marginTop : -610}}>
  <View style={{flex: 1, alignItems: 'center',}}> 
@@ -70,8 +69,6 @@ loadHistory_Diary=async()=>{
 
 </View>
 
-
-
 <View style={{marginTop: 320}}>
  
 
@@ -82,7 +79,7 @@ loadHistory_Diary=async()=>{
 <View >
 
 
-<View style={{flex: 1}}>
+<View style={{flex: 1,marginTop:-40}}>
 
   <View style={styles.page}></View>
 
@@ -94,24 +91,22 @@ loadHistory_Diary=async()=>{
 <View style={{marginTop: 270}}>
  <View style={{flex: 1}} >
  <Image source={require('./assets/images/line.png')}
-   style={{width: 290,height:256,marginTop: 220,marginLeft: 60}}
+   style={{width: 290,height:256,marginTop: 220,marginLeft: 35}}
    resizeMode='contain' />  
  </View>
 
-
-<View style={{marginTop: -195}}>
+<View style={{marginTop: 5}}>
  <View>
 <Text style={styles.textDate}>11 กันยายน 2564</Text>
  </View>
 <View style={styles.buttonEmoji}>
-<TouchableOpacity activeOpacity={0.75}>
-     <Text style={styles.textEmoji}>เลือกอิโมจิในวันนี้ของเธอ</Text>
+
+     <Text style={styles.textEmoji}>ชื่อเรื่องราวของเธอ</Text>
       <Image source={require('./assets/images/pencil.png')}
    style={{width: 10.32,height:10.32,marginTop: -15,marginLeft:310}}
-   resizeMode='contain'
-  
+   resizeMode='contain'  
     />
-  </TouchableOpacity>
+
   </View>
 </View>
 
@@ -120,34 +115,19 @@ loadHistory_Diary=async()=>{
 
 <View style={{flex: 1,marginTop: -11}}>
   <Text style={styles.textType}>เรื่องราวที่ดี</Text>
-   <TextInput placeholder="เขียนบันทึกเรื่องราวที่ดี"
-            placeholderTextColor="#707070"
-            autoCapitalize='none'
-            onchangeText={ (good) => this.setState({good}) }
-            style={styles.textContent}
- />
+   <Text style={styles.textContent}>เขียนบันทึกเรื่องราวที่ดี </Text> 
  </View>
 
 
  <View style={{flex: 1,marginTop: 18.5}}>
   <Text style={styles.textType}>เรื่องราวที่ไม่ดี</Text>
-   <TextInput placeholder="เขียนบันทึกเรื่องราวที่ไม่ดี"
-            placeholderTextColor="#707070"
-            autoCapitalize='none'
-            onchangeText={ (bad) => this.setState({bad}) }
-            style={styles.textContent}
- />
+ <Text style={styles.textContent}>เขียนบันทึกเรื่องราวที่ไม่ดี </Text> 
   </View>
 
 
 <View style={{flex: 1,marginTop: 20.5}}>
   <Text style={styles.textType}>ความคาดหวัง</Text>
-   <TextInput placeholder="เขียนบันทึกความคาดหวัง"
-            placeholderTextColor="#707070"
-            autoCapitalize='none'
-            onchangeText={ (wish) => this.setState({wish}) }
-            style={styles.textContent}
- />
+<Text style={styles.textContent}>เขียนบันทึกควkมคาดหวัง </Text> 
 </View>
 
 
@@ -156,31 +136,21 @@ loadHistory_Diary=async()=>{
 </View>
 </View>
 
-<View style={{flex: 1,marginBottom: -35}}>
- <Image source={require('./assets/images/rain-doll.png')}
-   style={{width: 91,height:95.71,marginLeft: 10}}
-   resizeMode='contain' />  
- </View>
- 
-
-
-</View>
- 
-
-
-
-
-   <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center',marginTop:260 }}>
+<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center',marginTop:-50,marginLeft:-20 }}>
      <View>
         <TouchableOpacity 
         onPress = {() => this.props.navigation.navigate('EditDiary')}
          activeOpacity={1} activeOpacity={0.75}>
              <Image source={require('./assets/images/buttonEdit.png')}
-                    style={{width:38,height:38,marginLeft:310,marginTop: 150}} /> 
+                    style={{width:38,height:38,marginLeft:310,marginTop: 100}} /> 
         </TouchableOpacity>
     </View>
-</View> 
+</View>
 
+
+</View>
+ 
+   
     </SafeAreaView>
 
 
@@ -272,7 +242,7 @@ button:{
       shadowOpacity:  0.3,
       shadowRadius:3,
       elevation: 2,
-      marginLeft: 0,
+      marginLeft: -25,
       marginTop: 465,
     },
 
@@ -295,7 +265,7 @@ button:{
       shadowRadius:3,
       elevation: 2,
       marginTop: -394,
-      marginLeft: 0,
+      marginLeft: -25,
     },
 
     textType: {
@@ -310,50 +280,7 @@ button:{
       flex: 1,
       marginTop: -30,
     
-    },
-
-           Good:{
-      width: 354,
-      height: 47,
-      backgroundColor: '#FFFFFF',
-      borderRadius: 10,
-      borderLeftColor: '#61A768',
-      borderLeftWidth: 42,
-      shadowColor: '#61A768',
-      shadowOffset: { width: 0, height: 4 },
-      shadowOpacity:  1,
-      shadowRadius:0,
-      elevation: 2,
-      marginBottom: 200,
-    },
-
-       buttonVeryGood: {
-      width: 332.11,
-      height: 50,
-      backgroundColor: '#FFFFFF',
-      borderColor: '#70BA97',
-      borderLeftWidth: 42,
-      borderRightWidth: 3,
-      borderBottomWidth: 3,
-      shadowColor: '#000000',
-      shadowOffset: { width: 0, height: 4 },
-      shadowOpacity:  0.4,
-      shadowRadius: 3,
-      elevation: 1,
-      marginTop: -69,
-      marginBottom: 15,
-      
-    },
-
-        textMood: {
-     color: '#000000',
-     fontSize: 18,
-     fontFamily: 'Quark',
-     fontWeight: 'bold',
-     marginLeft: 15,
-     marginTop: 12,
-    
-    },
+    }
 
 
 });

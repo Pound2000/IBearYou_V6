@@ -131,7 +131,7 @@ handleSubmit = async(event) => {
 
 <View style={{marginTop: 5}}>
  <View>
-<Text style={styles.textDate}>11 กันยายน 2564</Text>
+<Text style={styles.textDate}>1 กันยายน 2564</Text>
  </View>
 <View style={styles.buttonEmoji}>
 <TouchableOpacity activeOpacity={0.75}>

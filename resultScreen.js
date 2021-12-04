@@ -2,8 +2,11 @@ import React, {Component} from 'react';
 import { StyleSheet, View, Text, Image, SafeAreaView, Button
        , TouchableHighlight,TouchableOpacity, Dementions}
        from 'react-native';
-
+import axios from 'axios';
 import CustomHeader from './CustomHeader';
+import {API_URL} from './config'
+import moment from 'moment';
+import {connect} from 'react-redux';
 
 class resultScreen extends Component {
   

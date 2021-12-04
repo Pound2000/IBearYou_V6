@@ -3,7 +3,11 @@ import { StyleSheet, View, Text, Image, SafeAreaView, Button
        , TouchableHighlight,TouchableOpacity, Dementions}
        from 'react-native';
 import SwitchSelector from "react-native-switch-selector";
+import axios from 'axios';
 import CustomHeader from './CustomHeader';
+import {API_URL} from './config'
+import moment from 'moment'; 
+import {connect} from 'react-redux';
 
 
 const switchOption = [
@@ -21,12 +25,36 @@ constructor(props) {
    };
   }
 
+  componentDidMount(){
+  console.log("componentDidmount ChoiceScreen this.props.userdata : ",this.props.userdata);
+  this.loadResultHistory();
+}
+
+
+  loadResultHistory=async()=>{ 
+     console.log("load result history");
+    const data =  {"user_id": this.props.userdata.user_id};
+    const endpoint = `${API_URL}/api/list-result`; 
+    const res = await axios.get(endpoint,{params:data}) 
+       if(res.data.message==="Success"){
+          console.log("Success")
+          console.log("user_data: ",res.data.data)
+          //this.setState({"choiceData":res.data.data})
+          //console.log("this.state.choiceData ",this.state.choiceData)
+         //this.props.navigation.navigate('HomeApp') 
+        }
+        else  if(res.data.message==="Fail") {
+        } 
+
+}
+
   setSwitch(checkupSwitch) {
       this.setState({checkupSwitch:checkupSwitch});
     }
 
   
   render() {
+    const {userdata}= this.props
     return (
        <SafeAreaView style={[styles.container, containerStyle]}> 
  
@@ -148,4 +176,12 @@ const styles = StyleSheet.create({
     }
 
 });
-export default HistoryScreen;
+
+const mapStateToProps=(state,props)=>{
+  return{
+ 
+   userdata:state.Questions.userdata, 
+ }
+}
+
+export default connect(mapStateToProps)(HistoryScreen);

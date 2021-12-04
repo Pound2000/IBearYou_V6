@@ -50,7 +50,7 @@ class DiaryScreen extends Component {
           console.log(res.data);
         if(res.data.message==="Success"){
           console.log("Success")
-         this.props.navigation.navigate('CalendarHistory') 
+         this.props.navigation.navigate('Calendar') 
         }
         else  if(res.data.message==="create fail") {
           console.log("create fail")

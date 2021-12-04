@@ -72,14 +72,14 @@ loadBadScreen=async()=>{
     style={{width:552.17 ,height: 323.61,marginTop: -140}} /> 
 
     <View style={styles.date}>
-    <Text style={styles.day}>อา.</Text>
-    <Text style={styles.number}>18</Text>
-    <Text style={styles.month}>ก.ค</Text>
+    <Text style={styles.day}>จ.</Text>
+    <Text style={styles.number}>29</Text>
+    <Text style={styles.month}>พ.ค</Text>
     </View> 
 
     <View style={{marginLeft: 100,marginTop: -85}}>
-      <Text style={styles.topic}>ประโยคพิเศษประจำวันจากน้องหมี</Text>
-      <Text style={styles.sentence}>"มะม่วงยังสุก เราจะทุกข์ทำไม"</Text>
+      <Text style={styles.topic}>ประโยคพิเศษจากน้องหมี</Text>
+      <Text style={styles.sentence}>จงเคารพตัวเองให้มากพอ ที่จะเดินออกมาจากสิ่งต่าง ๆ ที่ไม่ทำให้คุณเติบโตขึ้นอีกต่อไป</Text>
     </View>
 
  </View>
@@ -147,8 +147,8 @@ loadBadScreen=async()=>{
   badList(){
 
    return this.state.badStoryData.map((data) => {
+      if(String(data.bad).trim()!=="")
       return (
-      
       <View style={{flex: 1}}>
       <Text style={styles.textDate}>{data.date}</Text>
       <View style={styles.boxContent}>
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
     },
 
     textContent: {
-      fontSize: 14,
+      fontSize: 16,
       color:'#000000',
       fontFamily: 'Quark',
       fontWeight: 'bold',
@@ -274,11 +274,13 @@ const styles = StyleSheet.create({
     },
 
       sentence: {
-      fontSize: 18,
+      fontSize: 16,
       color:'#FFFFFF',
       fontFamily: 'Quark',
-      marginLeft: 12,
-      marginTop: -3,
+      marginLeft: 0,
+      marginTop: -10,
+      flexWrap: 'wrap',
+      padding:10,
     }
 
 

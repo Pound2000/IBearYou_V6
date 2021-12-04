@@ -8,6 +8,8 @@ const initialState = {
 	goodstory:[],
 	healsentence:[],
 	currentFeelID :'',
+	currentDiaryID: '',
+	currentDate: '',
 
 
 };
@@ -29,6 +31,8 @@ export default function reducers(state=initialState, action) {
 		case 'FETCH_WISH_STORY': 
 					return { ...state, fetching: false, error: action.payload };
 		case 'FETCH_HEAL_SENTENCE': 
+					return { ...state, fetching: false, error: action.payload };
+		case 'FETCH_LIST_ALARM': 
 					return { ...state, fetching: false, error: action.payload };
 		
 			return {
@@ -54,6 +58,11 @@ export default function reducers(state=initialState, action) {
 			return {
 				...state,
 				currentDiaryID:action.payload
+			}
+		case 'SET_CURRENT_DATE' :
+			return {
+				...state,
+				currentDate:action.payload
 			}
 		case 'SET_USER_DATA' :
 			return {

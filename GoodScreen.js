@@ -84,14 +84,14 @@ loadGoodScreen=async()=>{
     style={{width:552.17 ,height: 323.61,marginTop: -140}} /> 
 
     <View style={styles.date}>
-    <Text style={styles.day}>{moment().format('dddd')}</Text>
-    <Text style={styles.number}>{moment().format('DD')}</Text>
-    <Text style={styles.month}>{moment().format('MMMM')}</Text>
+    <Text style={styles.day}>จ.</Text>
+    <Text style={styles.number}>29</Text>
+    <Text style={styles.month}>พ.ค</Text>
     </View> 
 
     <View style={{marginLeft: 100,marginTop: -85}}>
-      <Text style={styles.topic}>ประโยคพิเศษประจำวันจากน้องหมี</Text>
-      {this.heal_sentence_List()}
+      <Text style={styles.topic}>ประโยคพิเศษจากน้องหมี</Text>
+      <Text style={styles.sentence}>ขนาดมะม่วงยังสุข แล้วคุณจะทุกข์ทำไม?</Text>
     </View>
 
  </View>
@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
     },
 
     textContent: {
-      fontSize: 14,
+      fontSize: 16,
       color:'#000000',
       fontFamily: 'Quark',
       fontWeight: 'bold',

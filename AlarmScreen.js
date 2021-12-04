@@ -4,7 +4,8 @@ import { StyleSheet, View, Text, Image, SafeAreaView, Button
        from 'react-native';
 import SwitchToggle from "react-native-switch-toggle";
 import ToggleSwitch from 'toggle-switch-react-native';
-
+import DateTimePickerModel from "react-native-modal-datetime-picker";
+ 
 
 import axios from 'axios';
 import CustomHeader from './CustomHeader';
@@ -22,6 +23,11 @@ class AlarmScreen extends Component {
     };
     this.edit = false;
   }
+
+    componentDidMount(){
+    console.log("componentDidmount AlarmScreen this.props.userdata : ",this.props.userdata);
+    this.loadHeal_Sentence();
+}
 
 loadHeal_Sentence=async()=>{
    console.log("loadHeal_Sentence");
@@ -56,10 +62,7 @@ loadHeal_Sentence=async()=>{
     console.log ('edit!')
   }
 
-  componentDidMount(){
-    console.log("componentDidmount AlarmScreen this.props.userdata : ",this.props.userdata);
-    this.loadHeal_Sentence();
-}
+
 
   render() {
 const {userdata}= this.props
@@ -73,8 +76,8 @@ const editAlarm = this.state.edit
     <View style={{flex: 1,alignItems: 'center',paddingTop: 30,}}>
        
        <View style={styles.Heal_box}> 
-        <Text style={styles.Heal_title}>ประโยคพิเศษประจำวันจากน้องหมี</Text>
-          <Text style={styles.Heal_sentence}>Lorem Ipsum is simply dummy text of the printing. Loremm is simply dummy text of the printing.</Text>
+        <Text style={styles.Heal_title}>ประโยคพิเศษจากน้องหมี</Text>
+          <Text style={styles.Heal_sentence}>วันนี้อาจจะเหนื่อย และมีเรื่องให้ต้องทุกข์ใจเยอะ ตอนนี้เรามาพักสักหน่อยกันเถอะ</Text>
         </View> 
 
         <View style={{flex: 1, alignItems: 'center',}}>  
@@ -88,49 +91,52 @@ const editAlarm = this.state.edit
         <View style={styles.alarmList}>
         <View style={{flexDirection: 'row'}}>
           <Text style={styles.textAlarm}>การแจ้งเตือน</Text>
-          <View style={{marginTop: 10,marginLeft: 185}}>
-            <Switch
-              trackColor={{false: '#FFFFFF', true: '#014A5C'}}
-              thumbColor={this.state.toggle ? "#FFFFFF" : "#014A5C"}
-              ios_backgroundColor="#FFFFFF"
-              onValueChange={(value) => this.setState({toggle: value})}
-              value={this.state.toggle}
-              style={{ transform: [{ scaleX: .7 }, { scaleY: .6 }] }}
-            />
-          </View>
       </View>
+
+
 
           <View style={{width: 310, height: 1, backgroundColor: '#000000',marginTop: 8,marginLeft: 20}}></View>
         
-      <View style={{flexDirection: 'row',paddingLeft: 260,marginTop: 0}}>
+    <View style={{flexDirection: 'row',paddingLeft: 160,marginTop: 10}}>
 
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('setAlarm')}>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('setAlarm')} activeOpacity={0.75}>
                   <View style={{flex: 1, alignItems: 'center'}}>  
                     <Image source={require('./assets/images/add.png')}
-                            style={{width:19.41,height:19.41,marginLeft: 30}} />     
+                            style={{width:19.41,height:19.41,marginLeft: -65}} />     
+                  </View>
+                  <Text style={styles.textAdd}>เพิ่มรายการแจ้งเตือน</Text>
+        </TouchableOpacity>
+      </View>
+  
+
+         <View style={{flex: 1,justifyContent: 'center',marginBottom:340 }}>
+           
+        <View style={styles.buttonAlarm}>
+            <View style={{marginLeft:60,marginTop:10}}>
+              <Text style={styles.textTask}>task</Text>
+              <Text style={styles.textTime}>time</Text>
+            </View>
+              <Image source={require('./assets/images/time.png')}
+              style={{width:27 ,height:27,marginTop: -45,marginLeft:15}}
+              />
+        </View>
+
+<View style={{marginTop:-65,marginLeft:120}}> 
+        <TouchableOpacity>
+                  <View style={{flex: 1, alignItems: 'center'}}>  
+                    <Image source={require('./assets/images/edit.png')}
+                            style={{width:22,height:22,marginLeft: 70}} />     
                   </View>
         </TouchableOpacity>
 
-
         <TouchableOpacity>
-         <View style={{flex: 1, alignItems: 'center',}}>  
-       <Image source={require('./assets/images/edit.png')}
-              style={{width:20,height:20,marginLeft: 10}} />     
-        </View>
-        </TouchableOpacity> 
-  
-      <View style={styles.editButton}>
-            <TouchableOpacity >  
-             <Text style={styles.textEdit}>แก้ไข</Text> 
-             </TouchableOpacity>
-      </View>
-
-  </View>
-       
-
-
-         <View style={{flex: 1,justifyContent: 'center' }}>
-           <Text style={styles.textAlarmList}>ไม่มีรายการแจ้งเตือน</Text>
+                  <View style={{flex: 1, alignItems: 'center'}}>  
+                    <Image source={require('./assets/images/delete.png')}
+                            style={{width:22,height:22,marginLeft: 140}} />     
+                  </View>
+        </TouchableOpacity>
+</View>
+           
          </View>
 
       </View>
@@ -167,7 +173,7 @@ const styles = StyleSheet.create({
   Heal_sentence: {
     color: '#FFFFFF',
     fontFamily: 'Quark',
-    fontSize: 15,
+    fontSize: 16,
     flexWrap: 'wrap',
     paddingLeft: 60,
     paddingRight: 60,
@@ -246,12 +252,49 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 
-  textDay: {
+  textTask: {
     color: '#000000',
     fontFamily: 'Quark',
     fontSize: 14,
-    flex: 1,
-  }
+  },
+
+  buttonAlarm: {
+      width: 315,
+      height: 70,
+      backgroundColor: '#FFFFFF',
+      borderColor: '#87D6E8',
+      borderLeftWidth: 32,
+      borderRightWidth: 3,
+      borderBottomWidth: 3,
+      borderTopWidth: 3,
+      shadowColor: '#000000',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity:  0.4,
+      shadowRadius: 3,
+      elevation: 1,
+      marginTop: -60,
+      marginBottom: 20,
+      marginLeft: 18.5,
+    },
+
+    textAlarm: {
+     color: '#000000',
+     fontSize: 18,
+     fontFamily: 'Quark',
+     fontWeight: 'bold',
+     marginLeft: 15,
+     marginTop: 12,
+    
+    },
+
+    textAdd: {
+    color: '#000000',
+    fontSize: 16,
+    fontFamily: 'Quark',
+    fontWeight: 'bold',
+    paddingLeft: 65 ,
+
+  },
 
 });
 

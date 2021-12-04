@@ -196,7 +196,7 @@ return (
    <View style={{width: 170, height: 1 ,backgroundColor: '#EA8681',marginTop: 12}} />   
 </View>
  
- <TouchableOpacity  underlayColor='#FDF5F5' onPress={() => this.props.navigation.navigate('Register_copy')}>
+ <TouchableOpacity  underlayColor='#FDF5F5' onPress={() => this.props.navigation.navigate('Register')}>
   <View style = {styles.buttonRegister}>  
            <Text style = {styles.textRegister}>Sign up</Text>  
        </View>

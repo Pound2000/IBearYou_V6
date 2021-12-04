@@ -16,6 +16,7 @@ class MoodScreen extends Component {
                     feel : true,
                     next : true,
                     listFeelData : [],
+                    checked: 0,
     };
   }
 
@@ -131,35 +132,36 @@ class MoodScreen extends Component {
 
   all_feel_List(){
 
-   return this.state.listFeelData.map((data) => {
+   return this.state.listFeelData.map((data,key) => {
       return (
-    <View style={{flex: 1,marginBottom: -50}}>
- 
-    {this.state.feel
-     ?  
+<View style={{flex: 1,marginBottom: -110}}>
+   {this.state.feel
+    ? 
+    <TouchableOpacity style={styles.buttonVeryGood} activeOpacity={0.50}
+     onPress ={() => this.selectedFeel(data.feel_id)}>
+     <View>
+     <Text style={styles.textMood}>{data.feel_name}</Text>
+      <Image source={require('./assets/images/bear-verygood.png')}
+     style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}}
+     />
+     </View>
+     </TouchableOpacity>
+     :
+     <View>
+     <View></View>
      <TouchableOpacity style={styles.buttonVeryGood} activeOpacity={1}
-      onPress ={() => this.selectedFeel(data.feel_id)}>
-      <View>
-      <Text style={styles.textMood}>{data.feel_name}</Text>
-       <Image source={require('./assets/images/bear-verygood.png')}
-      style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}}
-      />
-      </View>
-      </TouchableOpacity>
-      :
-      <View>
-      <View style={styles.clickVeryGood}></View>
-      <TouchableOpacity style={styles.buttonVeryGood} activeOpacity={1}
-      onPress ={() => this.selectedFeel(data.feel_id)}>
-      <Text style={styles.textMood}>{data.feel_name}</Text>
-       <Image source={require('./assets/images/bear-verygood.png')}
-      style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}}
-      />
-      </TouchableOpacity>
-      </View>
- } 
-    
+     onPress ={() => this.selectedFeel(data.feel_id)}>
+     <Text style={styles.textMood}>{data.feel_name}</Text>
+      <Image source={require('./assets/images/bear-verygood.png')}
+     style={{width:57.24 ,height:57.37,marginTop: -38,marginLeft: -50}}
+     />
+     </TouchableOpacity>
+     </View>
+}
+  
 </View>
+ 
+
 
       )
     })
@@ -196,24 +198,7 @@ const styles = StyleSheet.create({
      marginTop: 10,
     },
 
-    buttonVeryGood: {
-      width: 332.11,
-      height: 50,
-      backgroundColor: '#FFFFFF',
-      borderColor: '#70BA97',
-      borderLeftWidth: 42,
-      borderRightWidth: 3,
-      borderBottomWidth: 3,
-      shadowColor: '#000000',
-      shadowOffset: { width: 0, height: 4 },
-      shadowOpacity:  0.4,
-      shadowRadius: 3,
-      elevation: 1,
-      marginTop: -65,
-      marginBottom: 15,
-      marginLeft: 32,
-    },
-
+    
       buttonGood: {
       width: 332.11,
       height: 50,
@@ -295,13 +280,32 @@ const styles = StyleSheet.create({
     
     },
 
+buttonVeryGood: {
+      width: 332.11,
+      height: 50,
+      backgroundColor: '#FFFFFF',
+      borderColor: '#70BA97',
+      borderLeftWidth: 42,
+      borderRightWidth: 3,
+      borderBottomWidth: 3,
+      shadowColor: '#000000',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity:  0.4,
+      shadowRadius: 3,
+      elevation: 1,
+      marginTop: -60,
+      marginBottom: 20,
+      marginLeft: 32,
+    },
+
+
     clickVeryGood: {
       flex: 1,  
       width: 414,
       backgroundColor: '#70BA97',
       marginBottom: 5,
       marginLeft: -20,
-      marginTop: -72,
+      marginTop: -85,
      
     },
 

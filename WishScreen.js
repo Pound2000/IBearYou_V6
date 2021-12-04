@@ -74,14 +74,14 @@ loadHeal_Sentence=async()=>{
     style={{width:552.17 ,height: 323.61,marginTop: -140}} /> 
 
     <View style={styles.date}>
-    <Text style={styles.day}>อา.</Text>
-    <Text style={styles.number}>18</Text>
-    <Text style={styles.month}>ก.ค</Text>
+    <Text style={styles.day}>จ.</Text>
+    <Text style={styles.number}>29</Text>
+    <Text style={styles.month}>พ.ค</Text>
     </View> 
 
     <View style={{marginLeft: 100,marginTop: -85}}>
-      <Text style={styles.topic}>ประโยคพิเศษประจำวันจากน้องหมี</Text>
-      <Text style={styles.sentence}>"มะม่วงยังสุก เราจะทุกข์ทำไม"</Text>
+      <Text style={styles.topic}>ประโยคพิเศษจากน้องหมี</Text>
+      <Text style={styles.sentence}>เพราะพรุ่งนี้มีไว้ให้เธอได้พิสูจน์ฝีมือว่าเธอเก่งมากแค่ไหน</Text>
     </View>
 
  </View>
@@ -203,11 +203,13 @@ const styles = StyleSheet.create({
     },
 
     textContent: {
-      fontSize: 14,
+      fontSize: 16,
       color:'#000000',
       fontFamily: 'Quark',
       fontWeight: 'bold',
-      marginBottom: 5
+      padding: 10,
+      textAlign: 'center',
+      flexWrap: 'wrap',
     },
 
     boxContent: {
@@ -275,14 +277,17 @@ const styles = StyleSheet.create({
       fontFamily: 'Quark',
       marginLeft: 12,
       marginTop: -5,
+
     },
 
       sentence: {
       fontSize: 18,
       color:'#FFFFFF',
       fontFamily: 'Quark',
-      marginLeft: 12,
-      marginTop: -3,
+      marginLeft: 0,
+      marginTop: -10,
+      flexWrap: 'wrap',
+      padding: 10,
     }
 
 
